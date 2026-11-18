@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mazz Manager© | Innovación • Finanzas • Mentalidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&family=Squada+One&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root {
+    --bg-body: #111111;
+    --bg-header: #0a0a0a;
+    --bg-card: #1e1e1e;
+    --bg-card-hover: #252525;
+    --border: #2a2a2a;
+    --text-primary: #f4f4f4;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --accent-red: #c0392b;
+    --accent-red-hover: #980000;
+    --accent-cyan: #00cfb4;
+    --accent-gold: #f3ba2f;
+    --green: #27ae60;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  body, * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* =========================================================
+     PORTADA WEB FULL-WIDTH (SIN BORDES LATERALES NI SUPERIOR)
+     ========================================================= */
+  .hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    padding: clamp(50px, 7.5vw, 82px) clamp(20px, 5vw, 40px) clamp(48px, 6.5vw, 72px);
+    background: radial-gradient(ellipse 85% 90% at 50% 15%, rgba(192, 57, 43, 0.22) 0%, rgba(13, 13, 13, 0.96) 58%, var(--bg-body) 100%);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    margin-bottom: 42px;
+  }
+
+  #heroCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  }
+
+  .hero-bottom-beam {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(192, 57, 43, 0.65) 25%, #00cfb4 50%, rgba(192, 57, 43, 0.65) 75%, transparent 100%);
+    background-size: 200% 100%;
+    animation: beamSlideReverse 5s linear infinite;
+    z-index: 3;
+  }
+
+  @keyframes beamSlideReverse {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .hero-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 15%, rgba(255, 255, 255, 0.05) 50%, transparent 85%);
+    transform: skewX(-22deg);
+    animation: lightSweep 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  @keyframes lightSweep {
+    0% { left: -100%; }
+    45%, 100% { left: 160%; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 4;
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  }
+
+  .hero-content.fonts-loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .brand-logo-img {
+    width: clamp(130px, 21vw, 195px);
+    height: auto;
+    margin-bottom: 12px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 24px rgba(200, 0, 0, 0.45));
+    animation: logoFloat 4.5s ease-in-out infinite;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .brand-title-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .brand-title {
+    font-family: "Squada One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(46px, 8.5vw, 84px);
+    letter-spacing: clamp(1.5px, 0.3vw, 3px);
+    line-height: 0.92;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 6px 30px rgba(0, 0, 0, 0.9);
+  }
+
+  .brand-copyright {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 2.2vw, 20px);
+    font-weight: 700;
+    color: #e74c3c;
+    margin-left: 5px;
+    margin-top: 2px;
+    animation: copyrightGlow 2.5s ease-in-out infinite;
+  }
+
+  @keyframes copyrightGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(231, 76, 60, 0.4); }
+    50% { text-shadow: 0 0 20px rgba(231, 76, 60, 1); }
+  }
+
+  .badge-pillars {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(10.5px, 1.5vw, 12.5px);
+    font-weight: 800;
+    letter-spacing: clamp(1.8px, 0.35vw, 3px);
+    color: var(--accent-cyan);
+    background: rgba(0, 207, 180, 0.1);
+    border: 1px solid rgba(0, 207, 180, 0.38);
+    padding: 7px 22px;
+    border-radius: 50px;
+    margin-bottom: 22px;
+    box-shadow: 0 0 24px rgba(0, 207, 180, 0.14);
+  }
+
+  .pillar-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    display: inline-block;
+    animation: dotBlink 1.8s infinite alternate;
+  }
+
+  @keyframes dotBlink {
+    from { opacity: 0.4; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(18px, 2.7vw, 26px);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+    color: #f4f4f4;
+    max-width: 760px;
+  }
+
+  .hero p {
+    font-size: clamp(13.5px, 1.8vw, 15.5px);
+    color: #b0b5bd;
+    max-width: 620px;
+  }
+
+  /* CONTENEDOR DEL RESTO DE LA PÁGINA */
+  .wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 44px 20px;
+  }
+
+  /* TITULOS DE SECCION */
+  .section-header {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .section-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(17px, 2.2vw, 19px);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  /* GRID CANALES WHATSAPP */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+  }
+
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-cyan);
+    transform: translateY(-3px);
+  }
+
+  .card-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-cyan);
+    margin-bottom: 6px;
+  }
+
+  .card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  .card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+  }
+
+  .btn-wa {
+    display: block;
+    text-align: center;
+    background: var(--green);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 11px 16px;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-wa:hover {
+    opacity: 0.9;
+  }
+
+  /* TARJETA SECUNDARIA DE INFORMES PREMARKET */
+  .premarket-strip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-red);
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 36px;
+    transition: all 0.25s ease;
+  }
+
+  .premarket-strip:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-red);
+  }
+
+  .premarket-info {
+    max-width: 680px;
+  }
+
+  .premarket-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent-red);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .premarket-info h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .premarket-info p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  .btn-premarket-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-red);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+  }
+
+  .btn-premarket-secondary:hover {
+    background: var(--accent-red);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* GRID BROKERS / AFILIADOS CON BONIFICACION */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  .broker-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid rgba(243, 186, 47, 0.28);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .broker-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(243, 186, 47, 0.15);
+  }
+
+  .broker-top-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .broker-market {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 6px;
+  }
+
+  .tag-byma {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+  }
+
+  .tag-crypto {
+    background: rgba(0, 207, 180, 0.15);
+    color: var(--accent-cyan);
+  }
+
+  .bonus-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(243, 186, 47, 0.16);
+    border: 1px solid rgba(243, 186, 47, 0.45);
+    color: var(--accent-gold);
+  }
+
+  .broker-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .broker-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .bonus-highlight {
+    background: rgba(243, 186, 47, 0.08);
+    border-left: 3px solid var(--accent-gold);
+    padding: 8px 10px;
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    color: #f8e3a1;
+    margin-bottom: 16px;
+  }
+
+  .bonus-highlight strong {
+    color: var(--accent-gold);
+  }
+
+  .btn-broker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    background: linear-gradient(135deg, #f3ba2f 0%, #d99b0e 100%);
+    color: #111111;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 12.5px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(243, 186, 47, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .btn-broker:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(243, 186, 47, 0.45);
+  }
+
+  /* BANNER PUBLICIDAD */
+  .ads-banner {
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .ads-text h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .ads-text p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  .btn-ads {
+    background: var(--text-primary);
+    color: #111111;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-ads:hover {
+    opacity: 0.9;
+  }
+
+  /* =========================================================
+     SECCIÓN DE APOYO / DONACIONES INTEGRADA (TEXTO ORIGINAL)
+     ========================================================= */
+  .support-section {
+    background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
+    border: 1px solid rgba(192, 57, 43, 0.35);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 26px;
+    text-align: center;
+  }
+
+  .support-header {
+    margin-bottom: 18px;
+  }
+
+  .support-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #e74c3c;
+    margin-bottom: 8px;
+  }
+
+  .support-badge i.fa-heart {
+    animation: beat 1.2s infinite alternate;
+  }
+
+  @keyframes beat {
+    to { transform: scale(1.25); }
+  }
+
+  .support-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .support-header p strong {
+    color: var(--text-primary);
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+    text-align: left;
+  }
+
+  .donation-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .donation-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    background-color: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .donation-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+  }
+
+  .icon-box {
+    font-size: 20px;
+    width: 34px;
+    text-align: center;
+    margin-right: 12px;
+  }
+
+  .method-title {
+    display: block;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .method-desc {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+
+  /* PIE DE PAGINA INTEGRADO */
+  .integrated-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12.5px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 38px 16px 36px; margin-bottom: 30px; }
+    .badge-pillars { padding: 5px 12px; gap: 6px; }
+    .wrapper { padding: 0 14px 36px; }
+    .support-section { padding: 18px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTADA WEB DE ANCHO COMPLETO (SOLO BORDE INFERIOR ANIMADO) -->
+<header class="hero" id="heroContainer">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-sweep"></div>
+  <div class="hero-bottom-beam"></div>
+
+  <div class="hero-content" id="heroContent">
+    <img src="https://lh3.googleusercontent.com/d/1hT1bsyDWqvc2qen1hocHzvsuDaZ2_qJ1" 
+         alt="Logo Mazz Manager" 
+         class="brand-logo-img"
+         onerror="this.style.display='none'">
+
+    <div class="brand-title-wrapper">
+      <div class="brand-title">MAZZ MANAGER</div>
+      <span class="brand-copyright">©</span>
+    </div>
+
+    <div class="badge-pillars">
+      <span>INNOVACIÓN</span>
+      <span class="pillar-dot"></span>
+      <span>FINANZAS</span>
+      <span class="pillar-dot"></span>
+      <span>MENTALIDAD</span>
+    </div>
+
+    <h1>Potenciá tu mentalidad y aplicá tecnología para invertir con inteligencia</h1>
+    <p>Aprendé a dominar el mercado desde cero con herramientas prácticas, análisis diario y educación financiera real.</p>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <!-- CANALES DE WHATSAPP -->
+  <div class="section-header">
+    <h2>Comunidad Gratuita en WhatsApp</h2>
+    <p>Sumate a los canales oficiales y recibí contenido directo en tu celular</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div>
+        <div class="card-tag">Whatsapp Channel</div>
+        <h3>Mentalidad, Finanzas e Innovación</h3>
+        <p>Todo empieza en tu mente: si dominás tu mentalidad, dominarás tus finanzas. Reflexiones, hábitos y tecnología aplicada.</p>
+      </div>
+      <a href="https://www.whatsapp.com/channel/0029VaEMZ2LLikgAFcHkLI0Q" target="_blank" rel="noopener" class="btn-wa">
+        <i class="fab fa-whatsapp"></i> Ingresar al Canal General</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-tag">Whatsapp Channel</div>
+        <h3>Trading y Movimientos de Mercado</h3>
+        <p>Noticias relevantes, contexto premarket, lectura técnica y seguimiento de activos en tiempo real.</p>
+      </div>
+      <a href="https://www.whatsapp.com/channel/0029VaHmNziDjiOUi3ABHZ0T" target="_blank" rel="noopener" class="btn-wa">
+        <i class="fab fa-whatsapp"></i> Ingresar al Canal de Trading</a>
+    </div>
+  </div>
+
+  <!-- ACCESO SECUNDARIO A INFORMES PREMARKET -->
+  <div class="premarket-strip">
+    <div class="premarket-info">
+      <span class="premarket-tag">Análisis Diario • Finanzas</span>
+      <h4>Informes PreMarket</h4>
+      <p>Lectura macroeconómica, mercados globales, indicadores locales y niveles clave antes de la campana.</p>
+    </div>
+    <button type="button" onclick="irA('https://www.mazzmanager.com.ar/informes-mercado')" class="btn-premarket-secondary">
+      <i class="fas fa-chart-line"></i> Ver Informe Premarket
+    </button>
+  </div>
+
+  <!-- PLATAFORMAS RECOMENDADAS (AFILIADOS CON BONIFICACION) -->
+  <div class="section-header">
+    <h2>Plataformas con Bonificaciones Exclusivas</h2>
+    <p>Registrate desde estos enlaces oficiales para activar beneficios y recompensas de bienvenida</p>
+  </div>
+
+  <div class="grid-3">
+    <!-- Cocos Capital -->
+    <div class="broker-card">
+      <div>
+        <div class="broker-top-badges">
+          <span class="broker-market tag-byma">Mercado BYMA</span>
+          
+        </div>
+        <h3>Cocos Capital</h3>
+        <p>Operá Acciones, CEDEARs, Cauciones, LECAPs, Fondos y pagá con PIX en Brasil.</p>
+        <div class="bonus-highlight">
+          <strong>🎁 Regalo de bienvenida:</strong> Abrí tu cuenta desde este enlace y obtené bonificaciones exclusivas al comenzar a operar.
+        </div>
+      </div>
+      <a href="https://cocos-capital.onelink.me/8LJp/6rercht2" target="_blank" rel="noopener" class="btn-broker">
+        <i class="fas fa-gift"></i> Registrarme con Bonificación
+      </a>
+    </div>
+
+    <!-- InvertirOnline -->
+    <div class="broker-card">
+      <div>
+        <div class="broker-top-badges">
+          <span class="broker-market tag-byma">Mercado BYMA</span>
+          
+        </div>
+        <h3>InvertirOnline (IOL)</h3>
+        <p>Uno de los brokers líderes de Argentina para invertir en CEDEARs, Bonos, Letras y Dólar MEP.</p>
+        <div class="bonus-highlight">
+          <strong>🎁 Bonificación especial:</strong> Activá beneficios exclusivos en tu cuenta nueva registrándote con mi invitación oficial.
+        </div>
+      </div>
+      <a href="https://link.iolinversiones.com/LMOT/n7f8s88z" target="_blank" rel="noopener" class="btn-broker">
+        <i class="fas fa-gift"></i> Registrarme con Bonificación
+      </a>
+    </div>
+
+    <!-- BingX -->
+    <div class="broker-card">
+      <div>
+        <div class="broker-top-badges">
+          <span class="broker-market tag-crypto">Criptomonedas</span>
+          
+        </div>
+        <h3>BingX</h3>
+        <p>Comprá, vendé y operá criptomonedas con herramientas avanzadas y liquidez global.</p>
+        <div class="bonus-highlight">
+          <strong>🎁 Bono + Descuento:</strong> Accedé a cajas misteriosas de bienvenida y descuentos en comisiones de trading.
+        </div>
+      </div>
+      <a href="https://bingxdao.com/invite/UM4AC8/" target="_blank" rel="noopener" class="btn-broker">
+        <i class="fas fa-gift"></i> Reclamar Bono en BingX
+      </a>
+    </div>
+  </div>
+
+  <!-- PUBLICIDAD -->
+  <div class="ads-banner">
+    <div class="ads-text">
+      <h4><i class="fas fa-bullhorn" style="color: var(--accent-cyan);"></i> ¿Querés publicitar tu marca o proyecto en Mazz Manager?</h4>
+      <p>Conectá con una audiencia interesada en finanzas, inversiones y tecnología.</p>
+    </div>
+    <a href="mailto:mazzmanager@gmail.com" class="btn-ads">
+      Contactar ahora
+    </a>
+  </div>
+
+  <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (TEXTO ORIGINAL) -->
+  <section class="support-section">
+    <div class="support-header">
+      <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+      <p>
+        Podés apoyar este proyecto a través de estos canales.<br>
+        <strong>¡Cualquier aporte suma!</strong>
+      </p>
+    </div>
+
+    <div class="support-grid">
+      <!-- PayPal -->
+      <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+          <div>
+            <span class="method-title">PayPal | Tarjetas</span>
+            <span class="method-desc">Soporte Internacional</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mercado Pago -->
+      <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+          <div>
+            <span class="method-title">Mercado Pago</span>
+            <span class="method-desc">Argentina</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Crypto -->
+      <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+          <div>
+            <span class="method-title">Criptomonedas</span>
+            <span class="method-desc">USDT (BEP20)</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Pix -->
+      <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
+          <div>
+            <span class="method-title">Pix</span>
+            <span class="method-desc">Brasil</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- PIE DE PAGINA INTEGRADO -->
+  <footer class="integrated-footer">
+    <div class="footer-copy">
+      Mazz Manager© | 2026 | Todos los Derechos Reservados
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // EVITAR SALTO DE FUENTE (FOUT): MOSTRAR CONTENIDO AL CARGAR SQUADA ONE
+  (function() {
+    const heroContent = document.getElementById('heroContent');
+    function showHero() {
+      if (heroContent) heroContent.classList.add('fonts-loaded');
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(showHero);
+    } else {
+      window.addEventListener('load', showHero);
+    }
+    setTimeout(showHero, 600);
+  })();
+
+  // MOTOR DE MOTION GRAPHICS EN CANVAS (NODOS Y CONEXIONES)
+  (function() {
+    const canvas = document.getElementById('heroCanvas');
+    const hero = document.getElementById('heroContainer');
+    if (!canvas || !hero) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+    let mouse = { x: null, y: null };
+
+    function resize() {
+      const rect = hero.getBoundingClientRect();
+      width = canvas.width = rect.width;
+      height = canvas.height = rect.height;
+      initParticles();
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = width < 600 ? 30 : 65;
+      for (let i = 0; i < count; i++) {
+        const isRed = Math.random() > 0.45;
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.85,
+          vy: (Math.random() - 0.5) * 0.85,
+          radius: Math.random() * 2.2 + 1.2,
+          color: isRed ? 'rgba(231, 76, 60, 0.85)' : 'rgba(0, 207, 180, 0.8)',
+          lineColor: isRed ? '231, 76, 60' : '0, 207, 180'
+        });
+      }
+    }
+
+    hero.addEventListener('mousemove', function(e) {
+      const rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    hero.addEventListener('mouseleave', function() {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        const maxDist = width < 600 ? 100 : 145;
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          let dx = p.x - p2.x;
+          let dy = p.y - p2.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDist) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${p.lineColor}, ${(1 - dist / maxDist) * 0.35})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          let dxm = p.x - mouse.x;
+          let dym = p.y - mouse.y;
+          let distM = Math.sqrt(dxm * dxm + dym * dym);
+          if (distM < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 207, 180, ${(1 - distM / 150) * 0.55})`;
+            ctx.lineWidth = 1.2;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+  })();
+
+  function irA(url) {
+    try {
+      window.top.location.href = url;
+    } catch (e) {
+      window.open(url, '_blank');
+    }
+  }
+
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.keyCode === 123 ||
+      (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+      (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+    ) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('copy', function(e) { e.preventDefault(); });
+  document.addEventListener('cut', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+</script>
+
+</body>
+</html>
