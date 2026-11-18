@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Definitiva: Cómo Operar CEDEARs y No Perder Dinero en el Intento</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg-body:        #111111;
+      --bg-header:      #0a0a0a;
+      --accent-red:       #c0392b;
+      --accent-red-hover: #980000;
+      --text-primary:     #f4f4f4;
+      --text-secondary:   #cccccc;
+      --text-muted:       #888888;
+      --border:           #2a2a2a;
+      --accent-cyan:      #00cfb4;
+      --bg-card:          #1e1e1e;
+      --bg-card-hover:    #252525;
+    }
+
+    [data-theme="light"] {
+      --bg-body:        #f8f9fa;
+      --bg-header:      #e9ecef;
+      --accent-red:       #c0392b;
+      --accent-red-hover: #980000;
+      --text-primary:     #212529;
+      --text-secondary:   #495057;
+      --text-muted:       #6c757d;
+      --border:           #dee2e6;
+      --accent-cyan:      #009688;
+      --bg-card:          #ffffff;
+      --bg-card-hover:    #f1f3f5;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* OCULTAR BARRAS DE SCROLL INTERNAS */
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      scroll-behavior: smooth;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    body, * {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Lexend', sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 30px 20px 50px;
+      position: relative;
+    }
+
+    /* Botón Selector de Tema */
+    .theme-switcher-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .theme-switcher-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-switcher-btn:hover {
+      border-color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-bottom: 30px;
+    }
+
+    .hero-meta {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-red);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero-title span, .hero-title em {
+      color: var(--accent-red);
+      font-style: normal;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent-red);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* Secciones del Contenido */
+    .section-header {
+      margin: 28px 0 12px;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-icon {
+      font-size: 22px;
+    }
+
+    /* Listas Personalizadas */
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 12px 0 16px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    ul.bullet-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    ul.bullet-list li strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Cita Destacada */
+    blockquote {
+      margin: 30px 0;
+      padding: 0 0 0 18px;
+      border-left: 3px solid var(--accent-red);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       SECCIÓN DE APOYO / DONACIONES INTEGRADA (SIN DOBLE SCROLL)
+       ========================================================= */
+    .support-section {
+      background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(192, 57, 43, 0.35);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 36px 0 26px;
+      text-align: center;
+    }
+
+    .support-header {
+      margin-bottom: 16px;
+    }
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #e74c3c;
+      margin-bottom: 8px;
+    }
+
+    .support-badge i.fa-heart {
+      animation: beat 1.2s infinite alternate;
+    }
+
+    @keyframes beat {
+      to { transform: scale(1.25); }
+    }
+
+    .support-header p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .support-header p strong {
+      color: var(--text-primary);
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      text-align: left;
+    }
+
+    .donation-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .donation-card {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      background-color: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .donation-card:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    .icon-box {
+      font-size: 19px;
+      width: 30px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    .method-title {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .method-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'Lexend', sans-serif;
+    }
+
+    /* Footer & Disclaimer */
+    .social-bar {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .integrated-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Responsividad */
+    @media (max-width: 600px) {
+      .hero-title { font-size: 28px; }
+      .container { padding: 20px 16px 40px; }
+      blockquote { font-size: 16px; }
+      .support-section { padding: 18px 14px; }
+      .support-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- Selector de Tema Claro / Oscuro -->
+    <div class="theme-switcher-wrapper">
+      <button class="theme-switcher-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+        <i class="fas fa-moon" id="themeIcon"></i>
+        <span id="themeText">Modo Claro</span>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <span class="hero-meta">📚 Finanzas & Inversiones con Mazz Manager©</span>
+      <h1 class="hero-title">Cómo Operar <span>CEDEARs</span> y No Perder Dinero</h1>
+      <div class="hero-divider"></div>
+      <p>Invertir en <strong>CEDEARs</strong> (Certificados de Depósito Argentinos) se ha convertido en una de las estrategias favoritas para los ahorristas que buscan dolarizar sus carteras y acceder a empresas globales desde Argentina. Sin embargo, operar este instrumento sin estrategia puede derivar en pérdidas evitables.</p>
+      <p>A continuación, analizamos los errores más comunes y las mejores prácticas para que tu inversión sea realmente eficiente.</p>
+    </section>
+
+    <!-- Sección 1 -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🕒</span> El Horario: La Ventana de las 11:30 a 12:30</h2>
+    </div>
+    <p>Aunque el mercado argentino opera de 10:30 a 17:00, el mejor momento para comprar o vender un CEDEAR es entre las <strong>11:00 de la mañana y las 12:00 del mediodía</strong>. ¿Por qué?</p>
+    
+    <ul class="bullet-list">
+      <li><strong>Liquidez y Volumen:</strong> En este rango horario es cuando el mercado estadounidense presenta su mayor movimiento, lo que se traduce en mayor volumen de operaciones en Argentina.</li>
+      <li><strong>Caja de Puntas:</strong> Fuera de estos horarios, o en CEDEARs con poco movimiento, puedes encontrarte con una "caja de puntas" incompleta. Esto significa que no hay suficientes compradores o vendedores, lo que puede llevarte a pagar hasta un 50% más por un activo debido a la falta de ofertas competitivas.</li>
+      <li><strong>Actividad de Traders:</strong> Los traders locales suelen entrar en este horario, inyectando la liquidez necesaria para que puedas entrar o salir de una posición a precios justos.</li>
+    </ul>
+
+    <!-- Sección 2 -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">💵</span> No Sigas tu Rendimiento en Pesos</h2>
+    </div>
+    <p>Por regulación, los brokers argentinos muestran el rendimiento de tu cartera en pesos, pero esto puede ser engañoso.</p>
+    <p>El consejo para un inversor serio es <strong>medir sus ganancias en dólares</strong>. Como el CEDEAR es un activo que representa acciones del exterior, su valor está atado a una moneda dura. Al medir en dólares, eliminas el "ruido" de la devaluación del peso y podés ver realmente si tu inversión creció o perdió valor real. Es recomendable utilizar una planilla de seguimiento (Excel) que actualice los precios en tiempo real para conocer tu ganancia o pérdida porcentual exacta en moneda extranjera.</p>
+
+    <!-- Sección 3 -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">📅</span> Cuidado con las Ventas a Fin de Año</h2>
+    </div>
+    <p>Muchos inversores desconocen el impacto impositivo de vender sus activos en diciembre.</p>
+    
+    <ul class="bullet-list">
+      <li><strong>Bienes Personales:</strong> Las acciones y CEDEARs entran en el cómputo de este impuesto anual.</li>
+      <li><strong>Impuesto a las Ganancias:</strong> Aquí reside el error. Si vendes una acción con ganancia en diciembre, esa ganancia queda realizada y podría quedar sujeta al pago del impuesto ese mismo año.</li>
+      <li><strong>La Estrategia:</strong> Si necesitas liquidez para las vacaciones, considera vender en enero en lugar de diciembre. Al pasar la venta al año siguiente, postergas el impacto impositivo y mantienes ese capital trabajando para vos por más tiempo.</li>
+    </ul>
+
+    <!-- Sección 4 -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">⚖️</span> El "Arbitraje" del Contado con Liquidación (CCL)</h2>
+    </div>
+    <p>Cada CEDEAR sigue un tipo de cambio implícito basado en el CCL. Sin embargo, no todos los CEDEARs cotizan exactamente al mismo valor de CCL en todo momento.</p>
+    <p>Es fundamental revisar si el CEDEAR que quieres comprar no está "caro" respecto al promedio del mercado. Por ejemplo, si el CCL promedio es de 1500, pero un CEDEAR puntual está cotizando a un CCL de 1850, estarías pagando de más. Lo ideal es esperar a que el precio se <strong>"arbitre"</strong> (se iguale al resto) antes de ejecutar la orden.</p>
+
+    <!-- Sección 5 -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🎯</span> Nunca Compres a "Precio de Mercado"</h2>
+    </div>
+    <p>Este es quizás el error técnico más frecuente. Al operar, tienes dos opciones principales:</p>
+    
+    <ul class="bullet-list">
+      <li><strong>Orden a Mercado:</strong> Le dices al broker "comprame ya, al precio que sea". Esto es peligroso en activos con poca liquidez, ya que puedes terminar comprando a un precio muy superior al deseado.</li>
+      <li><strong>Orden Límite:</strong> Tú defines el precio máximo que estás dispuesto a pagar.</li>
+    </ul>
+    <p>Usar <strong>órdenes límite</strong> te permite ahorrar dinero por cada CEDEAR comprado al esperar a que un vendedor acepte tu oferta específica, en lugar de aceptar ciegamente el precio más alto de la lista.</p>
+
+    <!-- Bonus -->
+    <blockquote>
+      Bonus🎁 Evita el Exceso de Operaciones (Overtrading)<br><br>
+      Cada vez que compras y vendes, pagas una comisión al broker. Un error común de principiante es vender ante una pequeña caída o comprar desesperadamente ante una suba. La clave del éxito en CEDEARs suele ser comprar y mantener (buy and hold), confiando en el análisis previo del activo y evitando que las comisiones erosionen tu rentabilidad a largo plazo.
+    </blockquote>
+
+    <!-- Conclusión -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">📌</span> Conclusión</h2>
+    </div>
+    <p>Invertir en CEDEARs requiere paciencia y atención a los detalles técnicos como el horario, el tipo de cambio implícito y el tipo de orden. Al evitar estos cinco errores, estarás protegiendo tu capital y optimizando tus rendimientos en una moneda fuerte.</p>
+
+  <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (TEXTO ORIGINAL) -->
+  <section class="support-section">
+    <div class="support-header">
+      <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+      <p>
+        Podes apoyar este proyecto, a través de estos canales.<br>
+        <strong>¡Cualquier aporte suma!</strong>
+      </p>
+    </div>
+
+      <div class="support-grid">
+        <!-- PayPal -->
+        <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+            <div>
+              <span class="method-title">PayPal | Tarjetas</span>
+              <span class="method-desc">Soporte Internacional</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Mercado Pago -->
+        <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+            <div>
+              <span class="method-title">Mercado Pago</span>
+              <span class="method-desc">Argentina</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Crypto -->
+        <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+            <div>
+              <span class="method-title">Criptomonedas</span>
+              <span class="method-desc">USDT (BEP20)</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Pix -->
+        <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
+            <div>
+              <span class="method-title">Pix</span>
+              <span class="method-desc">Brasil</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer / Disclaimer & Marca de Agua -->
+    <div class="social-bar">
+      <p class="footer-disclaimer">Este contenido tiene fines meramente informativos y educativos. No constituye una recomendación de inversión ni un asesoramiento financiero profesional.</p>
+      <div class="integrated-footer">
+        Mazz Manager© | 2026 | Todos los Derechos Reservados
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts de Protección y Selector de Tema -->
+  <script>
+    // Sistema de Selector Claro / Oscuro
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      const themeText = document.getElementById('themeText');
+      
+      if (html.getAttribute('data-theme') === 'light') {
+        html.removeAttribute('data-theme');
+        themeIcon.className = 'fas fa-moon';
+        themeText.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fas fa-sun';
+        themeText.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Cargar preferencia guardada
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById('themeIcon').className = 'fas fa-sun';
+        document.getElementById('themeText').textContent = 'Modo Oscuro';
+      }
+    });
+
+    // Bloquear menú contextual (clic derecho)
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // Bloquear atajos de teclado de copia, selección y herramientas de desarrollo (DevTools)
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80)) // Ctrl+S/U/C/A/P
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Bloquear eventos de copia, cortado y arrastre
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+  </script>
+</body>
+</html>
