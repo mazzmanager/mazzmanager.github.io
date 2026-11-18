@@ -542,103 +542,6 @@
     .sb-copy { background: #2a2a2a; color: var(--text-primary); border-color: #3a3a3a; }
     .sb-copy:hover { background: #353535; border-color: var(--accent-cyan); }
 
-    /* SECCIÓN DE APOYO / DONACIONES INTEGRADA */
-    .support-section {
-      background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
-      border: 1px solid rgba(192, 57, 43, 0.35);
-      border-radius: 14px;
-      padding: 22px;
-      margin: 36px 0 26px;
-      text-align: center;
-    }
-
-    .support-header {
-      margin-bottom: 16px;
-    }
-
-    .support-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: #e74c3c;
-      margin-bottom: 8px;
-    }
-
-    .support-badge i.fa-heart {
-      animation: beat 1.2s infinite alternate;
-    }
-
-    @keyframes beat {
-      to { transform: scale(1.25); }
-    }
-
-    .support-header p {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 0;
-    }
-
-    .support-header p strong {
-      color: var(--text-primary);
-    }
-
-    .support-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      text-align: left;
-    }
-
-    .donation-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .donation-card {
-      display: flex;
-      align-items: center;
-      padding: 11px 12px;
-      background-color: var(--bg-body);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: all 0.2s ease;
-    }
-
-    .donation-card:hover {
-      background-color: var(--bg-card-hover);
-      border-color: var(--accent-red);
-      transform: translateY(-2px);
-    }
-
-    .icon-box {
-      font-size: 19px;
-      width: 30px;
-      text-align: center;
-      margin-right: 10px;
-    }
-
-    .method-title {
-      display: block;
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--text-primary);
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .method-desc {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      font-family: 'Lexend', sans-serif;
-    }
-
     /* WIDGET FLOTANTE DE DONACIONES */
     .fixed-donation-wrapper {
       position: fixed;
@@ -678,6 +581,10 @@
       animation: beat 1.2s infinite alternate;
     }
 
+    @keyframes beat {
+      to { transform: scale(1.25); }
+    }
+
     .fixed-donate-menu {
       display: none;
       position: absolute;
@@ -710,6 +617,51 @@
 
     .fixed-menu-intro strong { color: var(--text-primary); }
 
+    .donation-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .donation-link:last-child { margin-bottom: 0; }
+
+    .donation-card {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background-color: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .donation-card:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--accent-red);
+    }
+
+    .icon-box {
+      font-size: 18px;
+      width: 32px;
+      text-align: center;
+      margin-right: 12px;
+    }
+
+    .method-title {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .method-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
     /* Footer & Disclaimer */
     .social-bar {
       margin-top: 24px;
@@ -737,8 +689,6 @@
       .hero-title { font-size: 28px; }
       .container { padding: 20px 16px 40px; }
       blockquote { font-size: 16px; }
-      .support-section { padding: 18px 14px; }
-      .support-grid { grid-template-columns: 1fr; }
       .fixed-donation-wrapper { bottom: 16px; right: 16px; }
       .fixed-donation-btn { padding: 10px 16px; font-size: 11.5px; }
       .fixed-donate-menu { width: 290px; right: -10px; }
@@ -926,63 +876,6 @@
         </a>
       </div>
     </div>
-
-    <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES -->
-    <section class="support-section">
-      <div class="support-header">
-        <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
-        <p>
-          Podes apoyar este proyecto, a través de estos canales.<br>
-          <strong>¡Cualquier aporte suma!</strong>
-        </p>
-      </div>
-
-      <div class="support-grid">
-        <!-- PayPal -->
-        <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-          <div class="donation-card">
-            <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
-            <div>
-              <span class="method-title">PayPal | Tarjetas</span>
-              <span class="method-desc">Soporte Internacional</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Mercado Pago -->
-        <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-          <div class="donation-card">
-            <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
-            <div>
-              <span class="method-title">Mercado Pago</span>
-              <span class="method-desc">Argentina</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Crypto -->
-        <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
-          <div class="donation-card">
-            <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
-            <div>
-              <span class="method-title">Criptomonedas</span>
-              <span class="method-desc">USDT (BEP20)</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Pix -->
-        <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-          <div class="donation-card">
-            <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
-            <div>
-              <span class="method-title">Pix</span>
-              <span class="method-desc">Brasil</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
 
     <!-- Footer / Disclaimer & Marca de Agua -->
     <div class="social-bar">
