@@ -209,6 +209,17 @@
     z-index: 9600;
   }
 
+  /* Puente invisible para evitar que el cursor pierda el hover al bajar al submenú */
+  .nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: transparent;
+  }
+
   .nav-item:hover .nav-dropdown,
   .nav-item.open .nav-dropdown {
     display: block;
@@ -333,6 +344,10 @@
       border: 1px solid #2a2a2a;
       margin-top: 4px;
       margin-bottom: 6px;
+    }
+
+    .nav-dropdown::before {
+      display: none;
     }
 
     .nav-item:hover .nav-dropdown {
@@ -935,18 +950,23 @@
     box-shadow: 0 6px 18px rgba(243, 186, 47, 0.45);
   }
 
-  /* BANNER PUBLICIDAD */
+  /* BANNER PUBLICIDAD Y COLABORADORES */
   .ads-banner {
     background: var(--bg-card);
     border: 1px dashed var(--border);
     border-radius: 12px;
-    padding: 18px 24px;
+    padding: 20px 24px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 32px;
+    transition: all 0.25s ease;
+  }
+
+  .ads-banner:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-cyan);
   }
 
   .ads-text h4 {
@@ -959,6 +979,7 @@
   .ads-text p {
     font-size: 12.5px;
     color: var(--text-muted);
+    margin-top: 6px;
   }
 
   .btn-ads {
@@ -970,6 +991,8 @@
     font-size: 12.5px;
     padding: 10px 20px;
     border-radius: 8px;
+    width: 100%;
+    text-align: center;
     transition: opacity 0.2s;
     pointer-events: auto;
   }
@@ -1530,15 +1553,29 @@
     </div>
   </div>
 
-  <!-- PUBLICIDAD -->
-  <div class="ads-banner">
-    <div class="ads-text">
-      <h4><i class="fas fa-bullhorn" style="color: var(--accent-cyan);"></i> ¿Querés publicitar tu marca o proyecto en <span class="brand-font" style="font-size: 1.15em;">Mazz Manager</span>?</h4>
-      <p>Conectá con una audiencia interesada en finanzas, inversiones y tecnología.</p>
+  <!-- PUBLICIDAD Y COLABORADORES -->
+  <div class="grid-2" style="margin-bottom: 32px;">
+    <!-- Tarjeta Publicidad -->
+    <div class="ads-banner">
+      <div class="ads-text">
+        <h4><i class="fas fa-bullhorn" style="color: var(--accent-cyan);"></i> ¿Querés publicitar tu marca o proyecto en <span class="brand-font" style="font-size: 1.15em;">Mazz Manager</span>?</h4>
+        <p>Conectá con una audiencia interesada en finanzas, inversiones y tecnología.</p>
+      </div>
+      <a href="contacto.html" class="btn-ads">
+        Contactar ahora
+      </a>
     </div>
-    <a href="contacto.html" class="btn-ads">
-      Contactar ahora
-    </a>
+
+    <!-- Tarjeta Colaboradores -->
+    <div class="ads-banner">
+      <div class="ads-text">
+        <h4><i class="fas fa-users" style="color: var(--accent-cyan);"></i> Equipo y Colaboradores de <span class="brand-font" style="font-size: 1.15em;">Mazz Manager</span></h4>
+        <p>Conocé a los profesionales, analistas y creadores que aportan valor al ecosistema.</p>
+      </div>
+      <a href="colaboradores.html" class="btn-ads">
+        Colaboradores
+      </a>
+    </div>
   </div>
 
   <!-- PIE DE PAGINA INTEGRADO -->
