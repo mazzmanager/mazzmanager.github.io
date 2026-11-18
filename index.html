@@ -766,81 +766,6 @@
     transform: translateY(-2px);
   }
 
-  /* GRID DE ECOSISTEMA (HERRAMIENTAS Y GUÍAS) */
-  .grid-ecosystem {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 18px;
-    margin-bottom: 36px;
-  }
-
-  .eco-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.25s ease;
-  }
-
-  .eco-card:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--accent-cyan);
-    transform: translateY(-3px);
-  }
-
-  .eco-pillar {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10.5px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent-cyan);
-    margin-bottom: 8px;
-  }
-
-  .eco-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16.5px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-
-  .eco-card p {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 18px;
-  }
-
-  .btn-eco {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: rgba(0, 207, 180, 0.12);
-    border: 1px solid rgba(0, 207, 180, 0.35);
-    color: var(--accent-cyan);
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 12.5px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    pointer-events: auto;
-  }
-
-  .btn-eco:hover {
-    background: var(--accent-cyan);
-    color: #0a0a0a;
-  }
-
   /* GRID BROKERS / AFILIADOS CON BONIFICACION */
   .grid-3 {
     display: grid;
@@ -1464,47 +1389,6 @@
     <a href="informe-de-mercado.html" class="btn-premarket-secondary">
       <i class="fas fa-chart-line"></i> Ver Informe Premarket
     </a>
-  </div>
-
-  <!-- HERRAMIENTAS & GUÍAS DEL ECOSISTEMA -->
-  <div class="section-header">
-    <h2>Herramientas & Guías del Ecosistema</h2>
-    <p>Recursos propios diseñados para analizar, calcular y operar con criterio</p>
-  </div>
-
-  <div class="grid-ecosystem">
-    <div class="eco-card">
-      <div>
-        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Herramienta</span>
-        <h3>Calculadora Renta Fija Pro</h3>
-        <p>Simulá interés compuesto, comisiones reales de broker, retiros programados y evolución patrimonial en pesos.</p>
-      </div>
-      <a href="calculadora-renta-fija.html" class="btn-eco">
-        <i class="fas fa-calculator"></i> Abrir Calculadora
-      </a>
-    </div>
-
-    <div class="eco-card">
-      <div>
-        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Learn</span>
-        <h3>Aprende a Leer Earnings</h3>
-        <p>Interpretá balances trimestrales, EPS, ingresos y proyecciones para anticipar la reacción del mercado.</p>
-      </div>
-      <a href="aprende-a-leer-earnings.html" class="btn-eco">
-        <i class="fas fa-book-open"></i> Leer Guía
-      </a>
-    </div>
-
-    <div class="eco-card">
-      <div>
-        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Learn</span>
-        <h3>Operá Bien CEDEARs</h3>
-        <p>Dominá ratios de conversión, tipo de cambio implícito (CCL), liquidez y cobertura en el mercado local.</p>
-      </div>
-      <a href="opera-bien-cedears.html" class="btn-eco">
-        <i class="fas fa-layer-group"></i> Leer Guía
-      </a>
-    </div>
   </div>
 
   <!-- PLATAFORMAS RECOMENDADAS (AFILIADOS CON BONIFICACION) -->
