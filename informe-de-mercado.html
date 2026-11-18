@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INFORME Mazz Manager© TRADER - PREMARKET 18/11/2026</title>
+
+    <!-- SEO GENERAL & META ESTRATÉGICAS -->
+    <meta name="description" content="Informe de mercados y premarket diario por Mazz Manager© Trader. Análisis macroeconómico, futuros, forex, criptomonedas y cotizaciones en Argentina.">
+    <meta name="keywords" content="informe de mercados, premarket, trading, wall street, nvidia, anthropic, dolar argentina, mazz manager">
+    <meta name="author" content="Juan Martín Díaz Mazz">
+    <meta name="robots" content="index, follow">
+
+    <!-- GOOGLE ANALYTICS (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T271H2P0TL');
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,6 +97,247 @@
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
+            padding-top: 66px;
+        }
+
+        /* BARRA DE NAVEGACIÓN SUPERIOR UNIFICADA */
+        .mazz-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 66px;
+            background: rgba(10, 10, 10, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #2a2a2a;
+            z-index: 9500;
+        }
+
+        .nav-container {
+            max-width: 1120px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: flex-start;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Squada One', sans-serif;
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .nav-brand span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-left: 2px;
+            margin-top: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 8px;
+            color: #cccccc;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link.active {
+            color: #00cfb4;
+        }
+
+        .nav-link i.fa-chevron-down {
+            font-size: 10px;
+            opacity: 0.7;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item:hover .nav-link i.fa-chevron-down,
+        .nav-item.open .nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 275px;
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-top: 2px solid #00cfb4;
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+            list-style: none;
+            z-index: 9600;
+        }
+
+        .nav-item:hover .nav-dropdown,
+        .nav-item.open .nav-dropdown {
+            display: block;
+            animation: navFadeDown 0.18s ease-out;
+        }
+
+        @keyframes navFadeDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-dropdown-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00cfb4;
+            padding: 8px 12px 4px;
+            opacity: 0.9;
+        }
+
+        .nav-dropdown-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 6px 8px;
+        }
+
+        .nav-dropdown li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 7px;
+            color: #f4f4f4;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown li a i {
+            width: 16px;
+            text-align: center;
+            color: #00cfb4;
+            font-size: 13px;
+        }
+
+        .nav-dropdown li a:hover {
+            background: #252525;
+            color: #00cfb4;
+            transform: translateX(3px);
+        }
+
+        .nav-dropdown li a.coming-soon {
+            color: #888888;
+            font-weight: 500;
+            font-size: 12px;
+            cursor: default;
+        }
+
+        .nav-dropdown li a.coming-soon i {
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .nav-dropdown li a.coming-soon:hover {
+            background: transparent;
+            color: #888888;
+            transform: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: #1e1e1e;
+            border: 1px solid #2a2a2a;
+            color: #f4f4f4;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 66px;
+                left: 0;
+                right: 0;
+                background: #0e0e0e;
+                border-bottom: 1px solid #2a2a2a;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 14px 18px 22px;
+                gap: 4px;
+                max-height: calc(100vh - 66px);
+                overflow-y: auto;
+            }
+            .nav-links.mobile-open { display: flex; }
+            .nav-link { width: 100%; justify-content: space-between; padding: 12px 14px; }
+            .nav-dropdown { position: static; box-shadow: none; border: 1px solid #2a2a2a; margin-top: 4px; margin-bottom: 6px; }
+            .nav-item:hover .nav-dropdown { display: none; }
+            .nav-item.open .nav-dropdown { display: block; }
+        }
+
+        /* MARCA DE AGUA ESTILO MOSAICO */
+        .bg-watermark {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='220'%3E%3Ctext x='50%25' y='50%25' font-family='Arial,Helvetica,sans-serif' font-size='20' font-weight='900' letter-spacing='2' fill='%23DC2626' text-anchor='middle' dominant-baseline='middle' transform='rotate(-30 190 110)'%3EMAZZ MANAGER%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 380px 220px;
+            opacity: 0.04;
+            transition: opacity 0.3s ease;
+        }
+
+        [data-theme="light"] .bg-watermark {
+            opacity: 0.05;
         }
 
         /* TIPOGRAFÍA DE MARCA SQUADA ONE */
@@ -93,8 +350,9 @@
         .container {
             max-width: 680px;
             margin: 0 auto;
-            padding: 30px 20px 50px;
+            padding: 30px 20px 60px;
             position: relative;
+            z-index: 10;
         }
 
         /* SELECTOR DE TEMA EN FLUJO */
@@ -119,6 +377,7 @@
             gap: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            pointer-events: auto;
         }
 
         .theme-switcher-btn:hover {
@@ -298,107 +557,10 @@
             line-height: 1.5;
         }
 
-        /* SECCIÓN DE APOYO / DONACIONES INTEGRADA */
-        .support-section {
-            background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
-            border: 1px solid rgba(192, 57, 43, 0.35);
-            border-radius: 14px;
-            padding: 22px;
-            margin: 36px 0 26px;
-            text-align: center;
-        }
-
-        .support-header {
-            margin-bottom: 16px;
-        }
-
-        .support-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: #e74c3c;
-            margin-bottom: 8px;
-        }
-
-        .support-badge i.fa-heart {
-            animation: beat 1.2s infinite alternate;
-        }
-
-        @keyframes beat {
-            to { transform: scale(1.25); }
-        }
-
-        .support-header p {
-            font-size: 13.5px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .support-header p strong {
-            color: var(--text-primary);
-        }
-
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            text-align: left;
-        }
-
-        .donation-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .donation-card {
-            display: flex;
-            align-items: center;
-            padding: 11px 12px;
-            background-color: var(--bg-body);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            transition: all 0.2s ease;
-        }
-
-        .donation-card:hover {
-            background-color: var(--bg-card-hover);
-            border-color: var(--accent-red);
-            transform: translateY(-2px);
-        }
-
-        .icon-box {
-            font-size: 19px;
-            width: 30px;
-            text-align: center;
-            margin-right: 10px;
-        }
-
-        .method-title {
-            display: block;
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .method-desc {
-            display: block;
-            font-size: 11px;
-            color: var(--text-muted);
-            font-family: 'Lexend', sans-serif;
-        }
-
         /* FOOTER Y DISCLAIMER */
         .social-bar {
-            margin-top: 24px;
-            padding-top: 20px;
+            margin-top: 32px;
+            padding-top: 22px;
             border-top: 1px solid var(--border);
             text-align: center;
         }
@@ -423,18 +585,300 @@
             color: var(--text-secondary);
         }
 
+        /* CONTENEDOR FLOTANTE DERECHO (Compartir arriba + Donaciones abajo apilados) */
+        .fixed-floating-stack {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .fixed-donation-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: #1e1e1e;
+            border: 1px solid #DC2626;
+            border-radius: 50px;
+            color: #f4f4f4;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 12px rgba(220, 38, 38, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .fixed-donation-btn:hover {
+            background: #DC2626;
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.65);
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.25); }
+        }
+
+        .animate-heart-beat {
+            animation: beat 1.2s infinite alternate;
+            color: #ef4444;
+        }
+
+        .fixed-donate-menu {
+            display: none;
+            position: absolute;
+            bottom: 64px;
+            right: 0;
+            width: 320px;
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+            text-align: left;
+            animation: slideUp 0.25s ease-out;
+        }
+
+        .fixed-donate-menu.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fixed-menu-intro {
+            font-size: 12.5px;
+            color: #cccccc;
+            margin-bottom: 14px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .fixed-menu-intro strong { color: #f4f4f4; }
+
+        .donation-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-bottom: 8px;
+            pointer-events: auto;
+        }
+
+        .donation-link:last-child { margin-bottom: 0; }
+
+        .donation-card-float {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            background-color: #121212;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .donation-card-float:hover {
+            background-color: #252525;
+            border-color: #DC2626;
+        }
+
+        .icon-box-float {
+            font-size: 18px;
+            width: 30px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .method-title-float {
+            display: block;
+            font-weight: 700;
+            font-size: 12.5px;
+            color: #f4f4f4;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .method-desc-float {
+            display: block;
+            font-size: 10.5px;
+            color: #888888;
+        }
+
+        /* WIDGET FLOTANTE DE COMPARTIR (Arriba del de donaciones) */
+        .fixed-share-container {
+            position: relative;
+        }
+
+        .fixed-share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: #1e1e1e;
+            border: 1px solid #00cfb4;
+            border-radius: 50%;
+            color: #00cfb4;
+            font-size: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 207, 180, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .fixed-share-btn:hover {
+            background: #00cfb4;
+            color: #111111;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 207, 180, 0.45);
+        }
+
+        .fixed-share-menu {
+            display: none;
+            position: absolute;
+            bottom: 54px;
+            right: 0;
+            width: 240px;
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-bottom: 2px solid #00cfb4;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+            list-style: none;
+            z-index: 10000;
+            animation: slideUp 0.2s ease-out;
+        }
+
+        .fixed-share-menu.active { display: block; }
+
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            color: #f4f4f4;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            pointer-events: auto;
+        }
+
+        .share-option:hover {
+            background: #252525;
+            color: #00cfb4;
+            transform: translateX(3px);
+        }
+
+        .share-option i {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
         /* RESPONSIVIDAD */
         @media (max-width: 600px) {
             .hero-title { font-size: 25px; }
-            .container { padding: 20px 16px 40px; }
+            .container { padding: 20px 16px 50px; }
             blockquote { font-size: 14px; }
-            .support-section { padding: 18px 14px; }
-            .support-grid { grid-template-columns: 1fr; }
             th, td { padding: 8px 8px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
+
+<!-- BARRA DE NAVEGACIÓN SUPERIOR UNIFICADA -->
+<nav class="mazz-navbar" id="mazzNavbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">Mazz Manager<span>©</span></a>
+
+    <button type="button" class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Abrir menú">
+      <i class="fas fa-bars" id="navToggleIcon"></i>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a>
+      </li>
+
+      <!-- INNOVACIÓN -->
+      <li class="nav-item" id="dropdownInnovacion">
+        <button type="button" class="nav-link" onclick="toggleDropdown('dropdownInnovacion')">
+          <span><i class="fas fa-microchip"></i> Innovación</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-header">Posteos</li>
+          <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Herramientas</li>
+          <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Tutoriales</li>
+          <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+        </ul>
+      </li>
+
+      <!-- FINANZAS -->
+      <li class="nav-item" id="dropdownFinanzas">
+        <button type="button" class="nav-link active" onclick="toggleDropdown('dropdownFinanzas')">
+          <span><i class="fas fa-chart-line"></i> Finanzas</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-header">Mercados</li>
+          <li><a href="informe-de-mercado.html"><i class="fas fa-newspaper"></i> Informe de Mercados</a></li>
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Learn (Aprender)</li>
+          <li><a href="aprende-a-leer-earnings.html"><i class="fas fa-book-open"></i> Aprende a Leer Earnings</a></li>
+          <li><a href="opera-bien-cedears.html"><i class="fas fa-layer-group"></i> Operá Bien CEDEARs</a></li>
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Herramientas & Tutoriales</li>
+          <li><a href="calculadora-renta-fija.html"><i class="fas fa-calculator"></i> Calculadora Renta Fija Pro</a></li>
+          <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Más herramientas próximamente</a></li>
+        </ul>
+      </li>
+
+      <!-- MENTALIDAD -->
+      <li class="nav-item" id="dropdownMentalidad">
+        <button type="button" class="nav-link" onclick="toggleDropdown('dropdownMentalidad')">
+          <span><i class="fas fa-brain"></i> Mentalidad</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-header">Posteos</li>
+          <li><a href="acerca.html#mentalidad"><i class="fas fa-compass"></i> Psicología Operativa</a></li>
+          <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="acerca.html" class="nav-link"><i class="fas fa-user-tie"></i> Acerca de</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="contacto.html" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="bg-watermark"></div>
 
 <main class="container">
 
@@ -451,7 +895,7 @@
         <span class="hero-meta">🗓️ PREMARKET — MIÉRCOLES, 18 DE NOVIEMBRE DE 2026</span>
         <h1 class="hero-title">INFORME <em><span class="brand-font">Mazz Manager</span>© TRADER</em></h1>
         <div class="alert-banner">
-            ⚡ <strong>HEADLINE DE APERTURA:</strong> Nvidia supera la prueba (+4,8% post-cierre) y ahora le toca a Anthropic fijar el precio de su salida a bolsa; futuros de EE. UU. al alza (Nasdaq 100 +1,07% | S&P 500 +0,56%) antes de las actas de la Fed y la cumbre de Trump con Xi y Putin en China.<!--[cite: 17] -->
+            ⚡ <strong>HEADLINE DE APERTURA:</strong> Nvidia supera la prueba (+4,8% post-cierre) y ahora le toca a Anthropic fijar el precio de su salida a bolsa; futuros de EE. UU. al alza (Nasdaq 100 +1,07% | S&P 500 +0,56%) antes de las actas de la Fed y la cumbre de Trump con Xi y Putin en China.
         </div>
         <div class="hero-divider"></div>
     </section>
@@ -465,7 +909,7 @@
         <li><strong>Caídas Previas en Wall Street y Europa:</strong> El Nasdaq 100 encadenó ayer su cuarta sesión consecutiva de caídas, acumulando un retroceso del 14% desde su máximo histórico del 6 de octubre. En Europa, el Euro Stoxx 50 se desplomó un 2,15% (su peor sesión desde el 3 de marzo), lastrado por caídas superiores al 5% en ASML, SAP SE, Deutsche Bank y Hermès International.</li>
         <li><strong>Alivio con Nvidia:</strong> Las acciones de Nvidia subieron un 4,8% tras el cierre de Wall Street luego de presentar cuentas sólidas. La consejera delegada interina y CFO, Colette Kress, junto al presidente del consejo de administración, Harvey Jones, despejaron incertidumbres al confirmar que la dimisión de Jensen Huang obedeció a conductas personales incompatibles con el código interno y no a las ventas de chips a China, descartando su regreso.</li>
         <li><strong>La Prueba de Fuego de Anthropic:</strong> Hoy se fija el precio definitivo de su oferta pública inicial, con especulaciones de que podría ubicarse en el extremo superior de la horquilla o ligeramente por encima, otorgando una valoración cercana a los 1,4 billones de dólares antes de comenzar a cotizar mañana.</li>
-        <li><strong>Macro, Geopolítica y Materias Primas:</strong> Agenda cargada con datos económicos y las actas de la última reunión de la Reserva Federal. Trump inicia su gira asiática rumbo a China (donde Xi y Putin ya conversan en la cumbre APEC), mientras el oro cae por debajo de los $3.800 por primera vez desde septiembre de 2025 ($3.772,10) presionado por expectativas de tipos altos y el crudo retrocede un 1,69% ($83,21).<!--[cite: 17] --></li>
+        <li><strong>Macro, Geopolítica y Materias Primas:</strong> Agenda cargada con datos económicos y las actas de la última reunión de la Reserva Federal. Trump inicia su gira asiática rumbo a China (donde Xi y Putin ya conversan en la cumbre APEC), mientras el oro cae por debajo de los $3.800 por primera vez desde septiembre de 2025 ($3.772,10) presionado por expectativas de tipos altos y el crudo retrocede un 1,69% ($83,21).</li>
     </ul>
 
     <!-- 2. CALENDARIO ECONÓMICO Y CLAVE DEL DÍA -->
@@ -536,49 +980,49 @@
                     <td>7.401,00</td>
                     <td>+41,50</td>
                     <td><span class="badge-up">+0,56% 🟢</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Nasdaq 100</strong></td>
                     <td>27.364,75</td>
                     <td>+289,00</td>
                     <td><span class="badge-up">+1,07% 🟢</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Dow (Dow Jones)</strong></td>
                     <td>50.940,00</td>
                     <td>+117,00</td>
                     <td><span class="badge-up">+0,23% 🟢</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Russell 2000</strong></td>
                     <td>2.715,20</td>
                     <td>+4,10</td>
                     <td><span class="badge-up">+0,15% 🟢</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>VIX (Volatilidad)</strong></td>
                     <td>21,75</td>
                     <td>-0,94</td>
                     <td><span class="badge-down">-4,13% 🔴</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Crude Oil (Petróleo)</strong></td>
                     <td>$83,21</td>
                     <td>-1,43</td>
                     <td><span class="badge-down">-1,69% 🔴</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Natural Gas (Gas Natural)</strong></td>
                     <td>$3,1920</td>
                     <td>-0,0140</td>
                     <td><span class="badge-down">-0,44% 🔴</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
                 <tr>
                     <td><strong>Gold (Oro)</strong></td>
                     <td>$3.772,10</td>
                     <td>-92,50</td>
                     <td><span class="badge-down">-2,39% 🔴</span></td>
-                </tr><!--[cite: 17] -->
+                </tr>
             </tbody>
         </table>
     </div>
@@ -600,49 +1044,49 @@
                     <td>1,0974</td>
                     <td>-0,0024</td>
                     <td><span class="badge-down">-0,22% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>USD / JPY</strong></td>
                     <td>159,26</td>
                     <td>-0,09</td>
                     <td><span class="badge-down">-0,06% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>GBP / USD</strong></td>
                     <td>1,3173</td>
                     <td>-0,0034</td>
                     <td><span class="badge-down">-0,26% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>BTC / USD (Spot FX)</strong></td>
                     <td>$64.154,50</td>
                     <td>-175,50</td>
                     <td><span class="badge-down">-0,27% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>3-Month Treasury</strong></td>
                     <td>4,138%</td>
                     <td>+0,013</td>
                     <td><span class="badge-up">+0,32% 🟢</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>5-Year Treasury</strong></td>
                     <td>4,900%</td>
                     <td>-0,035</td>
                     <td><span class="badge-down">-0,71% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>10-Year Treasury</strong></td>
                     <td>5,103%</td>
                     <td>-0,018</td>
                     <td><span class="badge-down">-0,35% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
                 <tr>
                     <td><strong>30-Year Treasury</strong></td>
                     <td>5,458%</td>
                     <td>-0,009</td>
                     <td><span class="badge-down">-0,16% 🔴</span></td>
-                </tr><!--[cite: 18] -->
+                </tr>
             </tbody>
         </table>
     </div>
@@ -667,37 +1111,37 @@
                     <td>Bitcoin</td>
                     <td>$64.192,38</td>
                     <td><span class="badge-down">-0,26% 🔴</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
                 <tr>
                     <td><strong>ETH</strong></td>
                     <td>Ethereum</td>
                     <td>$1.799,49</td>
                     <td><span class="badge-down">-0,15% 🔴</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
                 <tr>
                     <td><strong>XRP</strong></td>
                     <td>XRP</td>
                     <td>$0,9945</td>
                     <td><span class="badge-up">+1,53% 🟢</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
                 <tr>
                     <td><strong>SOL</strong></td>
                     <td>Solana</td>
                     <td>$74,44</td>
                     <td><span class="badge-down">-0,59% 🔴</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
                 <tr>
                     <td><strong>ZEC</strong></td>
                     <td>ZCash</td>
                     <td>$935,85</td>
                     <td><span class="badge-down">-1,69% 🔴</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
                 <tr>
                     <td><strong>ONDO</strong></td>
                     <td>Ondo</td>
                     <td>$0,30688</td>
                     <td><span class="badge-up">+0,46% 🟢</span></td>
-                </tr><!--[cite: 16] -->
+                </tr>
             </tbody>
         </table>
     </div>
@@ -845,69 +1289,12 @@
     <div class="section-header">
         <h2 class="section-title">📝 RESUMEN ESTRATÉGICO</h2>
     </div>
-    <p>El sólido balance de Nvidia (+4,8% post-cierre) devuelve oxígeno a los futuros de renta variable estadounidense —con el Nasdaq 100 subiendo un 1,07% y el VIX retrocediendo un 4,13%— tras cuatro jornadas consecutivas de castigo tecnológico. Con el oro cediendo a $3.772,10 y el rendimiento del bono a 10 años en 5,103%, la atención inmediata se centra en la fijación de precio de la salida a bolsa de Anthropic, las actas de la Reserva Federal y la cumbre diplomática de mañana entre Trump, Xi y Putin.<!--[cite: 17, 18] --></p>
+    <p>El sólido balance de Nvidia (+4,8% post-cierre) devuelve oxígeno a los futuros de renta variable estadounidense —con el Nasdaq 100 subiendo un 1,07% y el VIX retrocediendo un 4,13%— tras cuatro jornadas consecutivas de castigo tecnológico. Con el oro cediendo a $3.772,10 y el rendimiento del bono a 10 años en 5,103%, la atención inmediata se centra en la fijación de precio de la salida a bolsa de Anthropic, las actas de la Reserva Federal y la cumbre diplomática de mañana entre Trump, Xi y Putin.</p>
 
     <blockquote>
         💡 PARA PENSAR<br>
         "Cuando el líder indiscutido de los semiconductores despeja las dudas sobre su gobernanza y sus resultados, el mercado recupera el pulso y prepara el terreno para medir su verdadero apetito por el futuro de la inteligencia artificial con el debut de Anthropic."
     </blockquote>
-
-    <!-- SECCIÓN DE APOYO / DONACIONES INTEGRADA -->
-    <section class="support-section">
-        <div class="support-header">
-            <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
-            <p>
-                Podés apoyar este proyecto a través de estos canales.<br>
-                <strong>¡Cualquier aporte suma!</strong>
-            </p>
-        </div>
-
-        <div class="support-grid">
-            <!-- PayPal -->
-            <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-                <div class="donation-card">
-                    <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
-                    <div>
-                        <span class="method-title">PayPal | Tarjetas</span>
-                        <span class="method-desc">Soporte Internacional</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Mercado Pago -->
-            <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-                <div class="donation-card">
-                    <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
-                    <div>
-                        <span class="method-title">Mercado Pago</span>
-                        <span class="method-desc">Argentina</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Crypto -->
-            <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
-                <div class="donation-card">
-                    <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
-                    <div>
-                        <span class="method-title">Criptomonedas</span>
-                        <span class="method-desc">USDT (BEP20)</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Pix -->
-            <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-                <div class="donation-card">
-                    <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
-                    <div>
-                        <span class="method-title">Pix</span>
-                        <span class="method-desc">Brasil</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
 
     <div class="social-bar">
         <p><strong>¡Buena jornada de trade para todos! 📈🚀</strong></p>
@@ -915,13 +1302,165 @@
             ⚠️ Contenido educativo e informativo. No constituye asesoramiento financiero.
         </div>
         <div class="integrated-footer">
-            <span class="brand-font">Mazz Manager</span>© | 2026 | Todos los Derechos Reservados
+            <span class="brand-font">Mazz Manager</span>© | <span id="dynamicYear">2026</span> | Todos los Derechos Reservados
         </div>
     </div>
 
 </main>
 
+<!-- BLOQUE FLOTANTE DERECHO (Compartir arriba + Donaciones abajo) -->
+<div class="fixed-floating-stack" id="floatingStack">
+    <!-- WIDGET DE COMPARTIR -->
+    <div class="fixed-share-container" id="shareContainer">
+        <div class="fixed-share-menu" id="fixedShareMenu">
+            <div class="nav-dropdown-header" style="padding: 4px 8px 8px;">Compartir Informe</div>
+            <button type="button" class="share-option" onclick="shareTo('whatsapp')">
+                <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
+            </button>
+            <button type="button" class="share-option" onclick="shareTo('telegram')">
+                <i class="fab fa-telegram" style="color: #0088cc;"></i> Telegram
+            </button>
+            <button type="button" class="share-option" onclick="shareTo('twitter')">
+                <i class="fab fa-x-twitter" style="color: #f4f4f4;"></i> X / Twitter
+            </button>
+            <button type="button" class="share-option" onclick="shareTo('facebook')">
+                <i class="fab fa-facebook-f" style="color: #1877f2;"></i> Facebook
+            </button>
+            <button type="button" class="share-option" onclick="shareTo('email')">
+                <i class="fas fa-envelope" style="color: #ea4335;"></i> Email
+            </button>
+            <div class="nav-dropdown-divider" style="height: 1px; background: #2a2a2a; margin: 6px 0;"></div>
+            <button type="button" class="share-option" onclick="copyPageLink()">
+                <i class="fas fa-link" style="color: #00cfb4;"></i> <span id="copyText">Copiar Enlace</span>
+            </button>
+        </div>
+        <button type="button" class="fixed-share-btn" onclick="toggleShareMenu(event)" title="Compartir informe">
+            <i class="fas fa-share-nodes"></i>
+        </button>
+    </div>
+
+    <!-- WIDGET DE DONACIONES -->
+    <div style="position: relative;" id="donationContainer">
+        <div class="fixed-donate-menu" id="fixedDonateMenu">
+            <p class="fixed-menu-intro">
+                Para apoyar este proyecto, podés hacerlo a través de estos canales.<br>
+                <strong>¡Todo aporte suma!</strong>
+            </p>
+
+            <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card-float">
+                    <div class="icon-box-float" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+                    <div>
+                        <span class="method-title-float">PayPal | Tarjetas</span>
+                        <span class="method-desc-float">Soporte Internacional</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card-float">
+                    <div class="icon-box-float" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+                    <div>
+                        <span class="method-title-float">Mercado Pago</span>
+                        <span class="method-desc-float">Argentina</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card-float">
+                    <div class="icon-box-float" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+                    <div>
+                        <span class="method-title-float">Criptomonedas</span>
+                        <span class="method-desc-float">USDT (BEP20)</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card-float">
+                    <div class="icon-box-float" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 14px;">R$</div>
+                    <div>
+                        <span class="method-title-float">Pix</span>
+                        <span class="method-desc-float">Brasil</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button type="button" class="fixed-donation-btn" onclick="toggleFixedMenu(event)">
+            <i class="fas fa-heart animate-heart-beat"></i>
+            <span>Apoya este proyecto</span>
+        </button>
+    </div>
+</div>
+
 <script>
+    // NAVEGACIÓN MÓVIL Y MENÚS DESPLEGABLES
+    function toggleMobileNav() {
+        const navLinks = document.getElementById('navLinks');
+        const icon = document.getElementById('navToggleIcon');
+        navLinks.classList.toggle('mobile-open');
+        icon.className = navLinks.classList.contains('mobile-open') ? 'fas fa-xmark' : 'fas fa-bars';
+    }
+
+    function toggleDropdown(id) {
+        const target = document.getElementById(id);
+        const wasOpen = target.classList.contains('open');
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+        if (!wasOpen) target.classList.add('open');
+    }
+
+    function toggleFixedMenu(e) {
+        if (e) e.stopPropagation();
+        document.getElementById('fixedDonateMenu').classList.toggle('active');
+        document.getElementById('fixedShareMenu').classList.remove('active');
+    }
+
+    function toggleShareMenu(e) {
+        if (e) e.stopPropagation();
+        document.getElementById('fixedShareMenu').classList.toggle('active');
+        document.getElementById('fixedDonateMenu').classList.remove('active');
+    }
+
+    // FUNCIONES DE COMPARTIR
+    function shareTo(platform) {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        let shareUrl = "";
+
+        switch(platform) {
+            case 'whatsapp':
+                shareUrl = `https://api.whatsapp.com/send?text=${title}%20-%20${url}`;
+                break;
+            case 'telegram':
+                shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
+                break;
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                break;
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                break;
+            case 'email':
+                shareUrl = `mailto:?subject=${title}&body=Te%20comparto%20el%20informe%20de%20mercados%20de%20Mazz%20Manager:%20${url}`;
+                break;
+        }
+
+        if (shareUrl) {
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    }
+
+    function copyPageLink() {
+        const textSpan = document.getElementById('copyText');
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            textSpan.textContent = "¡Enlace Copiado!";
+            setTimeout(() => {
+                textSpan.textContent = "Copiar Enlace";
+            }, 2500);
+        });
+    }
+
     // Sistema de Selector Claro / Oscuro
     function toggleTheme() {
         const html = document.documentElement;
@@ -948,6 +1487,20 @@
             document.documentElement.setAttribute('data-theme', 'light');
             document.getElementById('themeIcon').className = 'fas fa-sun';
             document.getElementById('themeText').textContent = 'Modo Oscuro';
+        }
+        document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+    });
+
+    // Cerrar menús al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        const floatingStack = document.getElementById('floatingStack');
+        if (floatingStack && !floatingStack.contains(e.target)) {
+            document.getElementById('fixedDonateMenu').classList.remove('active');
+            document.getElementById('fixedShareMenu').classList.remove('active');
+        }
+        const navbar = document.getElementById('mazzNavbar');
+        if (navbar && !navbar.contains(e.target)) {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
         }
     });
 
