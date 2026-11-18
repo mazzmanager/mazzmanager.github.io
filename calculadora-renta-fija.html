@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Renta Fija Pro | Mazz Manager©</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mazz: {
+                            red: '#DC2626',
+                            black: '#0A0A0A',
+                            dark: '#121212',
+                            card: '#1E1E1E',
+                            yellow: '#F59E0B',
+                            green: '#10B981',
+                            gray: {
+                                light: '#F3F4F6',
+                                medium: '#E5E7EB',
+                                dark: '#374151'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        /* OCULTAR BARRAS DE SCROLL INTERNAS */
+        html, body {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        /* MARCA DE AGUA ESTILO MOSAICO */
+        .bg-watermark {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='220'%3E%3Ctext x='50%25' y='50%25' font-family='Arial,Helvetica,sans-serif' font-size='20' font-weight='900' letter-spacing='2' fill='%23DC2626' text-anchor='middle' dominant-baseline='middle' transform='rotate(-30 190 110)'%3EMAZZ MANAGER%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 380px 220px;
+            opacity: 0.05;
+            transition: opacity 0.3s ease;
+        }
+
+        .dark .bg-watermark {
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='220'%3E%3Ctext x='50%25' y='50%25' font-family='Arial,Helvetica,sans-serif' font-size='20' font-weight='900' letter-spacing='2' fill='%23F59E0B' text-anchor='middle' dominant-baseline='middle' transform='rotate(-30 190 110)'%3EMAZZ MANAGER%3C/text%3E%3C/svg%3E");
+        }
+
+        .card { transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.1); }
+        
+        input, .theme-switcher-btn {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+            pointer-events: auto;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.25); }
+        }
+
+        .animate-heart-beat {
+            animation: beat 1.2s infinite alternate;
+        }
+    </style>
+</head>
+<body class="bg-mazz-gray-light text-gray-900 dark:bg-mazz-dark dark:text-gray-100 font-sans leading-relaxed relative transition-colors duration-300">
+
+    <div class="bg-watermark"></div>
+
+    <div class="max-w-7xl mx-auto p-4 md:p-8 relative z-10">
+        
+        <!-- Selector de Tema Claro / Oscuro -->
+        <div class="flex justify-end mb-4">
+            <button class="theme-switcher-btn bg-white dark:bg-mazz-card border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-full font-Montserrat text-xs font-bold cursor-pointer flex items-center gap-2 shadow-sm hover:border-mazz-red dark:hover:border-mazz-red transition-all" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+                <i class="fas fa-moon" id="themeIcon"></i>
+                <span id="themeText">Modo Claro</span>
+            </button>
+        </div>
+
+        <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-300 dark:border-gray-700 pb-6 gap-4">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-mazz-black dark:text-white mb-2 font-Montserrat">
+                    Calculadora <span class="text-mazz-red">Renta Fija</span> Pro
+                </h1>
+                <p class="text-gray-600 dark:text-gray-400">Interés compuesto, comisiones reales, retiros programados y proyección patrimonial.</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Panel de Inputs -->
+            <div class="lg:col-span-1">
+                <div class="bg-white dark:bg-mazz-card p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 sticky top-6">
+                    <h2 class="text-xl font-bold text-mazz-black dark:text-white mb-4 flex items-center font-Montserrat">
+                        <svg class="w-5 h-5 mr-2 text-mazz-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        Parámetros de Inversión
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Monto Inicial ($)</label>
+                            <input type="number" id="montoInicial" value="1000000" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red focus:border-mazz-red outline-none transition text-gray-900 dark:text-white" oninput="calcular()">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">TNA (%)</label>
+                                <input type="number" id="tna" value="60" step="0.01" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red outline-none text-gray-900 dark:text-white" oninput="syncTasas('tna')">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">TED (%)</label>
+                                <input type="number" id="ted" value="0.1644" step="0.0001" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red outline-none text-gray-900 dark:text-white" oninput="syncTasas('ted')">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Comisión Broker (%)</label>
+                            <input type="number" id="comision" value="0.15" step="0.001" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red outline-none text-gray-900 dark:text-white" oninput="calcular()">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Retiro Mensual ($)</label>
+                            <input type="number" id="retiroMensual" value="50000" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red outline-none text-gray-900 dark:text-white" oninput="calcular()">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Plazo (meses)</label>
+                            <input type="number" id="meses" value="12" min="1" max="120" class="w-full p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-mazz-red outline-none text-gray-900 dark:text-white" oninput="calcular()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Resultados -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="card bg-white dark:bg-mazz-card p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Ganancia Diaria Prom.</p>
+                        <p class="text-xl font-bold text-mazz-green mt-1" id="resDiario">$0</p>
+                    </div>
+                    <div class="card bg-white dark:bg-mazz-card p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Ganancia Semanal Prom.</p>
+                        <p class="text-xl font-bold text-mazz-green mt-1" id="resSemanal">$0</p>
+                    </div>
+                    <div class="card bg-white dark:bg-mazz-card p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Ganancia Mensual Neta</p>
+                        <p class="text-xl font-bold text-mazz-yellow mt-1" id="resMensual">$0</p>
+                    </div>
+                    <div class="card bg-white dark:bg-mazz-card p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Ganancia Anual Proy.</p>
+                        <p class="text-xl font-bold text-mazz-red mt-1" id="resAnual">$0</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-mazz-card p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-mazz-black dark:text-white mb-4 font-Montserrat">Evolución del Patrimonio</h3>
+                    <div class="relative h-72 w-full">
+                        <canvas id="chartInversion"></canvas>
+                    </div>
+                </div>
+
+                <!-- DESGLOSE DETALLADO -->
+                <div class="bg-white dark:bg-mazz-card p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-mazz-black dark:text-white mb-4 font-Montserrat">Desglose Final del Período</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="text-gray-600 dark:text-gray-400">Saldo Final en la Cuenta:</span>
+                            <span class="font-bold text-gray-900 dark:text-white" id="finalSaldo">$0</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="text-gray-600 dark:text-gray-400">Total Intereses Generados (Bruto):</span>
+                            <span class="font-bold text-mazz-green" id="finalIntereses">$0</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="text-gray-600 dark:text-gray-400">Total Retirado (para gastos):</span>
+                            <span class="font-bold text-blue-600 dark:text-blue-400" id="finalRetiros">$0</span>
+                        </div>
+
+                        <!-- Desglose de comisiones -->
+                        <div class="bg-gray-50 dark:bg-mazz-dark/50 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
+                            <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-2 flex items-center">
+                                <svg class="w-4 h-4 mr-1 text-mazz-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Desglose de Comisiones del Broker
+                            </p>
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-600 dark:text-gray-400">• Comisión de Compra Inicial:</span>
+                                    <span class="font-semibold text-gray-800 dark:text-gray-200" id="comisionCompra">$0</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-600 dark:text-gray-400">
+                                        • Comisiones por Retiros Parciales 
+                                        <span id="contadorRetiros" class="text-mazz-red font-bold">(0 retiros)</span>:
+                                    </span>
+                                    <span class="font-semibold text-mazz-red" id="comisionRetiros">$0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="text-gray-600 dark:text-gray-400 font-semibold">Total Comisiones Pagadas al Broker:</span>
+                            <span class="font-bold text-mazz-red" id="finalComisiones">$0</span>
+                        </div>
+                        <div class="flex justify-between pt-2 bg-mazz-red/5 dark:bg-mazz-yellow/5 rounded-lg p-3 border border-mazz-red/20 dark:border-mazz-yellow/20">
+                            <span class="text-gray-900 dark:text-white font-bold">Patrimonio Total Final (Saldo + Retirado):</span>
+                            <span class="font-extrabold text-xl text-mazz-black dark:text-mazz-yellow" id="finalPatrimonio">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (SIN DOBLE SCROLL) -->
+        <section class="mt-10 bg-gradient-to-b from-red-600/10 to-white dark:from-red-600/10 dark:to-mazz-card border border-red-600/35 rounded-2xl p-6 text-center shadow-sm">
+            <div class="mb-4">
+                <div class="inline-flex items-center gap-1.5 font-Montserrat text-xs font-extrabold uppercase tracking-wider text-red-500 mb-2">
+                    <i class="fas fa-heart animate-heart-beat"></i> Donaciones
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Apoyá este proyecto a través de estos canales.<br>
+                    <strong class="text-gray-900 dark:text-white font-semibold">¡Todo aporte suma!</strong>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+                <!-- PayPal -->
+                <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
+                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
+                        <div class="text-xl w-8 text-center mr-3" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+                        <div>
+                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">PayPal | Tarjetas</span>
+                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Soporte Internacional</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Mercado Pago -->
+                <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
+                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
+                        <div class="text-xl w-8 text-center mr-3" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+                        <div>
+                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Mercado Pago</span>
+                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Argentina</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Crypto -->
+                <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="block no-underline">
+                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
+                        <div class="text-xl w-8 text-center mr-3" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+                        <div>
+                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Criptomonedas</span>
+                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">USDT (BEP20)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Pix -->
+                <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
+                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
+                        <div class="w-8 text-center mr-3 font-extrabold font-Montserrat text-base" style="color: #32bcad;">R$</div>
+                        <div>
+                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Pix</span>
+                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Brasil</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <footer class="mt-8 text-center text-gray-500 dark:text-gray-500 text-sm pb-6">
+            <p>Mazz Manager© | <span id="dynamicYear"></span> | Todos los Derechos Reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // TEMA CLARO / OSCURO (Selector unificado)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = 'Modo Claro';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = 'Modo Oscuro';
+                localStorage.setItem('theme', 'dark');
+            }
+            if (chartInstance) {
+                actualizarGrafico(chartInstance.data.labels, chartInstance.data.datasets[0].data, chartInstance.data.datasets[1].data);
+            }
+        }
+
+        // Cargar preferencia guardada
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (savedTheme === 'light') {
+                html.classList.remove('dark');
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = 'Modo Claro';
+            } else if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = 'Modo Oscuro';
+            }
+            calcular();
+        });
+
+        // PROTECCIÓN DE CONTENIDO
+        document.addEventListener('contextmenu', e => { e.preventDefault(); });
+        ['copy', 'cut', 'paste', 'dragstart'].forEach(evt => document.addEventListener(evt, e => e.preventDefault()));
+        document.addEventListener('keydown', e => {
+            if (
+                e.keyCode === 123 ||
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+                (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // LÓGICA DE LA CALCULADORA
+        let chartInstance = null;
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function syncTasas(origen) {
+            const tnaInput = document.getElementById('tna');
+            const tedInput = document.getElementById('ted');
+            if (origen === 'tna') tedInput.value = ((parseFloat(tnaInput.value) || 0) / 365).toFixed(4);
+            else tnaInput.value = ((parseFloat(tedInput.value) || 0) * 365).toFixed(2);
+            calcular();
+        }
+
+        function calcular() {
+            const montoInicial = parseFloat(document.getElementById('montoInicial').value) || 0;
+            const ted = parseFloat(document.getElementById('ted').value) || 0;
+            const comision = parseFloat(document.getElementById('comision').value) || 0;
+            const retiroMensual = parseFloat(document.getElementById('retiroMensual').value) || 0;
+            const meses = parseInt(document.getElementById('meses').value) || 12;
+
+            const r = ted / 100;
+            const c = comision / 100;
+            const diasTotales = meses * 30;
+
+            let saldo = montoInicial * (1 - c);
+            let comisionCompraInicial = montoInicial * c;
+            let comisionRetirosParciales = 0;
+            let contadorRetiros = 0;
+            let totalRetirado = 0;
+            let totalInteresGenerado = 0;
+
+            let labels = ['Inicio'];
+            let dataSaldo = [montoInicial];
+            let dataRetiros = [0];
+
+            for (let dia = 1; dia <= diasTotales; dia++) {
+                let interes = saldo * r;
+                saldo += interes;
+                totalInteresGenerado += interes;
+
+                if (dia % 30 === 0) {
+                    let mes = dia / 30;
+                    let montoRetiro = retiroMensual;
+                    if (saldo >= montoRetiro) {
+                        let comisionRetiro = montoRetiro * c;
+                        saldo -= (montoRetiro + comisionRetiro);
+                        totalRetirado += montoRetiro;
+                        comisionRetirosParciales += comisionRetiro;
+                        contadorRetiros++;
+                    } else if (saldo > 0) {
+                        let retiroPosible = saldo / (1 + c);
+                        let comisionRetiro = retiroPosible * c;
+                        totalRetirado += retiroPosible;
+                        comisionRetirosParciales += comisionRetiro;
+                        contadorRetiros++;
+                        saldo = 0;
+                    }
+                    labels.push(`Mes ${mes}`);
+                    dataSaldo.push(saldo);
+                    dataRetiros.push(totalRetirado);
+                }
+            }
+
+            const totalComisiones = comisionCompraInicial + comisionRetirosParciales;
+
+            document.getElementById('resDiario').textContent = formatMoney(totalInteresGenerado / diasTotales);
+            document.getElementById('resSemanal').textContent = formatMoney((totalInteresGenerado / diasTotales) * 7);
+            document.getElementById('resMensual').textContent = formatMoney((totalInteresGenerado - totalRetirado) / meses);
+            document.getElementById('resAnual').textContent = formatMoney(((totalInteresGenerado - totalRetirado) / meses) * 12);
+
+            document.getElementById('finalSaldo').textContent = formatMoney(saldo);
+            document.getElementById('finalIntereses').textContent = formatMoney(totalInteresGenerado);
+            document.getElementById('finalRetiros').textContent = formatMoney(totalRetirado);
+            document.getElementById('comisionCompra').textContent = formatMoney(comisionCompraInicial);
+            document.getElementById('comisionRetiros').textContent = formatMoney(comisionRetirosParciales);
+            document.getElementById('contadorRetiros').textContent = `(${contadorRetiros} ${contadorRetiros === 1 ? 'retiro' : 'retiros'})`;
+            document.getElementById('finalComisiones').textContent = formatMoney(totalComisiones);
+            document.getElementById('finalPatrimonio').textContent = formatMoney(saldo + totalRetirado);
+
+            actualizarGrafico(labels, dataSaldo, dataRetiros);
+        }
+
+        function actualizarGrafico(labels, dataSaldo, dataRetiros) {
+            const ctx = document.getElementById('chartInversion').getContext('2d');
+            const isDark = document.documentElement.classList.contains('dark');
+            const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
+            const textColor = isDark ? '#9CA3AF' : '#4B5563';
+
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Saldo en Cuenta', data: dataSaldo, borderColor: '#DC2626', backgroundColor: 'rgba(220, 38, 38, 0.1)', borderWidth: 2, fill: true, tension: 0.3 },
+                        { label: 'Retiros Acumulados', data: dataRetiros, borderColor: '#10B981', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderWidth: 2, borderDash: [5, 5], fill: true, tension: 0.3 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: textColor } },
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + formatMoney(ctx.raw) } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: textColor, callback: v => '$' + v / 1000 + 'k' } },
+                        x: { grid: { color: gridColor }, ticks: { color: textColor } }
+                    }
+                }
+            });
+        }
+
+        document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
