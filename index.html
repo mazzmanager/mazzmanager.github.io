@@ -176,7 +176,7 @@
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
-    min-width: 255px;
+    min-width: 275px;
     background: #161616;
     border: 1px solid var(--border);
     border-top: 2px solid var(--accent-cyan);
@@ -204,15 +204,22 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--text-muted);
-    padding: 6px 12px 4px;
+    color: var(--accent-cyan);
+    padding: 8px 12px 4px;
+    opacity: 0.9;
+  }
+
+  .nav-dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 6px 8px;
   }
 
   .nav-dropdown li a {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 12px;
+    padding: 9px 12px;
     border-radius: 7px;
     color: var(--text-primary);
     text-decoration: none;
@@ -237,7 +244,14 @@
 
   .nav-dropdown li a.coming-soon {
     color: var(--text-muted);
+    font-weight: 500;
+    font-size: 12px;
     cursor: default;
+  }
+
+  .nav-dropdown li a.coming-soon i {
+    color: var(--text-muted);
+    font-size: 12px;
   }
 
   .nav-dropdown li a.coming-soon:hover {
@@ -1068,10 +1082,26 @@
           <i class="fas fa-chevron-down"></i>
         </button>
         <ul class="nav-dropdown">
-          <li class="nav-dropdown-header">Herramientas & Tecnología</li>
+          <li class="nav-dropdown-header">Posteos</li>
           <li>
-            <a href="calculadora-renta-fija.html">
-              <i class="fas fa-calculator"></i> Calculadora Renta Fija Pro
+            <a href="#" class="coming-soon" onclick="return false;">
+              <i class="fas fa-clock"></i> Nuevos recursos próximamente
+            </a>
+          </li>
+
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Herramientas</li>
+          <li>
+            <a href="#" class="coming-soon" onclick="return false;">
+              <i class="fas fa-clock"></i> Nuevos recursos próximamente
+            </a>
+          </li>
+
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Tutoriales</li>
+          <li>
+            <a href="#" class="coming-soon" onclick="return false;">
+              <i class="fas fa-clock"></i> Nuevos recursos próximamente
             </a>
           </li>
         </ul>
@@ -1084,12 +1114,15 @@
           <i class="fas fa-chevron-down"></i>
         </button>
         <ul class="nav-dropdown">
-          <li class="nav-dropdown-header">Análisis & Guías Operativas</li>
+          <li class="nav-dropdown-header">Mercados</li>
           <li>
             <a href="informe-de-mercado.html">
-              <i class="fas fa-newspaper"></i> Informe PreMarket Diario
+              <i class="fas fa-newspaper"></i> Informe de Mercados
             </a>
           </li>
+
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Learn (Aprender)</li>
           <li>
             <a href="aprende-a-leer-earnings.html">
               <i class="fas fa-book-open"></i> Aprende a Leer Earnings
@@ -1098,6 +1131,19 @@
           <li>
             <a href="opera-bien-cedears.html">
               <i class="fas fa-layer-group"></i> Operá Bien CEDEARs
+            </a>
+          </li>
+
+          <div class="nav-dropdown-divider"></div>
+          <li class="nav-dropdown-header">Herramientas & Tutoriales</li>
+          <li>
+            <a href="calculadora-renta-fija.html">
+              <i class="fas fa-calculator"></i> Calculadora Renta Fija Pro
+            </a>
+          </li>
+          <li>
+            <a href="#" class="coming-soon" onclick="return false;">
+              <i class="fas fa-clock"></i> Nuevos recursos próximamente
             </a>
           </li>
         </ul>
@@ -1110,7 +1156,7 @@
           <i class="fas fa-chevron-down"></i>
         </button>
         <ul class="nav-dropdown">
-          <li class="nav-dropdown-header">Psicología & Disciplina</li>
+          <li class="nav-dropdown-header">Posteos</li>
           <li>
             <a href="acerca.html#mentalidad">
               <i class="fas fa-compass"></i> Enfoque & Psicología Operativa
@@ -1216,7 +1262,7 @@
   <div class="grid-ecosystem">
     <div class="eco-card">
       <div>
-        <span class="eco-pillar"><i class="fas fa-microchip"></i> Innovación • App Web</span>
+        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Herramienta</span>
         <h3>Calculadora Renta Fija Pro</h3>
         <p>Simulá interés compuesto, comisiones reales de broker, retiros programados y evolución patrimonial en pesos.</p>
       </div>
@@ -1227,7 +1273,7 @@
 
     <div class="eco-card">
       <div>
-        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Guía</span>
+        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Learn</span>
         <h3>Aprende a Leer Earnings</h3>
         <p>Interpretá balances trimestrales, EPS, ingresos y proyecciones para anticipar la reacción del mercado.</p>
       </div>
@@ -1238,7 +1284,7 @@
 
     <div class="eco-card">
       <div>
-        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Guía</span>
+        <span class="eco-pillar"><i class="fas fa-chart-line"></i> Finanzas • Learn</span>
         <h3>Operá Bien CEDEARs</h3>
         <p>Dominá ratios de conversión, tipo de cambio implícito (CCL), liquidez y cobertura en el mercado local.</p>
       </div>
