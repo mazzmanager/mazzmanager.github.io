@@ -46,17 +46,34 @@
     --accent-gold: #f3ba2f;
   }
 
+  [data-theme="light"] {
+    --bg-body: #f8f9fa;
+    --bg-header: #e9ecef;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f3f5;
+    --border: #dee2e6;
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted: #6c757d;
+    --accent-red: #c0392b;
+    --accent-red-hover: #980000;
+    --accent-cyan: #009688;
+    --accent-gold: #d97706;
+  }
+
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
+  /* OCULTAR BARRAS DE SCROLL INTERNAS */
   html, body {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    scroll-behavior: smooth;
   }
 
   html::-webkit-scrollbar,
@@ -66,6 +83,14 @@
     height: 0 !important;
   }
 
+  body, * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
   body {
     background-color: var(--bg-body);
     color: var(--text-secondary);
@@ -73,6 +98,7 @@
     font-size: 15px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
     padding-top: 66px;
   }
 
@@ -86,7 +112,7 @@
     background: rgba(10, 10, 10, 0.94);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #2a2a2a;
     z-index: 9500;
   }
 
@@ -138,7 +164,7 @@
     gap: 7px;
     padding: 9px 14px;
     border-radius: 8px;
-    color: var(--text-secondary);
+    color: #cccccc;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 12.5px;
@@ -158,7 +184,7 @@
   }
 
   .nav-link.active {
-    color: var(--accent-cyan);
+    color: #00cfb4;
   }
 
   .nav-link i.fa-chevron-down {
@@ -179,8 +205,8 @@
     left: 0;
     min-width: 275px;
     background: #161616;
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--accent-cyan);
+    border: 1px solid #2a2a2a;
+    border-top: 2px solid #00cfb4;
     border-radius: 10px;
     padding: 8px;
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
@@ -205,14 +231,14 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--accent-cyan);
+    color: #00cfb4;
     padding: 8px 12px 4px;
     opacity: 0.9;
   }
 
   .nav-dropdown-divider {
     height: 1px;
-    background: var(--border);
+    background: #2a2a2a;
     margin: 6px 8px;
   }
 
@@ -222,7 +248,7 @@
     gap: 10px;
     padding: 9px 12px;
     border-radius: 7px;
-    color: var(--text-primary);
+    color: #f4f4f4;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 12.5px;
@@ -233,39 +259,39 @@
   .nav-dropdown li a i {
     width: 16px;
     text-align: center;
-    color: var(--accent-cyan);
+    color: #00cfb4;
     font-size: 13px;
   }
 
   .nav-dropdown li a:hover {
-    background: var(--bg-card-hover);
-    color: var(--accent-cyan);
+    background: #252525;
+    color: #00cfb4;
     transform: translateX(3px);
   }
 
   .nav-dropdown li a.coming-soon {
-    color: var(--text-muted);
+    color: #888888;
     font-weight: 500;
     font-size: 12px;
     cursor: default;
   }
 
   .nav-dropdown li a.coming-soon i {
-    color: var(--text-muted);
+    color: #888888;
     font-size: 12px;
   }
 
   .nav-dropdown li a.coming-soon:hover {
     background: transparent;
-    color: var(--text-muted);
+    color: #888888;
     transform: none;
   }
 
   .nav-toggle {
     display: none;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text-primary);
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    color: #f4f4f4;
     width: 40px;
     height: 40px;
     border-radius: 8px;
@@ -284,7 +310,7 @@
       left: 0;
       right: 0;
       background: #0e0e0e;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #2a2a2a;
       flex-direction: column;
       align-items: stretch;
       padding: 14px 18px 22px;
@@ -294,21 +320,76 @@
     }
     .nav-links.mobile-open { display: flex; }
     .nav-link { width: 100%; justify-content: space-between; padding: 12px 14px; }
-    .nav-dropdown { position: static; box-shadow: none; border: 1px solid var(--border); margin-top: 4px; margin-bottom: 6px; }
+    .nav-dropdown { position: static; box-shadow: none; border: 1px solid #2a2a2a; margin-top: 4px; margin-bottom: 6px; }
     .nav-item:hover .nav-dropdown { display: none; }
     .nav-item.open .nav-dropdown { display: block; }
+  }
+
+  /* MARCA DE AGUA ESTILO MOSAICO */
+  .bg-watermark {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='220'%3E%3Ctext x='50%25' y='50%25' font-family='Arial,Helvetica,sans-serif' font-size='20' font-weight='900' letter-spacing='2' fill='%23DC2626' text-anchor='middle' dominant-baseline='middle' transform='rotate(-30 190 110)'%3EMAZZ MANAGER%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 380px 220px;
+    opacity: 0.04;
+    transition: opacity 0.3s ease;
+  }
+
+  [data-theme="light"] .bg-watermark {
+    opacity: 0.05;
+  }
+
+  .brand-font {
+    font-family: 'Squada One', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
   }
 
   /* CONTENIDO PRINCIPAL */
   .page-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 50px 20px 90px 20px;
+    padding: 26px 20px 70px 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* SELECTOR DE TEMA EN FLUJO */
+  .theme-switcher-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .theme-switcher-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+  }
+
+  .theme-switcher-btn:hover {
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
   }
 
   .page-header {
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 42px;
   }
 
   .page-header h1 {
@@ -418,83 +499,16 @@
     font-size: 13.5px;
   }
 
-  /* BLOQUE DE COMPARTIR CONTENIDO */
-  .share-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin: 40px 0 30px 0;
-    text-align: center;
-  }
-
-  .share-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-  }
-
-  .share-title i {
-    color: var(--accent-cyan);
-  }
-
-  .share-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-  }
-
-  .share-buttons-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .share-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    color: #ffffff;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-    cursor: pointer;
-  }
-
-  .share-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.92;
-  }
-
-  .sb-whatsapp { background: #25d366; color: #111111; }
-  .sb-telegram { background: #0088cc; }
-  .sb-twitter { background: #000000; border-color: #333333; }
-  .sb-facebook { background: #1877f2; }
-  .sb-email { background: #ea4335; }
-  .sb-copy { background: #2a2a2a; color: var(--text-primary); border-color: #3a3a3a; }
-  .sb-copy:hover { background: #353535; border-color: var(--accent-cyan); }
-
-  /* WIDGET FLOTANTE DE DONACIONES */
-  .fixed-donation-wrapper {
+  /* CONTENEDOR FLOTANTE DERECHO (Compartir arriba + Donaciones abajo apilados) */
+  .fixed-floating-stack {
     position: fixed;
     bottom: 24px;
     right: 24px;
     z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
   }
 
   .fixed-donation-btn {
@@ -502,34 +516,35 @@
     align-items: center;
     gap: 8px;
     padding: 12px 22px;
-    background: var(--bg-card);
-    border: 1px solid var(--accent-red);
+    background: #1e1e1e;
+    border: 1px solid #DC2626;
     border-radius: 50px;
-    color: var(--text-primary);
+    color: #f4f4f4;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 12px rgba(192, 57, 43, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 12px rgba(220, 38, 38, 0.35);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    pointer-events: auto;
   }
 
   .fixed-donation-btn:hover {
-    background: var(--accent-red);
+    background: #DC2626;
     color: #ffffff;
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 25px rgba(192, 57, 43, 0.65);
-  }
-
-  .fixed-donation-btn i.fa-heart {
-    color: #e74c3c;
-    animation: beat 1.2s infinite alternate;
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.65);
   }
 
   @keyframes beat {
     to { transform: scale(1.25); }
+  }
+
+  .animate-heart-beat {
+    animation: beat 1.2s infinite alternate;
+    color: #ef4444;
   }
 
   .fixed-donate-menu {
@@ -539,7 +554,7 @@
     right: 0;
     width: 320px;
     background: #181818;
-    border: 1px solid var(--border);
+    border: 1px solid #2a2a2a;
     border-radius: 14px;
     padding: 18px;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
@@ -556,57 +571,138 @@
 
   .fixed-menu-intro {
     font-size: 12.5px;
-    color: var(--text-secondary);
+    color: #cccccc;
     margin-bottom: 14px;
     text-align: center;
     line-height: 1.4;
   }
 
-  .fixed-menu-intro strong { color: var(--text-primary); }
+  .fixed-menu-intro strong { color: #f4f4f4; }
 
   .donation-link {
     text-decoration: none;
     color: inherit;
     display: block;
     margin-bottom: 8px;
+    pointer-events: auto;
   }
 
   .donation-link:last-child { margin-bottom: 0; }
 
-  .donation-card {
+  .donation-card-float {
     display: flex;
     align-items: center;
     padding: 10px 12px;
-    background-color: var(--bg-body);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    background-color: #121212;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    transition: all 0.2s ease;
   }
 
-  .donation-card:hover {
-    background-color: var(--bg-card-hover);
-    border-color: var(--accent-red);
+  .donation-card-float:hover {
+    background-color: #252525;
+    border-color: #DC2626;
   }
 
-  .icon-box {
+  .icon-box-float {
     font-size: 18px;
-    width: 32px;
+    width: 30px;
     text-align: center;
-    margin-right: 12px;
+    margin-right: 10px;
   }
 
-  .method-title {
+  .method-title-float {
     display: block;
     font-weight: 700;
-    font-size: 13px;
-    color: var(--text-primary);
+    font-size: 12.5px;
+    color: #f4f4f4;
     font-family: 'Montserrat', sans-serif;
   }
 
-  .method-desc {
+  .method-desc-float {
     display: block;
-    font-size: 11px;
-    color: var(--text-muted);
+    font-size: 10.5px;
+    color: #888888;
+  }
+
+  /* WIDGET FLOTANTE DE COMPARTIR (Arriba del de donaciones) */
+  .fixed-share-container {
+    position: relative;
+  }
+
+  .fixed-share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #1e1e1e;
+    border: 1px solid #00cfb4;
+    border-radius: 50%;
+    color: #00cfb4;
+    font-size: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 207, 180, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .fixed-share-btn:hover {
+    background: #00cfb4;
+    color: #111111;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 207, 180, 0.45);
+  }
+
+  .fixed-share-menu {
+    display: none;
+    position: absolute;
+    bottom: 54px;
+    right: 0;
+    width: 240px;
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    border-bottom: 2px solid #00cfb4;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+    list-style: none;
+    z-index: 10000;
+    animation: slideUp 0.2s ease-out;
+  }
+
+  .fixed-share-menu.active { display: block; }
+
+  .share-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: #f4f4f4;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    pointer-events: auto;
+  }
+
+  .share-option:hover {
+    background: #252525;
+    color: #00cfb4;
+    transform: translateX(3px);
+  }
+
+  .share-option i {
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
   }
 
   /* PIE DE PÁGINA */
@@ -705,11 +801,22 @@
   </div>
 </nav>
 
+<div class="bg-watermark"></div>
+
 <!-- CONTENIDO PRINCIPAL -->
 <main class="page-container">
+
+  <!-- SELECTOR DE MODO CLARO / OSCURO -->
+  <div class="theme-switcher-wrapper">
+    <button type="button" class="theme-switcher-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+      <i class="fas fa-moon" id="themeIcon"></i>
+      <span id="themeText">Modo Claro</span>
+    </button>
+  </div>
+
   <div class="page-header">
     <h1>Colaboradores & Comunidad</h1>
-    <p>El reconocimiento oficial a quienes impulsan y sostienen de forma voluntaria las herramientas y contenidos de Mazz Manager.</p>
+    <p>El reconocimiento oficial a quienes impulsan y sostienen de forma voluntaria las herramientas y contenidos de <span class="brand-font" style="font-size: 1.15em;">Mazz Manager</span>©.</p>
   </div>
 
   <section class="collab-section">
@@ -736,84 +843,87 @@
     </div>
   </section>
 
-  <!-- BLOQUE DE COMPARTIR CONTENIDO -->
-  <div class="share-box">
-    <div class="share-title">
-      <i class="fas fa-share-nodes"></i> ¿Te gusta este espacio? Compártelo
-    </div>
-    <p class="share-desc">Ayudá a que más inversores conozcan a quienes hacen posible este proyecto independiente.</p>
-    
-    <div class="share-buttons-grid">
-      <a href="javascript:void(0);" onclick="shareTo('whatsapp')" class="share-btn sb-whatsapp" title="Compartir en WhatsApp">
-        <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
-      </a>
-      <a href="javascript:void(0);" onclick="shareTo('telegram')" class="share-btn sb-telegram" title="Compartir en Telegram">
-        <i class="fab fa-telegram"></i> <span>Telegram</span>
-      </a>
-      <a href="javascript:void(0);" onclick="shareTo('twitter')" class="share-btn sb-twitter" title="Compartir en X">
-        <i class="fab fa-x-twitter"></i> <span>X / Twitter</span>
-      </a>
-      <a href="javascript:void(0);" onclick="shareTo('facebook')" class="share-btn sb-facebook" title="Compartir en Facebook">
-        <i class="fab fa-facebook-f"></i> <span>Facebook</span>
-      </a>
-      <a href="javascript:void(0);" onclick="shareTo('email')" class="share-btn sb-email" title="Enviar por Email">
-        <i class="fas fa-envelope"></i> <span>Email</span>
-      </a>
-      <a href="javascript:void(0);" onclick="copyPageLink(this)" class="share-btn sb-copy" title="Copiar enlace">
-        <i class="fas fa-link"></i> <span class="copy-text">Copiar Enlace</span>
-      </a>
-    </div>
-  </div>
-
   <!-- PIE DE PÁGINA -->
   <footer class="integrated-footer">
     <div class="footer-copy">
-      <span class="brand-font">Mazz Manager</span>© | 2026 | Todos los Derechos Reservados
+      <span class="brand-font">Mazz Manager</span>© | <span id="dynamicYear">2026</span> | Todos los Derechos Reservados
     </div>
   </footer>
 </main>
 
-<!-- WIDGET FLOTANTE DE DONACIONES -->
-<div class="fixed-donation-wrapper" id="donationWrapper">
-  <div class="fixed-donate-menu" id="fixedDonateMenu">
-    <p class="fixed-menu-intro">
-      Para apoyar este proyecto, podés hacerlo a través de estos canales.<br>
-      <strong>¡Todo aporte suma!</strong>
-    </p>
-
-    <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-      <div class="donation-card">
-        <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
-        <div><span class="method-title">PayPal | Tarjetas</span><span class="method-desc">Soporte Internacional</span></div>
-      </div>
-    </a>
-
-    <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-      <div class="donation-card">
-        <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
-        <div><span class="method-title">Mercado Pago</span><span class="method-desc">Argentina</span></div>
-      </div>
-    </a>
-
-    <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
-      <div class="donation-card">
-        <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
-        <div><span class="method-title">Criptomonedas</span><span class="method-desc">USDT (BEP20)</span></div>
-      </div>
-    </a>
-
-    <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
-      <div class="donation-card">
-        <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 15px;">R$</div>
-        <div><span class="method-title">Pix</span><span class="method-desc">Brasil</span></div>
-      </div>
-    </a>
+<!-- BLOQUE FLOTANTE DERECHO (Compartir arriba + Donaciones abajo) -->
+<div class="fixed-floating-stack" id="floatingStack">
+  <!-- WIDGET DE COMPARTIR -->
+  <div class="fixed-share-container" id="shareContainer">
+    <div class="fixed-share-menu" id="fixedShareMenu">
+      <div class="nav-dropdown-header" style="padding: 4px 8px 8px;">Compartir Página</div>
+      <button type="button" class="share-option" onclick="shareTo('whatsapp')">
+        <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
+      </button>
+      <button type="button" class="share-option" onclick="shareTo('telegram')">
+        <i class="fab fa-telegram" style="color: #0088cc;"></i> Telegram
+      </button>
+      <button type="button" class="share-option" onclick="shareTo('twitter')">
+        <i class="fab fa-x-twitter" style="color: #f4f4f4;"></i> X / Twitter
+      </button>
+      <button type="button" class="share-option" onclick="shareTo('facebook')">
+        <i class="fab fa-facebook-f" style="color: #1877f2;"></i> Facebook
+      </button>
+      <button type="button" class="share-option" onclick="shareTo('email')">
+        <i class="fas fa-envelope" style="color: #ea4335;"></i> Email
+      </button>
+      <div class="nav-dropdown-divider" style="height: 1px; background: #2a2a2a; margin: 6px 0;"></div>
+      <button type="button" class="share-option" onclick="copyPageLinkFloat()">
+        <i class="fas fa-link" style="color: #00cfb4;"></i> <span id="copyTextFloat">Copiar Enlace</span>
+      </button>
+    </div>
+    <button type="button" class="fixed-share-btn" onclick="toggleShareMenu(event)" title="Compartir página">
+      <i class="fas fa-share-nodes"></i>
+    </button>
   </div>
 
-  <button type="button" class="fixed-donation-btn" onclick="toggleFixedMenu(event)">
-    <i class="fas fa-heart"></i>
-    <span>Apoya este proyecto</span>
-  </button>
+  <!-- WIDGET DE DONACIONES -->
+  <div style="position: relative;" id="donationContainer">
+    <div class="fixed-donate-menu" id="fixedDonateMenu">
+      <p class="fixed-menu-intro">
+        Para apoyar este proyecto, podés hacerlo a través de estos canales.<br>
+        <strong>¡Todo aporte suma!</strong>
+      </p>
+
+      <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card-float">
+          <div class="icon-box-float" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+          <div><span class="method-title-float">PayPal | Tarjetas</span><span class="method-desc-float">Soporte Internacional</span></div>
+        </div>
+      </a>
+
+      <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card-float">
+          <div class="icon-box-float" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+          <div><span class="method-title-float">Mercado Pago</span><span class="method-desc-float">Argentina</span></div>
+        </div>
+      </a>
+
+      <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card-float">
+          <div class="icon-box-float" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+          <div><span class="method-title-float">Criptomonedas</span><span class="method-desc-float">USDT (BEP20)</span></div>
+        </div>
+      </a>
+
+      <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card-float">
+          <div class="icon-box-float" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 14px;">R$</div>
+          <div><span class="method-title-float">Pix</span><span class="method-desc-float">Brasil</span></div>
+        </div>
+      </a>
+    </div>
+
+    <button type="button" class="fixed-donation-btn" onclick="toggleFixedMenu(event)">
+      <i class="fas fa-heart animate-heart-beat"></i>
+      <span>Apoya este proyecto</span>
+    </button>
+  </div>
 </div>
 
 <script>
@@ -834,11 +944,18 @@
   function toggleFixedMenu(e) {
     if (e) e.stopPropagation();
     document.getElementById('fixedDonateMenu').classList.toggle('active');
+    document.getElementById('fixedShareMenu').classList.remove('active');
+  }
+
+  function toggleShareMenu(e) {
+    if (e) e.stopPropagation();
+    document.getElementById('fixedShareMenu').classList.toggle('active');
+    document.getElementById('fixedDonateMenu').classList.remove('active');
   }
 
   function shareTo(platform) {
     const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title + " - Mazz Manager©");
+    const title = encodeURIComponent(document.title);
     let shareUrl = "";
 
     switch(platform) {
@@ -864,35 +981,71 @@
     }
   }
 
-  function copyPageLink(btn) {
-    const dummy = window.location.href;
-    const textSpan = btn.querySelector('.copy-text');
-    
-    navigator.clipboard.writeText(dummy).then(() => {
+  function copyPageLinkFloat() {
+    const textSpan = document.getElementById('copyTextFloat');
+    navigator.clipboard.writeText(window.location.href).then(() => {
       textSpan.textContent = "¡Enlace Copiado!";
-      btn.style.borderColor = "#00cfb4";
-      btn.style.color = "#00cfb4";
-      
       setTimeout(() => {
         textSpan.textContent = "Copiar Enlace";
-        btn.style.borderColor = "#3a3a3a";
-        btn.style.color = "#f4f4f4";
       }, 2500);
-    }).catch(err => {
-      console.error('Error al copiar: ', err);
     });
   }
 
+  // Sistema de Selector Claro / Oscuro
+  function toggleTheme() {
+    const html = document.documentElement;
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    
+    if (html.getAttribute('data-theme') === 'light') {
+      html.removeAttribute('data-theme');
+      themeIcon.className = 'fas fa-moon';
+      themeText.textContent = 'Modo Claro';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      themeIcon.className = 'fas fa-sun';
+      themeText.textContent = 'Modo Oscuro';
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  // Cargar preferencia guardada
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.getElementById('themeIcon').className = 'fas fa-sun';
+      document.getElementById('themeText').textContent = 'Modo Oscuro';
+    }
+    document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+  });
+
   document.addEventListener('click', function(e) {
-    const wrapper = document.getElementById('donationWrapper');
-    if (wrapper && !wrapper.contains(e.target)) {
+    const floatingStack = document.getElementById('floatingStack');
+    if (floatingStack && !floatingStack.contains(e.target)) {
       document.getElementById('fixedDonateMenu').classList.remove('active');
+      document.getElementById('fixedShareMenu').classList.remove('active');
     }
     const navbar = document.getElementById('mazzNavbar');
     if (navbar && !navbar.contains(e.target)) {
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
     }
   });
+
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.keyCode === 123 ||
+      (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+      (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+    ) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('copy', function(e) { e.preventDefault(); });
+  document.addEventListener('cut', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
 </script>
 
 </body>
