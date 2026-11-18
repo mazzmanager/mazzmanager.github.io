@@ -418,6 +418,77 @@
     font-size: 13.5px;
   }
 
+  /* BLOQUE DE COMPARTIR CONTENIDO */
+  .share-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin: 40px 0 30px 0;
+    text-align: center;
+  }
+
+  .share-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .share-title i {
+    color: var(--accent-cyan);
+  }
+
+  .share-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .share-buttons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .share-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+  }
+
+  .sb-whatsapp { background: #25d366; color: #111111; }
+  .sb-telegram { background: #0088cc; }
+  .sb-twitter { background: #000000; border-color: #333333; }
+  .sb-facebook { background: #1877f2; }
+  .sb-email { background: #ea4335; }
+  .sb-copy { background: #2a2a2a; color: var(--text-primary); border-color: #3a3a3a; }
+  .sb-copy:hover { background: #353535; border-color: var(--accent-cyan); }
+
   /* WIDGET FLOTANTE DE DONACIONES */
   .fixed-donation-wrapper {
     position: fixed;
@@ -538,7 +609,7 @@
     color: var(--text-muted);
   }
 
-  /* PIE */
+  /* PIE DE PÁGINA */
   .integrated-footer {
     border-top: 1px solid var(--border);
     padding-top: 25px;
@@ -646,7 +717,7 @@
     <p>Personas que aportan mediante donaciones o soporte para mantener libres y actualizadas las herramientas y análisis del ecosistema.</p>
     
     <div class="grid-collaborators">
-      <!-- Aquí podés ir sumando tarjetas de colaboradores a medida que se sumen -->
+      <!-- Tarjetas de colaboradores -->
       <div class="collab-badge-card">
         <div class="collab-avatar">JM</div>
         <div class="collab-info">
@@ -655,8 +726,6 @@
         </div>
       </div>
     </div>
-    <!-- Si todavía no hay nadie más, podés usar esto de placeholder: -->
-    <!-- <div class="empty-notice">Próximamente se sumarán los primeros colaboradores y mecenas del proyecto.</div> -->
   </section>
 
   <section class="collab-section">
@@ -666,6 +735,42 @@
       ¡Vos también podés sumarte a la comunidad y formar parte de este espacio independiente!
     </div>
   </section>
+
+  <!-- BLOQUE DE COMPARTIR CONTENIDO -->
+  <div class="share-box">
+    <div class="share-title">
+      <i class="fas fa-share-nodes"></i> ¿Te gusta este espacio? Compártelo
+    </div>
+    <p class="share-desc">Ayudá a que más inversores conozcan a quienes hacen posible este proyecto independiente.</p>
+    
+    <div class="share-buttons-grid">
+      <a href="javascript:void(0);" onclick="shareTo('whatsapp')" class="share-btn sb-whatsapp" title="Compartir en WhatsApp">
+        <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+      </a>
+      <a href="javascript:void(0);" onclick="shareTo('telegram')" class="share-btn sb-telegram" title="Compartir en Telegram">
+        <i class="fab fa-telegram"></i> <span>Telegram</span>
+      </a>
+      <a href="javascript:void(0);" onclick="shareTo('twitter')" class="share-btn sb-twitter" title="Compartir en X">
+        <i class="fab fa-x-twitter"></i> <span>X / Twitter</span>
+      </a>
+      <a href="javascript:void(0);" onclick="shareTo('facebook')" class="share-btn sb-facebook" title="Compartir en Facebook">
+        <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+      </a>
+      <a href="javascript:void(0);" onclick="shareTo('email')" class="share-btn sb-email" title="Enviar por Email">
+        <i class="fas fa-envelope"></i> <span>Email</span>
+      </a>
+      <a href="javascript:void(0);" onclick="copyPageLink(this)" class="share-btn sb-copy" title="Copiar enlace">
+        <i class="fas fa-link"></i> <span class="copy-text">Copiar Enlace</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="integrated-footer">
+    <div class="footer-copy">
+      <span class="brand-font">Mazz Manager</span>© | 2026 | Todos los Derechos Reservados
+    </div>
+  </footer>
 </main>
 
 <!-- WIDGET FLOTANTE DE DONACIONES -->
@@ -729,6 +834,53 @@
   function toggleFixedMenu(e) {
     if (e) e.stopPropagation();
     document.getElementById('fixedDonateMenu').classList.toggle('active');
+  }
+
+  function shareTo(platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title + " - Mazz Manager©");
+    let shareUrl = "";
+
+    switch(platform) {
+      case 'whatsapp':
+        shareUrl = `https://api.whatsapp.com/send?text=${title}%20-%20${url}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        break;
+      case 'email':
+        shareUrl = `mailto:?subject=${title}&body=Te%20recomiendo%20visitar%20este%20espacio%20en%20Mazz%20Manager:%20${url}`;
+        break;
+    }
+
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+  }
+
+  function copyPageLink(btn) {
+    const dummy = window.location.href;
+    const textSpan = btn.querySelector('.copy-text');
+    
+    navigator.clipboard.writeText(dummy).then(() => {
+      textSpan.textContent = "¡Enlace Copiado!";
+      btn.style.borderColor = "#00cfb4";
+      btn.style.color = "#00cfb4";
+      
+      setTimeout(() => {
+        textSpan.textContent = "Copiar Enlace";
+        btn.style.borderColor = "#3a3a3a";
+        btn.style.color = "#f4f4f4";
+      }, 2500);
+    }).catch(err => {
+      console.error('Error al copiar: ', err);
+    });
   }
 
   document.addEventListener('click', function(e) {
