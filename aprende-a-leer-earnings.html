@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo Leer y Operar Earnings Reports | Guía de Trading e Inversión</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg-body:        #111111;
+      --bg-header:      #0a0a0a;
+      --accent-red:       #c0392b;
+      --accent-red-hover: #980000;
+      --text-primary:     #f4f4f4;
+      --text-secondary:   #cccccc;
+      --text-muted:       #888888;
+      --border:           #2a2a2a;
+      --accent-cyan:      #00cfb4;
+      --bg-card:          #1e1e1e;
+      --bg-card-hover:    #252525;
+    }
+
+    [data-theme="light"] {
+      --bg-body:        #f8f9fa;
+      --bg-header:      #e9ecef;
+      --accent-red:       #c0392b;
+      --accent-red-hover: #980000;
+      --text-primary:     #212529;
+      --text-secondary:   #495057;
+      --text-muted:       #6c757d;
+      --border:           #dee2e6;
+      --accent-cyan:      #009688;
+      --bg-card:          #ffffff;
+      --bg-card-hover:    #f1f3f5;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* OCULTAR BARRAS DE SCROLL INTERNAS */
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      scroll-behavior: smooth;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    body, * {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Lexend', sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 30px 20px 50px;
+      position: relative;
+    }
+
+    /* Botón Selector de Tema */
+    .theme-switcher-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .theme-switcher-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-switcher-btn:hover {
+      border-color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-bottom: 30px;
+    }
+
+    .hero-meta {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-red);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero-title span, .hero-title em {
+      color: var(--accent-red);
+      font-style: normal;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent-red);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* Secciones del Contenido */
+    .section-header {
+      margin: 28px 0 12px;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-icon {
+      font-size: 22px;
+    }
+
+    .subsection-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin: 18px 0 8px;
+    }
+
+    /* Listas Personalizadas */
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 12px 0 16px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    ul.bullet-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    ul.bullet-list li strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Cita Destacada */
+    blockquote {
+      margin: 30px 0;
+      padding: 0 0 0 18px;
+      border-left: 3px solid var(--accent-red);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       SECCIÓN DE APOYO / DONACIONES INTEGRADA (SIN DOBLE SCROLL)
+       ========================================================= */
+    .support-section {
+      background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(192, 57, 43, 0.35);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 36px 0 26px;
+      text-align: center;
+    }
+
+    .support-header {
+      margin-bottom: 16px;
+    }
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #e74c3c;
+      margin-bottom: 8px;
+    }
+
+    .support-badge i.fa-heart {
+      animation: beat 1.2s infinite alternate;
+    }
+
+    @keyframes beat {
+      to { transform: scale(1.25); }
+    }
+
+    .support-header p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .support-header p strong {
+      color: var(--text-primary);
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      text-align: left;
+    }
+
+    .donation-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .donation-card {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      background-color: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .donation-card:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    .icon-box {
+      font-size: 19px;
+      width: 30px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    .method-title {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .method-desc {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'Lexend', sans-serif;
+    }
+
+    /* Footer & Disclaimer */
+    .social-bar {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .integrated-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Responsividad */
+    @media (max-width: 600px) {
+      .hero-title { font-size: 28px; }
+      .container { padding: 20px 16px 40px; }
+      blockquote { font-size: 16px; }
+      .support-section { padding: 18px 14px; }
+      .support-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- Selector de Tema Claro / Oscuro -->
+    <div class="theme-switcher-wrapper">
+      <button class="theme-switcher-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+        <i class="fas fa-moon" id="themeIcon"></i>
+        <span id="themeText">Modo Claro</span>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <span class="hero-meta">📚 Trading & Inversión con Mazz Manager©</span>
+      <h1 class="hero-title">Cómo Leer y Operar <span>Earnings Reports</span></h1>
+      <div class="hero-divider"></div>
+      <p>La temporada de resultados es uno de los momentos de mayor volatilidad y oportunidad en el mercado. Para analizar un reporte corporativo y convertirlo en decisiones de trading o inversión, debes estructurar el análisis en tres pilares: <strong>qué mirar</strong>, <strong>por qué importa</strong> y <strong>cómo ejecutar la operación</strong>.</p>
+    </section>
+
+    <!-- Sección 1: Desglose del Informe -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">📊</span> DESGLOSE DEL INFORME: ¿QUÉ IMPORTA Y POR QUÉ?</h2>
+    </div>
+
+    <h3 class="subsection-title">Números Clave del Trimestre</h3>
+    <ul class="bullet-list">
+      <li><strong>Ingresos (Top Line) y EPS (Bottom Line) vs. Estimado del Consenso:</strong> Es la primera prueba que pasa la empresa. Superar ambas métricas (Beat) genera compras inmediatas por parte de los algoritmos e instituciones.</li>
+      <li><strong>Márgenes y EBITDA:</strong> Muestran la eficiencia operativa. Un crecimiento en ingresos no sirve de nada si los costos crecen a mayor velocidad y comprimen el beneficio.</li>
+      <li><strong>Caja, Equivalentes y Flujo de Caja Libre (FCF):</strong> Representan la salud de la estructura financiera y la capacidad de la compañía para autofinanciarse, recomprar acciones o afrontar contingencias.</li>
+    </ul>
+
+    <h3 class="subsection-title">Desglose por Segmentos Operativos</h3>
+    <ul class="bullet-list">
+      <li><strong>Performance por Línea de Negocio y Métricas Sectoriales (ej. GMV, MRR):</strong> Permiten evaluar si el negocio principal se mantiene fuerte y si las métricas clave del sector muestran una tracción real y sostenible.</li>
+    </ul>
+
+    <h3 class="subsection-title">Eventos Corporativos, Estratégicos y Guía (Guidance)</h3>
+    <ul class="bullet-list">
+      <li><strong>Proyección para el Próximo Trimestre/Año (Guidance):</strong> El mercado no paga por el pasado, sino por las expectativas futuras. Un trimestre récord con una guía débil suele traducirse en caídas drásticas del precio.</li>
+    </ul>
+
+    <h3 class="subsection-title">Reacción del Mercado & Factores de Riesgo</h3>
+    <ul class="bullet-list">
+      <li><strong>Riesgos Específicos y Comportamiento del Precio:</strong> Ayudan a identificar posibles frenos al impulso alcista o bajista (ej. compresión de márgenes brutos, vientos en contra macroeconómicos).</li>
+    </ul>
+
+    <blockquote>
+      "El mercado opera en base a expectativas. No se trata solo de si los datos son buenos, sino de si superaron o no la vara fijada por Wall Street."
+    </blockquote>
+
+    <!-- Sección 2: Trading Intradía -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">⚡</span> ESTRATEGIA PARA TRADING INTRADÍA</h2>
+    </div>
+    <p>El objetivo en el corto plazo (Day Trading / Swing de corto plazo) es capitalizar el momentum y la volatilidad generada por la noticia.</p>
+
+    <ul class="bullet-list">
+      <li><strong>Monitoreo Premarket / After-Hours:</strong> Evalúa la reacción inicial del precio tras la publicación. Identifica los máximos y mínimos marcados fuera del horario regular de negociación.</li>
+      <li><strong>Confirmación de Tendencia en los Primeros Minutos:</strong> No operes en el primer minuto de la apertura (Open Market). Espera a que se asiente la volatilidad inicial (primeros 15 a 30 minutos). Si los datos superan expectativas y el precio rompe y consolida por encima del máximo del premarket, busca compras a favor del impulso.</li>
+      <li><strong>Gaps y Zonas de Soporte:</strong> Monitorea si el precio respeta los niveles de soporte clave; una ruptura hacia abajo indica una toma de ganancias institucional (Sell the news).</li>
+      <li><strong>Gestión de Riesgo:</strong> Utiliza Stop Loss ajustados debido a los impulsos bruscos y evita el sobreapalancamiento.</li>
+    </ul>
+
+    <!-- Sección 3: Inversión a Largo Plazo -->
+    <div class="section-header">
+      <h2 class="section-title"><span class="section-icon">🏛️</span> ESTRATEGIA PARA INVERSIÓN A LARGO PLAZO</h2>
+    </div>
+    <p>El objetivo a largo plazo (Position Trading / Buy & Hold) es confirmar si la tesis fundamental de inversión sigue intacta o si la empresa está ganando cuota de mercado.</p>
+
+    <ul class="bullet-list">
+      <li><strong>Evaluación de la Tesis de Inversión:</strong> Verifica que las métricas estructurales (crecimiento de suscriptores, expansión internacional, penetración de IA/tecnología) confirmen el foso económico (moat) de la compañía.</li>
+      <li><strong>Análisis de la Guía (Guidance) y Flujo de Caja:</strong> Asegúrate de que las proyecciones de la directiva mantengan una trayectoria de expansión de márgenes y generación constante de caja a varios años vista.</li>
+      <li><strong>Ejecución y Acumulación Escalonada (DCA):</strong> Si los datos son sólidos pero la acción abre con una subida muy extendida (gap up), no persigas el precio. Espera a que se produzca una consolidación o un pullback técnico hacia medias móviles clave (como la de 20 o 50 períodos) para iniciar o ampliar posiciones.</li>
+    </ul>
+
+    <p style="margin-top: 24px;"><strong>📈🚀 ¡Aplica estas reglas en cada lectura de balances, mantén la disciplina y gestiona tu riesgo!</strong></p>
+
+  <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (TEXTO ORIGINAL) -->
+  <section class="support-section">
+    <div class="support-header">
+      <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+      <p>
+        Podes apoyar este proyecto, a través de estos canales.<br>
+        <strong>¡Cualquier aporte suma!</strong>
+      </p>
+    </div>
+
+      <div class="support-grid">
+        <!-- PayPal -->
+        <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+            <div>
+              <span class="method-title">PayPal | Tarjetas</span>
+              <span class="method-desc">Soporte Internacional</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Mercado Pago -->
+        <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+            <div>
+              <span class="method-title">Mercado Pago</span>
+              <span class="method-desc">Argentina</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Crypto -->
+        <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+            <div>
+              <span class="method-title">Criptomonedas</span>
+              <span class="method-desc">USDT (BEP20)</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Pix -->
+        <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+          <div class="donation-card">
+            <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
+            <div>
+              <span class="method-title">Pix</span>
+              <span class="method-desc">Brasil</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer / Disclaimer & Marca de Agua -->
+    <div class="social-bar">
+      <p class="footer-disclaimer">Este contenido tiene fines meramente informativos y educativos. No constituye una recomendación de inversión ni un asesoramiento financiero profesional.</p>
+      <div class="integrated-footer">
+        Mazz Manager© | 2026 | Todos los Derechos Reservados
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts de Protección y Selector de Tema -->
+  <script>
+    // Sistema de Selector Claro / Oscuro
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      const themeText = document.getElementById('themeText');
+      
+      if (html.getAttribute('data-theme') === 'light') {
+        html.removeAttribute('data-theme');
+        themeIcon.className = 'fas fa-moon';
+        themeText.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fas fa-sun';
+        themeText.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Cargar preferencia guardada
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById('themeIcon').className = 'fas fa-sun';
+        document.getElementById('themeText').textContent = 'Modo Oscuro';
+      }
+    });
+
+    // Bloquear menú contextual (clic derecho)
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // Bloquear atajos de teclado de copia, selección y herramientas de desarrollo (DevTools)
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80)) // Ctrl+S/U/C/A/P
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Bloquear eventos de copia, cortado y arrastre
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+  </script>
+</body>
+</html>
