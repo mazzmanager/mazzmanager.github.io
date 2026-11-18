@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acerca de Mazz Manager© | Innovación • Finanzas • Mentalidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&family=Squada+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root {
+    --bg-body: #111111;
+    --bg-header: #0a0a0a;
+    --bg-card: #1e1e1e;
+    --bg-card-hover: #252525;
+    --border: #2a2a2a;
+    --text-primary: #f4f4f4;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --accent-red: #c0392b;
+    --accent-red-hover: #980000;
+    --accent-cyan: #00cfb4;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* OCULTAR BARRAS DE SCROLL INTERNAS */
+  html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  body, * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 20px 50px 20px;
+  }
+
+  /* TIPOGRAFÍA DE MARCA SQUADA ONE */
+  .brand-font {
+    font-family: 'Squada One', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  /* HERO / ENCABEZADO ACERCA */
+  .about-hero {
+    background: radial-gradient(circle at top left, #241313 0%, #111111 75%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-cyan);
+    border-radius: 14px;
+    padding: 36px 28px;
+    margin-bottom: 34px;
+  }
+
+  .about-hero h1 {
+    font-family: 'Squada One', sans-serif;
+    font-size: clamp(32px, 5vw, 50px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .about-hero h1 span {
+    color: var(--accent-red);
+  }
+
+  .about-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(11px, 1.6vw, 13px);
+    font-weight: 700;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+
+  .about-intro {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .about-intro strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .about-intro .brand-font {
+    font-size: 1.15em;
+    color: var(--text-primary);
+  }
+
+  .about-intro .highlight {
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
+
+  /* TITULO DE SECCION */
+  .section-header {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .section-header h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(17px, 2.2vw, 20px);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* GRID DE APORTES */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .pillar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.25s ease;
+  }
+
+  .pillar-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-cyan);
+    transform: translateY(-3px);
+  }
+
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .pillar-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(0, 207, 180, 0.12);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .pillar-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pillar-card p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* PROPOSITO */
+  .purpose-box {
+    background: var(--bg-card);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 30px 24px;
+    text-align: center;
+    margin-bottom: 34px;
+  }
+
+  .purpose-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .purpose-box p {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: 0 auto 14px auto;
+  }
+
+  .purpose-cta-text {
+    color: var(--accent-cyan) !important;
+    font-weight: 600;
+    margin-bottom: 20px !important;
+  }
+
+  .btn-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-red);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 26px;
+    border-radius: 10px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 4px 18px rgba(192, 57, 43, 0.35);
+    transition: all 0.25s ease;
+  }
+
+  .btn-contact .brand-font {
+    font-size: 16px;
+    letter-spacing: 0.8px;
+  }
+
+  .btn-contact:hover {
+    background: var(--accent-red-hover);
+    transform: translateY(-2px);
+  }
+
+  /* FRASE DE CIERRE */
+  .quote-banner {
+    border-left: 3px solid var(--accent-red);
+    background: rgba(192, 57, 43, 0.08);
+    padding: 20px 24px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 34px;
+    text-align: center;
+  }
+
+  .quote-banner p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 2vw, 17px);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+  }
+
+  .quote-banner .brand-font {
+    font-style: normal;
+    font-size: 1.15em;
+  }
+
+  /* =========================================================
+     SECCIÓN DE APOYO / DONACIONES INTEGRADA (SIN DOBLE SCROLL)
+     ========================================================= */
+  .support-section {
+    background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
+    border: 1px solid rgba(192, 57, 43, 0.35);
+    border-radius: 14px;
+    padding: 26px 24px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .support-header {
+    margin-bottom: 20px;
+  }
+
+  .support-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #e74c3c;
+    margin-bottom: 8px;
+  }
+
+  .support-badge i.fa-heart {
+    animation: beat 1.2s infinite alternate;
+  }
+
+  @keyframes beat {
+    to { transform: scale(1.25); }
+  }
+
+  .support-header p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .support-header p strong {
+    color: var(--text-primary);
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+    text-align: left;
+  }
+
+  .donation-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .donation-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    background-color: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .donation-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+  }
+
+  .icon-box {
+    font-size: 19px;
+    width: 32px;
+    text-align: center;
+    margin-right: 12px;
+  }
+
+  .method-title {
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .method-desc {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* PIE DE PAGINA INTEGRADO */
+  .integrated-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12.5px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer-copy .brand-font {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .about-hero { padding: 26px 18px; }
+    .wrapper { padding: 16px 14px 40px; }
+    .support-section { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ENCABEZADO PRINCIPAL -->
+  <header class="about-hero">
+    <h1><span class="brand-font" style="color: inherit;">Mazz Manager</span><span>©</span></h1>
+    <div class="about-subtitle">Market Strategist & Trader | Digital Entrepreneur | Psychology Strategist</div>
+    <p class="about-intro">
+      En un ecosistema financiero que no duerme, la diferencia entre el éxito y la incertidumbre radica en la capacidad de integrar datos, tecnología y una mentalidad resiliente. Como Founder de <strong class="brand-font">Mazz Manager</strong>, lidero un proyecto integral que descansa sobre tres pilares fundamentales: <span class="highlight">Innovación, Finanzas y Mentalidad</span>. Mi enfoque no se limita a la lectura de gráficos; se trata de entender la arquitectura detrás de los movimientos del mercado y utilizar la tecnología para anticiparlos.
+    </p>
+  </header>
+
+  <!-- SECCIONES DE APORTE -->
+  <div class="section-header">
+    <h2>Lo que aporto al ecosistema profesional</h2>
+    <p>Integración de análisis técnico, desarrollo propio y psicología operativa</p>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Estrategia Financiera & Trading</h3>
+      </div>
+      <p>Analizo los mercados y observo carteras de inversión con un enfoque técnico y robusto, procesando múltiples variables para tomar decisiones fundamentadas.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <div class="pillar-icon"><i class="fas fa-code"></i></div>
+        <h3>Innovación & Desarrollo</h3>
+      </div>
+      <p>No solo uso herramientas, las construyo. Desarrollo indicadores personalizados en Pine Script y herramientas web en HTML/CSS para optimizar la visualización de datos.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <div class="pillar-icon"><i class="fas fa-microchip"></i></div>
+        <h3>Producción Digital & IA</h3>
+      </div>
+      <p>Implemento soluciones de vanguardia e inteligencia artificial para crear contenido y reportes de alto impacto, asegurando que la comunicación sea tan profesional como el análisis.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
+        <h3>Disciplina & Creatividad</h3>
+      </div>
+      <p>Mi trasfondo artístico me ha brindado una estructura mental única para la composición de estrategias y la disciplina necesaria para volver simple la gestión de proyectos complejos.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <div class="pillar-icon"><i class="fas fa-brain"></i></div>
+        <h3>Mentalidad</h3>
+      </div>
+      <p>Me centro en la mitigación de sesgos cognitivos, la resiliencia emocional en situaciones de alta presión y los marcos conductuales necesarios para mantener la disciplina durante caídas o cambios de rumbo.</p>
+    </div>
+  </div>
+
+  <!-- PROPÓSITO -->
+  <div class="purpose-box">
+    <h2>Mi propósito</h2>
+    <p>
+      Compartir análisis, información, conectar con mentes innovadoras y seguir expandiendo un ecosistema donde la tecnología y las finanzas convergen para potenciar el desarrollo personal y profesional.
+    </p>
+    <p class="purpose-cta-text">
+      Si buscás una visión que combine las finanzas, la mentalidad y la innovación, hablemos.
+    </p>
+    <a href="mailto:mazzmanager@gmail.com" class="btn-contact">
+      <i class="fas fa-envelope"></i> Contactar a <span class="brand-font">Mazz Manager</span>
+    </a>
+  </div>
+
+  <!-- FRASE DE CIERRE -->
+  <div class="quote-banner">
+    <p>"La información es poder, todo tiene que ver con todo. Bienvenidos a <span class="brand-font">Mazz Manager</span>."</p>
+  </div>
+
+  <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (TEXTO ORIGINAL) -->
+  <section class="support-section">
+    <div class="support-header">
+      <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+      <p>
+        Podés apoyar este proyecto a través de estos canales.<br>
+        <strong>¡Cualquier aporte suma!</strong>
+      </p>
+    </div>
+    <div class="support-grid">
+      <!-- PayPal -->
+      <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+          <div>
+            <span class="method-title">PayPal | Tarjetas</span>
+            <span class="method-desc">Soporte Internacional</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mercado Pago -->
+      <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+          <div>
+            <span class="method-title">Mercado Pago</span>
+            <span class="method-desc">Argentina</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Crypto -->
+      <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+          <div>
+            <span class="method-title">Criptomonedas</span>
+            <span class="method-desc">USDT (BEP20)</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Pix -->
+      <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
+          <div>
+            <span class="method-title">Pix</span>
+            <span class="method-desc">Brasil</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- PIE DE PAGINA INTEGRADO -->
+  <footer class="integrated-footer">
+    <div class="footer-copy">
+      <span class="brand-font">Mazz Manager</span>© | 2026 | Todos los Derechos Reservados
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.keyCode === 123 ||
+      (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+      (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+    ) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('copy', function(e) { e.preventDefault(); });
+  document.addEventListener('cut', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+</script>
+
+</body>
+</html>
