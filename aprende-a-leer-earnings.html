@@ -3,13 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cómo Leer y Operar Earnings Reports | Guía de Trading e Inversión</title>
+  <title>Cómo Leer y Operar Earnings Reports | Guía de Trading e Inversión | Mazz Manager©</title>
+  
+  <!-- SEO GENERAL & META ESTRATÉGICAS -->
+  <meta name="description" content="Aprendé a analizar balances trimestrales, ingresos, EPS y guías de mercado para anticipar los movimientos de precios con la guía oficial de Mazz Manager.">
+  <meta name="keywords" content="earnings reports, leer balances, trading, inversion, mazz manager, finanzas, eps, guidance">
+  <meta name="author" content="Juan Martín Díaz Mazz">
+  <meta name="robots" content="index, follow">
+
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T271H2P0TL');
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&family=Squada+One&display=block" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
   <style>
     :root {
       --bg-body:        #111111;
@@ -76,7 +93,231 @@
       line-height: 1.55;
       color: var(--text-secondary);
       -webkit-font-smoothing: antialiased;
+      padding-top: 66px;
       transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* BARRA DE NAVEGACIÓN SUPERIOR UNIFICADA */
+    .mazz-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 66px;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 9500;
+    }
+
+    .nav-container {
+      max-width: 1120px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: flex-start;
+      text-decoration: none;
+      color: #ffffff;
+      font-family: 'Squada One', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1.5px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .nav-brand span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e74c3c;
+      margin-left: 2px;
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 6px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      color: var(--accent-cyan);
+    }
+
+    .nav-link i.fa-chevron-down {
+      font-size: 10px;
+      opacity: 0.7;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item:hover .nav-link i.fa-chevron-down,
+    .nav-item.open .nav-link i.fa-chevron-down {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 275px;
+      background: #161616;
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+      list-style: none;
+      z-index: 9600;
+    }
+
+    .nav-item:hover .nav-dropdown,
+    .nav-item.open .nav-dropdown {
+      display: block;
+      animation: navFadeDown 0.18s ease-out;
+    }
+
+    @keyframes navFadeDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-dropdown-header {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      padding: 8px 12px 4px;
+      opacity: 0.9;
+    }
+
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 6px 8px;
+    }
+
+    .nav-dropdown li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 7px;
+      color: #f4f4f4;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .nav-dropdown li a i {
+      width: 16px;
+      text-align: center;
+      color: var(--accent-cyan);
+      font-size: 13px;
+    }
+
+    .nav-dropdown li a:hover {
+      background: #252525;
+      color: var(--accent-cyan);
+      transform: translateX(3px);
+    }
+
+    .nav-dropdown li a.coming-soon {
+      color: #888888;
+      font-weight: 500;
+      font-size: 12px;
+      cursor: default;
+    }
+
+    .nav-dropdown li a.coming-soon i {
+      color: #888888;
+      font-size: 12px;
+    }
+
+    .nav-dropdown li a.coming-soon:hover {
+      background: transparent;
+      color: #888888;
+      transform: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 860px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        background: #0e0e0e;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 18px 22px;
+        gap: 4px;
+        max-height: calc(100vh - 66px);
+        overflow-y: auto;
+      }
+      .nav-links.mobile-open { display: flex; }
+      .nav-link { width: 100%; justify-content: space-between; padding: 12px 14px; }
+      .nav-dropdown { position: static; box-shadow: none; border: 1px solid var(--border); margin-top: 4px; margin-bottom: 6px; }
+      .nav-item:hover .nav-dropdown { display: none; }
+      .nav-item.open .nav-dropdown { display: block; }
     }
 
     p {
@@ -230,9 +471,78 @@
       line-height: 1.5;
     }
 
-    /* =========================================================
-       SECCIÓN DE APOYO / DONACIONES INTEGRADA (SIN DOBLE SCROLL)
-       ========================================================= */
+    /* BLOQUE DE COMPARTIR CONTENIDO */
+    .share-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 40px 0 30px 0;
+      text-align: center;
+    }
+
+    .share-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .share-title i {
+      color: var(--accent-cyan);
+    }
+
+    .share-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .share-buttons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .sb-whatsapp { background: #25d366; color: #111111; }
+    .sb-telegram { background: #0088cc; }
+    .sb-twitter { background: #000000; border-color: #333333; }
+    .sb-facebook { background: #1877f2; }
+    .sb-email { background: #ea4335; }
+    .sb-copy { background: #2a2a2a; color: var(--text-primary); border-color: #3a3a3a; }
+    .sb-copy:hover { background: #353535; border-color: var(--accent-cyan); }
+
+    /* SECCIÓN DE APOYO / DONACIONES INTEGRADA */
     .support-section {
       background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
       border: 1px solid rgba(192, 57, 43, 0.35);
@@ -329,6 +639,77 @@
       font-family: 'Lexend', sans-serif;
     }
 
+    /* WIDGET FLOTANTE DE DONACIONES */
+    .fixed-donation-wrapper {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+    }
+
+    .fixed-donation-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-red);
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 12px rgba(192, 57, 43, 0.35);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .fixed-donation-btn:hover {
+      background: var(--accent-red);
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(192, 57, 43, 0.65);
+    }
+
+    .fixed-donation-btn i.fa-heart {
+      color: #e74c3c;
+      animation: beat 1.2s infinite alternate;
+    }
+
+    .fixed-donate-menu {
+      display: none;
+      position: absolute;
+      bottom: 64px;
+      right: 0;
+      width: 320px;
+      background: #181818;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+      text-align: left;
+      animation: slideUp 0.25s ease-out;
+    }
+
+    .fixed-donate-menu.active { display: block; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fixed-menu-intro {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .fixed-menu-intro strong { color: var(--text-primary); }
+
     /* Footer & Disclaimer */
     .social-bar {
       margin-top: 24px;
@@ -358,10 +739,89 @@
       blockquote { font-size: 16px; }
       .support-section { padding: 18px 14px; }
       .support-grid { grid-template-columns: 1fr; }
+      .fixed-donation-wrapper { bottom: 16px; right: 16px; }
+      .fixed-donation-btn { padding: 10px 16px; font-size: 11.5px; }
+      .fixed-donate-menu { width: 290px; right: -10px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+  <nav class="mazz-navbar" id="mazzNavbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">Mazz Manager<span>©</span></a>
+
+      <button type="button" class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Abrir menú">
+        <i class="fas fa-bars" id="navToggleIcon"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a>
+        </li>
+
+        <!-- INNOVACIÓN -->
+        <li class="nav-item" id="dropdownInnovacion">
+          <button type="button" class="nav-link" onclick="toggleDropdown('dropdownInnovacion')">
+            <span><i class="fas fa-microchip"></i> Innovación</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="nav-dropdown">
+            <li class="nav-dropdown-header">Posteos</li>
+            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+            <div class="nav-dropdown-divider"></div>
+            <li class="nav-dropdown-header">Herramientas</li>
+            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+            <div class="nav-dropdown-divider"></div>
+            <li class="nav-dropdown-header">Tutoriales</li>
+            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+          </ul>
+        </li>
+
+        <!-- FINANZAS -->
+        <li class="nav-item" id="dropdownFinanzas">
+          <button type="button" class="nav-link active" onclick="toggleDropdown('dropdownFinanzas')">
+            <span><i class="fas fa-chart-line"></i> Finanzas</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="nav-dropdown">
+            <li class="nav-dropdown-header">Mercados</li>
+            <li><a href="informe-de-mercado.html"><i class="fas fa-newspaper"></i> Informe de Mercados</a></li>
+            <div class="nav-dropdown-divider"></div>
+            <li class="nav-dropdown-header">Learn (Aprender)</li>
+            <li><a href="aprende-a-leer-earnings.html"><i class="fas fa-book-open"></i> Aprende a Leer Earnings</a></li>
+            <li><a href="opera-bien-cedears.html"><i class="fas fa-layer-group"></i> Operá Bien CEDEARs</a></li>
+            <div class="nav-dropdown-divider"></div>
+            <li class="nav-dropdown-header">Herramientas & Tutoriales</li>
+            <li><a href="calculadora-renta-fija.html"><i class="fas fa-calculator"></i> Calculadora Renta Fija Pro</a></li>
+            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Más herramientas próximamente</a></li>
+          </ul>
+        </li>
+
+        <!-- MENTALIDAD -->
+        <li class="nav-item" id="dropdownMentalidad">
+          <button type="button" class="nav-link" onclick="toggleDropdown('dropdownMentalidad')">
+            <span><i class="fas fa-brain"></i> Mentalidad</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="nav-dropdown">
+            <li class="nav-dropdown-header">Posteos</li>
+            <li><a href="acerca.html#mentalidad"><i class="fas fa-compass"></i> Psicología Operativa</a></li>
+            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="acerca.html" class="nav-link"><i class="fas fa-user-tie"></i> Acerca de</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="contacto.html" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <main class="container">
     <!-- Selector de Tema Claro / Oscuro -->
@@ -438,15 +898,44 @@
 
     <p style="margin-top: 24px;"><strong>📈🚀 ¡Aplica estas reglas en cada lectura de balances, mantén la disciplina y gestiona tu riesgo!</strong></p>
 
-  <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (TEXTO ORIGINAL) -->
-  <section class="support-section">
-    <div class="support-header">
-      <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
-      <p>
-        Podes apoyar este proyecto, a través de estos canales.<br>
-        <strong>¡Cualquier aporte suma!</strong>
-      </p>
+    <!-- BLOQUE DE COMPARTIR CONTENIDO -->
+    <div class="share-box">
+      <div class="share-title">
+        <i class="fas fa-share-nodes"></i> ¿Te sirvió esta guía? Compártela
+      </div>
+      <p class="share-desc">Ayudá a que más inversores aprendan a leer y operar earnings reports correctamente.</p>
+      
+      <div class="share-buttons-grid">
+        <a href="javascript:void(0);" onclick="shareTo('whatsapp')" class="share-btn sb-whatsapp" title="Compartir en WhatsApp">
+          <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+        </a>
+        <a href="javascript:void(0);" onclick="shareTo('telegram')" class="share-btn sb-telegram" title="Compartir en Telegram">
+          <i class="fab fa-telegram"></i> <span>Telegram</span>
+        </a>
+        <a href="javascript:void(0);" onclick="shareTo('twitter')" class="share-btn sb-twitter" title="Compartir en X">
+          <i class="fab fa-x-twitter"></i> <span>X / Twitter</span>
+        </a>
+        <a href="javascript:void(0);" onclick="shareTo('facebook')" class="share-btn sb-facebook" title="Compartir en Facebook">
+          <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+        </a>
+        <a href="javascript:void(0);" onclick="shareTo('email')" class="share-btn sb-email" title="Enviar por Email">
+          <i class="fas fa-envelope"></i> <span>Email</span>
+        </a>
+        <a href="javascript:void(0);" onclick="copyPageLink(this)" class="share-btn sb-copy" title="Copiar enlace">
+          <i class="fas fa-link"></i> <span class="copy-text">Copiar Enlace</span>
+        </a>
+      </div>
     </div>
+
+    <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES -->
+    <section class="support-section">
+      <div class="support-header">
+        <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+        <p>
+          Podes apoyar este proyecto, a través de estos canales.<br>
+          <strong>¡Cualquier aporte suma!</strong>
+        </p>
+      </div>
 
       <div class="support-grid">
         <!-- PayPal -->
@@ -504,8 +993,70 @@
     </div>
   </main>
 
-  <!-- Scripts de Protección y Selector de Tema -->
+  <!-- WIDGET FLOTANTE DE DONACIONES -->
+  <div class="fixed-donation-wrapper" id="donationWrapper">
+    <div class="fixed-donate-menu" id="fixedDonateMenu">
+      <p class="fixed-menu-intro">
+        Para apoyar este proyecto, podés hacerlo a través de estos canales.<br>
+        <strong>¡Todo aporte suma!</strong>
+      </p>
+
+      <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+          <div><span class="method-title">PayPal | Tarjetas</span><span class="method-desc">Soporte Internacional</span></div>
+        </div>
+      </a>
+
+      <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+          <div><span class="method-title">Mercado Pago</span><span class="method-desc">Argentina</span></div>
+        </div>
+      </a>
+
+      <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+          <div><span class="method-title">Criptomonedas</span><span class="method-desc">USDT (BEP20)</span></div>
+        </div>
+      </a>
+
+      <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+        <div class="donation-card">
+          <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 15px;">R$</div>
+          <div><span class="method-title">Pix</span><span class="method-desc">Brasil</span></div>
+        </div>
+      </a>
+    </div>
+
+    <button type="button" class="fixed-donation-btn" onclick="toggleFixedMenu(event)">
+      <i class="fas fa-heart"></i>
+      <span>Apoya este proyecto</span>
+    </button>
+  </div>
+
+  <!-- Scripts -->
   <script>
+    function toggleMobileNav() {
+      const navLinks = document.getElementById('navLinks');
+      const icon = document.getElementById('navToggleIcon');
+      navLinks.classList.toggle('mobile-open');
+      icon.className = navLinks.classList.contains('mobile-open') ? 'fas fa-xmark' : 'fas fa-bars';
+    }
+
+    function toggleDropdown(id) {
+      const target = document.getElementById(id);
+      const wasOpen = target.classList.contains('open');
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+      if (!wasOpen) target.classList.add('open');
+    }
+
+    function toggleFixedMenu(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('fixedDonateMenu').classList.toggle('active');
+    }
+
     // Sistema de Selector Claro / Oscuro
     function toggleTheme() {
       const html = document.documentElement;
@@ -525,7 +1076,6 @@
       }
     }
 
-    // Cargar preferencia guardada
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
@@ -535,23 +1085,76 @@
       }
     });
 
-    // Bloquear menú contextual (clic derecho)
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
+    // Funciones de Compartir
+    function shareTo(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title + " - Mazz Manager©");
+      let shareUrl = "";
+
+      switch(platform) {
+        case 'whatsapp':
+          shareUrl = `https://api.whatsapp.com/send?text=${title}%20-%20${url}`;
+          break;
+        case 'telegram':
+          shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+          break;
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case 'email':
+          shareUrl = `mailto:?subject=${title}&body=Te%20recomiendo%20leer%20esta%20guía%20en%20Mazz%20Manager:%20${url}`;
+          break;
+      }
+
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+      }
+    }
+
+    function copyPageLink(btn) {
+      const dummy = window.location.href;
+      const textSpan = btn.querySelector('.copy-text');
+      
+      navigator.clipboard.writeText(dummy).then(() => {
+        textSpan.textContent = "¡Enlace Copiado!";
+        btn.style.borderColor = "#00cfb4";
+        btn.style.color = "#00cfb4";
+        
+        setTimeout(() => {
+          textSpan.textContent = "Copiar Enlace";
+          btn.style.borderColor = "#3a3a3a";
+          btn.style.color = "#f4f4f4";
+        }, 2500);
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      const wrapper = document.getElementById('donationWrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        document.getElementById('fixedDonateMenu').classList.remove('active');
+      }
+      const navbar = document.getElementById('mazzNavbar');
+      if (navbar && !navbar.contains(e.target)) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+      }
     });
 
-    // Bloquear atajos de teclado de copia, selección y herramientas de desarrollo (DevTools)
+    // Bloquear menú contextual y atajos de copia
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('keydown', function(e) {
       if (
-        e.keyCode === 123 || // F12
-        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
-        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80)) // Ctrl+S/U/C/A/P
+        e.keyCode === 123 ||
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
       ) {
         e.preventDefault();
       }
     });
-
-    // Bloquear eventos de copia, cortado y arrastre
     document.addEventListener('copy', function(e) { e.preventDefault(); });
     document.addEventListener('cut', function(e) { e.preventDefault(); });
     document.addEventListener('dragstart', function(e) { e.preventDefault(); });
