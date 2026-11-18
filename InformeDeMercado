@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFORME Mazz Manager© TRADER - PREMARKET 18/11/2026</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Squada+One&display=block" rel="stylesheet">
+    <!-- FontAwesome CDN para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* TEMA OSCURO (Por defecto) */
+        :root {
+            --bg-body:          #111111;
+            --bg-header:        #0a0a0a;
+            --accent-red:       #c0392b;
+            --accent-red-hover: #980000;
+            --text-primary:     #f4f4f4;
+            --text-secondary:   #cccccc;
+            --text-muted:       #888888;
+            --border:           #2a2a2a;
+            --accent-cyan:      #00cfb4;
+            --bg-card:          #1e1e1e;
+            --bg-card-hover:    #252525;
+            --green:            #27ae60;
+        }
+
+        /* TEMA CLARO */
+        [data-theme="light"] {
+            --bg-body:          #f8f9fa;
+            --bg-header:        #e9ecef;
+            --accent-red:       #c0392b;
+            --accent-red-hover: #980000;
+            --text-primary:     #212529;
+            --text-secondary:   #495057;
+            --text-muted:       #6c757d;
+            --border:           #dee2e6;
+            --accent-cyan:      #009688;
+            --bg-card:          #ffffff;
+            --bg-card-hover:    #f1f3f5;
+            --green:            #27ae60;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* OCULTAR BARRAS DE SCROLL INTERNAS */
+        html, body {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+            scroll-behavior: smooth;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        body, * {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-secondary);
+            font-family: 'Lexend', sans-serif;
+            font-size: 15px;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* TIPOGRAFÍA DE MARCA SQUADA ONE */
+        .brand-font {
+            font-family: 'Squada One', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
+            position: relative;
+        }
+
+        /* SELECTOR DE TEMA EN FLUJO */
+        .theme-switcher-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .theme-switcher-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-switcher-btn:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-bottom: 30px;
+        }
+
+        .hero-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-red);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .hero-title em {
+            color: var(--accent-red);
+            font-style: normal;
+        }
+
+        .hero-title .brand-font {
+            font-size: 1.15em;
+            letter-spacing: 1.2px;
+        }
+
+        .alert-banner {
+            background: rgba(192, 57, 43, 0.12);
+            border-left: 4px solid var(--accent-red);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .alert-banner strong {
+            color: #e74c3c;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-red);
+            border-radius: 2px;
+        }
+
+        /* SECCIONES Y ENCABEZADOS */
+        .section-header {
+            margin: 28px 0 12px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 14px;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* LISTAS CON GUION ROJO */
+        ul.bullet-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 12px 0 16px;
+        }
+
+        ul.bullet-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul.bullet-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        /* TABLAS */
+        .table-container {
+            overflow-x: auto;
+            margin: 18px 0 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: var(--bg-header);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: var(--bg-card-hover);
+        }
+
+        /* BADGES DE VARIACION */
+        .badge-down {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .badge-up {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .badge-neutral {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* BLOCKQUOTE */
+        blockquote {
+            margin: 30px 0;
+            padding: 0 0 0 18px;
+            border-left: 3px solid var(--accent-red);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* SECCIÓN DE APOYO / DONACIONES INTEGRADA */
+        .support-section {
+            background: linear-gradient(180deg, rgba(192, 57, 43, 0.08) 0%, var(--bg-card) 100%);
+            border: 1px solid rgba(192, 57, 43, 0.35);
+            border-radius: 14px;
+            padding: 22px;
+            margin: 36px 0 26px;
+            text-align: center;
+        }
+
+        .support-header {
+            margin-bottom: 16px;
+        }
+
+        .support-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #e74c3c;
+            margin-bottom: 8px;
+        }
+
+        .support-badge i.fa-heart {
+            animation: beat 1.2s infinite alternate;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.25); }
+        }
+
+        .support-header p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .support-header p strong {
+            color: var(--text-primary);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            text-align: left;
+        }
+
+        .donation-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .donation-card {
+            display: flex;
+            align-items: center;
+            padding: 11px 12px;
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .donation-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        .icon-box {
+            font-size: 19px;
+            width: 30px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .method-title {
+            display: block;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .method-desc {
+            display: block;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* FOOTER Y DISCLAIMER */
+        .social-bar {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .integrated-footer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .integrated-footer .brand-font {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* RESPONSIVIDAD */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 25px; }
+            .container { padding: 20px 16px 40px; }
+            blockquote { font-size: 14px; }
+            .support-section { padding: 18px 14px; }
+            .support-grid { grid-template-columns: 1fr; }
+            th, td { padding: 8px 8px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+
+    <!-- SELECTOR DE MODO CLARO / OSCURO -->
+    <div class="theme-switcher-wrapper">
+        <button type="button" class="theme-switcher-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+            <i class="fas fa-moon" id="themeIcon"></i>
+            <span id="themeText">Modo Claro</span>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <span class="hero-meta">🗓️ PREMARKET — MIÉRCOLES, 18 DE NOVIEMBRE DE 2026</span>
+        <h1 class="hero-title">INFORME <em><span class="brand-font">Mazz Manager</span>© TRADER</em></h1>
+        <div class="alert-banner">
+            ⚡ <strong>HEADLINE DE APERTURA:</strong> Nvidia supera la prueba (+4,8% post-cierre) y ahora le toca a Anthropic fijar el precio de su salida a bolsa; futuros de EE. UU. al alza (Nasdaq 100 +1,07% | S&P 500 +0,56%) antes de las actas de la Fed y la cumbre de Trump con Xi y Putin en China.<!--[cite: 17] -->
+        </div>
+        <div class="hero-divider"></div>
+    </section>
+
+    <!-- 1. PANORAMA GLOBAL Y MACROECONOMÍA -->
+    <div class="section-header">
+        <h2 class="section-title">🌐 PANORAMA GLOBAL Y MACROECONOMÍA</h2>
+    </div>
+    <ul class="bullet-list">
+        <li><strong>Semana de Alto Voltaje:</strong> Los mercados encaran los resultados de Nvidia, la salida a bolsa de Anthropic y la reunión a tres bandas prevista para mañana en China entre Donald Trump, Xi Jinping y Vladímir Putin.</li>
+        <li><strong>Caídas Previas en Wall Street y Europa:</strong> El Nasdaq 100 encadenó ayer su cuarta sesión consecutiva de caídas, acumulando un retroceso del 14% desde su máximo histórico del 6 de octubre. En Europa, el Euro Stoxx 50 se desplomó un 2,15% (su peor sesión desde el 3 de marzo), lastrado por caídas superiores al 5% en ASML, SAP SE, Deutsche Bank y Hermès International.</li>
+        <li><strong>Alivio con Nvidia:</strong> Las acciones de Nvidia subieron un 4,8% tras el cierre de Wall Street luego de presentar cuentas sólidas. La consejera delegada interina y CFO, Colette Kress, junto al presidente del consejo de administración, Harvey Jones, despejaron incertidumbres al confirmar que la dimisión de Jensen Huang obedeció a conductas personales incompatibles con el código interno y no a las ventas de chips a China, descartando su regreso.</li>
+        <li><strong>La Prueba de Fuego de Anthropic:</strong> Hoy se fija el precio definitivo de su oferta pública inicial, con especulaciones de que podría ubicarse en el extremo superior de la horquilla o ligeramente por encima, otorgando una valoración cercana a los 1,4 billones de dólares antes de comenzar a cotizar mañana.</li>
+        <li><strong>Macro, Geopolítica y Materias Primas:</strong> Agenda cargada con datos económicos y las actas de la última reunión de la Reserva Federal. Trump inicia su gira asiática rumbo a China (donde Xi y Putin ya conversan en la cumbre APEC), mientras el oro cae por debajo de los $3.800 por primera vez desde septiembre de 2025 ($3.772,10) presionado por expectativas de tipos altos y el crudo retrocede un 1,69% ($83,21).<!--[cite: 17] --></li>
+    </ul>
+
+    <!-- 2. CALENDARIO ECONÓMICO Y CLAVE DEL DÍA -->
+    <div class="section-header">
+        <h2 class="section-title">📅 CALENDARIO ECONÓMICO Y CLAVE DEL DÍA</h2>
+    </div>
+    <ul class="bullet-list">
+        <li><strong>Australia:</strong> Actas de la reunión del RBA.</li>
+        <li><strong>Reino Unido:</strong> Ingresos medios, cambio de empleo y tasa de desempleo.</li>
+        <li><strong>España & China:</strong> Balanza comercial en España e IED en China.</li>
+        <li><strong>Alemania & Zona Euro:</strong> Índice de sentimiento económico ZEW.</li>
+        <li><strong>Estados Unidos:</strong> Actas de la Reserva Federal, discursos de miembros de la Fed, ventas minoristas, precios de importación y exportación, producción industrial, inventarios empresariales, índice del mercado de la vivienda NAHB y cambio de existencias de crudo API.</li>
+        <li><strong>Canadá:</strong> Inicios de viviendas.</li>
+    </ul>
+
+    <!-- 3. EARNINGS CORPORATIVOS Y NOTICIAS -->
+    <div class="section-header">
+        <h2 class="section-title">🏢 EARNINGS CORPORATIVOS Y NOTICIAS</h2>
+    </div>
+    <ul class="bullet-list">
+        <li><strong>Desde Europa:</strong>
+            <ul class="bullet-list" style="margin-top: 8px;">
+                <li><strong>GSK / National Grid / BP plc:</strong> GSK obtiene aprobación de la FDA para Nelkarmi (cáncer de pulmón); National Grid desmiente como falso un aviso masivo de apagón; se estancan negociaciones entre BP y Energean en Egipto.</li>
+                <li><strong>Asos / Custodian / Kenmare:</strong> Asos recompra 90 millones de libras en bonos convertibles (2028); Custodian Property Income eleva su valor liquidativo a 100,3 peniques; Kenmare Resources amplía plazo de su oferta.</li>
+                <li><strong>Anglo American / BASF / Mercedes-Benz:</strong> Brasil afirma que la venta de níquel de Anglo American a MMG no requiere revisión de la UE; BASF envía nueva propuesta a Evonik; Mercedes-Benz niega que algún accionista supere el 10% ante investigación de EE. UU. sobre vínculos con China.</li>
+                <li><strong>SGS / Dormakaba / Equinor:</strong> SGS proyecta facturar al menos 750 millones de francos suizos en confianza digital para 2030; Dormakaba fija metas a medio plazo; Equinor detecta un ciberataque contra sus sistemas.</li>
+                <li><strong>Enel / Bouygues, Eiffage y Vinci:</strong> Aneel suspende revisión de Enel São Paulo tras voto mayoritario para rescindir concesión; Bouygues, Eiffage y Vinci cerca de firmar contrato de 14.000 millones de euros con EDF para reactores nucleares EPR2.</li>
+                <li><strong>BNP Paribas / Deutsche Bank / Poste Italiane / OHB / Webuild:</strong> BNP busca rentabilidad superior al 20% en 2030 para BNL; filtraciones ponen a prueba reformas de Christian Sewing en Deutsche Bank; Poste Italiane emite bonos por 1.300 millones de euros para refinanciar oferta por TIM; OHB gana contrato de 102 millones de euros para retirar basura espacial; Webuild controlará más del 50% de Trevi.</li>
+                <li><strong>Principales Resultados del Día:</strong> SSE, Experian, KGHM Polska, Severn Trent, Smiths, Saipem, Melrose Industries, Convatec, Aedifica, British Land, Theon International y MFE-Mediaforeurope.</li>
+            </ul>
+        </li>
+        <li><strong>Desde Norteamérica:</strong>
+            <ul class="bullet-list" style="margin-top: 8px;">
+                <li><strong>Nvidia / SpaceX:</strong> Nvidia sube un 4,8% post-cierre, descarta regreso de Jensen Huang y afronta investigación de la SEC (según WSJ); SpaceX prevé lanzar emisión de bonos de 40.000 millones de dólares para financiar chips de IA (según Bloomberg).</li>
+                <li><strong>General Motors / Nike / Alphabet:</strong> GM inicia búsqueda de sucesor para Mary Barra (según WSJ); Nike diseña plan para producir localmente la mitad de lo que vende en China; juez aprueba venta de datos de Spirit Airlines a Google y Waymo suspende viajes por autopista en California.</li>
+                <li><strong>Biogen / Merck / UPS / Mondelez:</strong> Diranersen de Biogen reduce un 38% el deterioro clínico en alzhéimer inicial; Merck suspende ensayos en cáncer de sangre; UPS compra Smartways Logistics; Mondelez planea vender Heudebert, Pelletier, Cracotte y Grany.</li>
+                <li><strong>Principales Resultados del Día:</strong> Palo Alto Networks, Alibaba, TJX Companies, Progressive, Lowe's, Target y Everpure.</li>
+            </ul>
+        </li>
+        <li><strong>Desde Asia y Otras Regiones:</strong>
+            <ul class="bullet-list" style="margin-top: 8px;">
+                <li><strong>JD.com / Samsung / Xiaomi:</strong> JD.com cae un 8% en Hong Kong tras resultados del 3T inferiores a lo previsto; Samsung Electro-Mechanics refuerza alianza con Nvidia en componentes IA; India acusa a Xiaomi y Flex de ocultar acuerdos de licencias.</li>
+                <li><strong>DBS / Woodside / Woolworths / Emaar:</strong> DBS se asocia con Circle para USDC en Asia y suspende préstamo de 480 millones de dólares para chips de Nvidia; Woodside firma acuerdo de GNL a 10 años con Trafigura; Woolworths apunta a rentabilidad de dos dígitos; consejo de Emaar Development respalda oferta de Emaar Properties.</li>
+                <li><strong>Principales Resultados del Día:</strong> Tencent, PTT Public, Resona y Sumitomo Mitsui Trust.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- 4. FUTUROS, FOREX Y BONOS EN PREMARKET -->
+    <div class="section-header">
+        <h2 class="section-title">📊 FUTUROS, FOREX Y BONOS EN PREMARKET</h2>
+    </div>
+
+    <p><strong>Futuros (Índices, Commodities y Volatilidad):</strong></p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Activo / Índice</th>
+                    <th>Último</th>
+                    <th>Variación</th>
+                    <th>% Cambio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>S&P 500</strong></td>
+                    <td>7.401,00</td>
+                    <td>+41,50</td>
+                    <td><span class="badge-up">+0,56% 🟢</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Nasdaq 100</strong></td>
+                    <td>27.364,75</td>
+                    <td>+289,00</td>
+                    <td><span class="badge-up">+1,07% 🟢</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Dow (Dow Jones)</strong></td>
+                    <td>50.940,00</td>
+                    <td>+117,00</td>
+                    <td><span class="badge-up">+0,23% 🟢</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Russell 2000</strong></td>
+                    <td>2.715,20</td>
+                    <td>+4,10</td>
+                    <td><span class="badge-up">+0,15% 🟢</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>VIX (Volatilidad)</strong></td>
+                    <td>21,75</td>
+                    <td>-0,94</td>
+                    <td><span class="badge-down">-4,13% 🔴</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Crude Oil (Petróleo)</strong></td>
+                    <td>$83,21</td>
+                    <td>-1,43</td>
+                    <td><span class="badge-down">-1,69% 🔴</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Natural Gas (Gas Natural)</strong></td>
+                    <td>$3,1920</td>
+                    <td>-0,0140</td>
+                    <td><span class="badge-down">-0,44% 🔴</span></td>
+                </tr><!--[cite: 17] -->
+                <tr>
+                    <td><strong>Gold (Oro)</strong></td>
+                    <td>$3.772,10</td>
+                    <td>-92,50</td>
+                    <td><span class="badge-down">-2,39% 🔴</span></td>
+                </tr><!--[cite: 17] -->
+            </tbody>
+        </table>
+    </div>
+
+    <p><strong>Forex & Bonos del Tesoro (EE. UU.):</strong></p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Par / Bono</th>
+                    <th>Último</th>
+                    <th>Variación</th>
+                    <th>% Cambio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EUR / USD</strong></td>
+                    <td>1,0974</td>
+                    <td>-0,0024</td>
+                    <td><span class="badge-down">-0,22% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>USD / JPY</strong></td>
+                    <td>159,26</td>
+                    <td>-0,09</td>
+                    <td><span class="badge-down">-0,06% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>GBP / USD</strong></td>
+                    <td>1,3173</td>
+                    <td>-0,0034</td>
+                    <td><span class="badge-down">-0,26% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>BTC / USD (Spot FX)</strong></td>
+                    <td>$64.154,50</td>
+                    <td>-175,50</td>
+                    <td><span class="badge-down">-0,27% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>3-Month Treasury</strong></td>
+                    <td>4,138%</td>
+                    <td>+0,013</td>
+                    <td><span class="badge-up">+0,32% 🟢</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>5-Year Treasury</strong></td>
+                    <td>4,900%</td>
+                    <td>-0,035</td>
+                    <td><span class="badge-down">-0,71% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>10-Year Treasury</strong></td>
+                    <td>5,103%</td>
+                    <td>-0,018</td>
+                    <td><span class="badge-down">-0,35% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+                <tr>
+                    <td><strong>30-Year Treasury</strong></td>
+                    <td>5,458%</td>
+                    <td>-0,009</td>
+                    <td><span class="badge-down">-0,16% 🔴</span></td>
+                </tr><!--[cite: 18] -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 5. MERCADO CRIPTO -->
+    <div class="section-header">
+        <h2 class="section-title">🪙 MERCADO CRIPTO</h2>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Criptoactivo</th>
+                    <th>Último (USD)</th>
+                    <th>% Cambio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>BTC</strong></td>
+                    <td>Bitcoin</td>
+                    <td>$64.192,38</td>
+                    <td><span class="badge-down">-0,26% 🔴</span></td>
+                </tr><!--[cite: 16] -->
+                <tr>
+                    <td><strong>ETH</strong></td>
+                    <td>Ethereum</td>
+                    <td>$1.799,49</td>
+                    <td><span class="badge-down">-0,15% 🔴</span></td>
+                </tr><!--[cite: 16] -->
+                <tr>
+                    <td><strong>XRP</strong></td>
+                    <td>XRP</td>
+                    <td>$0,9945</td>
+                    <td><span class="badge-up">+1,53% 🟢</span></td>
+                </tr><!--[cite: 16] -->
+                <tr>
+                    <td><strong>SOL</strong></td>
+                    <td>Solana</td>
+                    <td>$74,44</td>
+                    <td><span class="badge-down">-0,59% 🔴</span></td>
+                </tr><!--[cite: 16] -->
+                <tr>
+                    <td><strong>ZEC</strong></td>
+                    <td>ZCash</td>
+                    <td>$935,85</td>
+                    <td><span class="badge-down">-1,69% 🔴</span></td>
+                </tr><!--[cite: 16] -->
+                <tr>
+                    <td><strong>ONDO</strong></td>
+                    <td>Ondo</td>
+                    <td>$0,30688</td>
+                    <td><span class="badge-up">+0,46% 🟢</span></td>
+                </tr><!--[cite: 16] -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 6. ARGENTINA & LATAM -->
+    <div class="section-header">
+        <h2 class="section-title">ARGENTINA & LATAM (DIVISAS Y TIPO DE CAMBIO)</h2>
+    </div>
+    
+    <p><strong>Cotización del Dólar:</strong></p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Cambio</th>
+                    <th>Venta</th>
+                    <th>Compra</th>
+                    <th>Variación Día</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Dólar Oficial</strong></td>
+                    <td>$1.525</td>
+                    <td>$1.575</td>
+                    <td><span class="badge-neutral">Estable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Dólar Blue</strong></td>
+                    <td>$1.585</td>
+                    <td>$1.605</td>
+                    <td><span class="badge-up">+0,31% 🟢</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Dólar Tarjeta</strong></td>
+                    <td>$1.525</td>
+                    <td>$2.047,50</td>
+                    <td><span class="badge-neutral">Referencia Impuestos</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Dólar MEP</strong></td>
+                    <td>—</td>
+                    <td>$1.594,39</td>
+                    <td><span class="badge-up">+0,34% 🟢</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Dólar CCL</strong></td>
+                    <td>—</td>
+                    <td>$1.703,21</td>
+                    <td><span class="badge-up">+1,44% 🟢</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><strong>Cotización del Real (Pix / Para Pagar):</strong></p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Plataforma / Canal</th>
+                    <th>Cotización (R$ 1)</th>
+                    <th>Detalle / Requisito</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Banco Credicoop</strong></td>
+                    <td>$286,27</td>
+                    <td>Requiere cuenta USD vinculada</td>
+                </tr>
+                <tr>
+                    <td><strong>Satoshi Tango</strong></td>
+                    <td>$291,18</td>
+                    <td>Plataforma digital</td>
+                </tr>
+                <tr>
+                    <td><strong>ARQ</strong></td>
+                    <td>$293,17</td>
+                    <td>Plataforma digital</td>
+                </tr>
+                <tr>
+                    <td><strong>Cocos</strong></td>
+                    <td>$293,58</td>
+                    <td>Broker local</td>
+                </tr>
+                <tr>
+                    <td><strong>P2P.me</strong></td>
+                    <td>$293,71</td>
+                    <td>Intercambio P2P</td>
+                </tr>
+                <tr>
+                    <td><strong>Mercado Pago</strong></td>
+                    <td>$296,49</td>
+                    <td>Billetera virtual</td>
+                </tr>
+                <tr>
+                    <td><strong>Blue en la calle</strong></td>
+                    <td>$300,00</td>
+                    <td>Efectivo físico</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 7. REGIONAL & ASIA-PACÍFICO -->
+    <div class="section-header">
+        <h2 class="section-title">🌏 MERCADOS ASIA-PACÍFICO</h2>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Índice / Mercado</th>
+                    <th>Variación</th>
+                    <th>Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>MSCI AC Asia Pacific</strong></td>
+                    <td><span class="badge-neutral">Plano 🟡</span></td>
+                    <td>Aparente estabilidad con marcadas diferencias internas</td>
+                </tr>
+                <tr>
+                    <td><strong>KOSPI (Corea del Sur)</strong></td>
+                    <td><span class="badge-up">+1,90% 🟢</span></td>
+                    <td>Se beneficia directamente de los resultados de Nvidia</td>
+                </tr>
+                <tr>
+                    <td><strong>Nikkei (Japón)</strong></td>
+                    <td><span class="badge-up">+0,40% 🟢</span></td>
+                    <td>Impulso positivo tras el reporte del fabricante de chips</td>
+                </tr>
+                <tr>
+                    <td><strong>Hong Kong</strong></td>
+                    <td><span class="badge-down">-1,00% 🔴</span></td>
+                    <td>Retrocede en una sesión mixta para la región</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 8. RESUMEN ESTRATÉGICO -->
+    <div class="section-header">
+        <h2 class="section-title">📝 RESUMEN ESTRATÉGICO</h2>
+    </div>
+    <p>El sólido balance de Nvidia (+4,8% post-cierre) devuelve oxígeno a los futuros de renta variable estadounidense —con el Nasdaq 100 subiendo un 1,07% y el VIX retrocediendo un 4,13%— tras cuatro jornadas consecutivas de castigo tecnológico. Con el oro cediendo a $3.772,10 y el rendimiento del bono a 10 años en 5,103%, la atención inmediata se centra en la fijación de precio de la salida a bolsa de Anthropic, las actas de la Reserva Federal y la cumbre diplomática de mañana entre Trump, Xi y Putin.<!--[cite: 17, 18] --></p>
+
+    <blockquote>
+        💡 PARA PENSAR<br>
+        "Cuando el líder indiscutido de los semiconductores despeja las dudas sobre su gobernanza y sus resultados, el mercado recupera el pulso y prepara el terreno para medir su verdadero apetito por el futuro de la inteligencia artificial con el debut de Anthropic."
+    </blockquote>
+
+    <!-- SECCIÓN DE APOYO / DONACIONES INTEGRADA -->
+    <section class="support-section">
+        <div class="support-header">
+            <div class="support-badge"><i class="fas fa-heart"></i> Donaciones</div>
+            <p>
+                Podés apoyar este proyecto a través de estos canales.<br>
+                <strong>¡Cualquier aporte suma!</strong>
+            </p>
+        </div>
+
+        <div class="support-grid">
+            <!-- PayPal -->
+            <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card">
+                    <div class="icon-box" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+                    <div>
+                        <span class="method-title">PayPal | Tarjetas</span>
+                        <span class="method-desc">Soporte Internacional</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mercado Pago -->
+            <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card">
+                    <div class="icon-box" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+                    <div>
+                        <span class="method-title">Mercado Pago</span>
+                        <span class="method-desc">Argentina</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Crypto -->
+            <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card">
+                    <div class="icon-box" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+                    <div>
+                        <span class="method-title">Criptomonedas</span>
+                        <span class="method-desc">USDT (BEP20)</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pix -->
+            <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link">
+                <div class="donation-card">
+                    <div class="icon-box" style="color: #32bcad; font-weight: 800; font-family: 'Montserrat', sans-serif; font-size: 16px;">R$</div>
+                    <div>
+                        <span class="method-title">Pix</span>
+                        <span class="method-desc">Brasil</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="social-bar">
+        <p><strong>¡Buena jornada de trade para todos! 📈🚀</strong></p>
+        <div class="footer-disclaimer">
+            ⚠️ Contenido educativo e informativo. No constituye asesoramiento financiero.
+        </div>
+        <div class="integrated-footer">
+            <span class="brand-font">Mazz Manager</span>© | 2026 | Todos los Derechos Reservados
+        </div>
+    </div>
+
+</main>
+
+<script>
+    // Sistema de Selector Claro / Oscuro
+    function toggleTheme() {
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        
+        if (html.getAttribute('data-theme') === 'light') {
+            html.removeAttribute('data-theme');
+            themeIcon.className = 'fas fa-moon';
+            themeText.textContent = 'Modo Claro';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.className = 'fas fa-sun';
+            themeText.textContent = 'Modo Oscuro';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Cargar preferencia guardada
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('themeIcon').className = 'fas fa-sun';
+            document.getElementById('themeText').textContent = 'Modo Oscuro';
+        }
+    });
+
+    // Bloquear menú contextual (clic derecho)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // Bloquear atajos de teclado de copia, selección y herramientas de desarrollo (DevTools)
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.keyCode === 123 || 
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+            (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+        ) {
+            e.preventDefault();
+        }
+    });
+
+    // Bloquear eventos de copia, cortado y arrastre
+    document.addEventListener('copy', function(e) { e.preventDefault(); });
+    document.addEventListener('cut', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+</script>
+
+</body>
+</html>
