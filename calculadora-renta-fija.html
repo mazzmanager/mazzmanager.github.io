@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Renta Fija Pro | Mazz Manager©</title>
+
+    <!-- SEO GENERAL & META ESTRATÉGICAS -->
+    <meta name="description" content="Calculadora profesional de renta fija para calcular interés compuesto, comisiones de broker, retiros programados y proyección patrimonial con la herramienta oficial de Mazz Manager.">
+    <meta name="keywords" content="calculadora renta fija, interes compuesto, tna, ted, comisiones broker, inversiones, mazz manager">
+    <meta name="author" content="Juan Martín Díaz Mazz">
+    <meta name="robots" content="index, follow">
+
+    <!-- GOOGLE ANALYTICS (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T271H2P0TL');
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&family=Squada+One&display=block" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,6 +53,10 @@
         }
     </script>
     <style>
+        :root {
+            --border: #2a2a2a;
+        }
+
         body {
             font-family: 'Lexend', sans-serif;
             -webkit-user-select: none;
@@ -61,6 +81,229 @@
             height: 0 !important;
         }
 
+        /* BARRA DE NAVEGACIÓN SUPERIOR UNIFICADA */
+        .mazz-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 66px;
+            background: rgba(10, 10, 10, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #2a2a2a;
+            z-index: 9500;
+        }
+
+        .nav-container {
+            max-width: 1120px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: flex-start;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Squada One', sans-serif;
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .nav-brand span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-left: 2px;
+            margin-top: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 8px;
+            color: #cccccc;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link.active {
+            color: #00cfb4;
+        }
+
+        .nav-link i.fa-chevron-down {
+            font-size: 10px;
+            opacity: 0.7;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item:hover .nav-link i.fa-chevron-down,
+        .nav-item.open .nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 275px;
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-top: 2px solid #00cfb4;
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+            list-style: none;
+            z-index: 9600;
+        }
+
+        .nav-item:hover .nav-dropdown,
+        .nav-item.open .nav-dropdown {
+            display: block;
+            animation: navFadeDown 0.18s ease-out;
+        }
+
+        @keyframes navFadeDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-dropdown-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00cfb4;
+            padding: 8px 12px 4px;
+            opacity: 0.9;
+        }
+
+        .nav-dropdown-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 6px 8px;
+        }
+
+        .nav-dropdown li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 7px;
+            color: #f4f4f4;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown li a i {
+            width: 16px;
+            text-align: center;
+            color: #00cfb4;
+            font-size: 13px;
+        }
+
+        .nav-dropdown li a:hover {
+            background: #252525;
+            color: #00cfb4;
+            transform: translateX(3px);
+        }
+
+        .nav-dropdown li a.coming-soon {
+            color: #888888;
+            font-weight: 500;
+            font-size: 12px;
+            cursor: default;
+        }
+
+        .nav-dropdown li a.coming-soon i {
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .nav-dropdown li a.coming-soon:hover {
+            background: transparent;
+            color: #888888;
+            transform: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: #1e1e1e;
+            border: 1px solid #2a2a2a;
+            color: #f4f4f4;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 66px;
+                left: 0;
+                right: 0;
+                background: #0e0e0e;
+                border-bottom: 1px solid #2a2a2a;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 14px 18px 22px;
+                gap: 4px;
+                max-height: calc(100vh - 66px);
+                overflow-y: auto;
+            }
+            .nav-links.mobile-open { display: flex; }
+            .nav-link { width: 100%; justify-content: space-between; padding: 12px 14px; }
+            .nav-dropdown { position: static; box-shadow: none; border: 1px solid #2a2a2a; margin-top: 4px; margin-bottom: 6px; }
+            .nav-item:hover .nav-dropdown { display: none; }
+            .nav-item.open .nav-dropdown { display: block; }
+        }
+
         /* MARCA DE AGUA ESTILO MOSAICO */
         .bg-watermark {
             position: fixed;
@@ -82,7 +325,7 @@
         .card { transition: all 0.3s ease; }
         .card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.1); }
         
-        input, .theme-switcher-btn {
+        input, .theme-switcher-btn, button {
             -webkit-user-select: text;
             -moz-user-select: text;
             -ms-user-select: text;
@@ -97,9 +340,151 @@
         .animate-heart-beat {
             animation: beat 1.2s infinite alternate;
         }
+
+        /* WIDGET FLOTANTE DE DONACIONES */
+        .fixed-donation-wrapper {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+        }
+
+        .fixed-donation-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: #1e1e1e;
+            border: 1px solid #DC2626;
+            border-radius: 50px;
+            color: #f4f4f4;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 12px rgba(220, 38, 38, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .fixed-donation-btn:hover {
+            background: #DC2626;
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.65);
+        }
+
+        .fixed-donate-menu {
+            display: none;
+            position: absolute;
+            bottom: 64px;
+            right: 0;
+            width: 320px;
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+            text-align: left;
+            animation: slideUp 0.25s ease-out;
+        }
+
+        .fixed-donate-menu.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fixed-menu-intro {
+            font-size: 12.5px;
+            color: #cccccc;
+            margin-bottom: 14px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .fixed-menu-intro strong { color: #f4f4f4; }
     </style>
 </head>
-<body class="bg-mazz-gray-light text-gray-900 dark:bg-mazz-dark dark:text-gray-100 font-sans leading-relaxed relative transition-colors duration-300">
+<body class="bg-mazz-gray-light text-gray-900 dark:bg-mazz-dark dark:text-gray-100 font-sans leading-relaxed relative transition-colors duration-300 pt-[66px]">
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    <nav class="mazz-navbar" id="mazzNavbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-brand">Mazz Manager<span>©</span></a>
+
+        <button type="button" class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Abrir menú">
+          <i class="fas fa-bars" id="navToggleIcon"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a>
+          </li>
+
+          <!-- INNOVACIÓN -->
+          <li class="nav-item" id="dropdownInnovacion">
+            <button type="button" class="nav-link" onclick="toggleDropdown('dropdownInnovacion')">
+              <span><i class="fas fa-microchip"></i> Innovación</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="nav-dropdown">
+              <li class="nav-dropdown-header">Posteos</li>
+              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+              <div class="nav-dropdown-divider"></div>
+              <li class="nav-dropdown-header">Herramientas</li>
+              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+              <div class="nav-dropdown-divider"></div>
+              <li class="nav-dropdown-header">Tutoriales</li>
+              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+            </ul>
+          </li>
+
+          <!-- FINANZAS -->
+          <li class="nav-item" id="dropdownFinanzas">
+            <button type="button" class="nav-link active" onclick="toggleDropdown('dropdownFinanzas')">
+              <span><i class="fas fa-chart-line"></i> Finanzas</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="nav-dropdown">
+              <li class="nav-dropdown-header">Mercados</li>
+              <li><a href="informe-de-mercado.html"><i class="fas fa-newspaper"></i> Informe de Mercados</a></li>
+              <div class="nav-dropdown-divider"></div>
+              <li class="nav-dropdown-header">Learn (Aprender)</li>
+              <li><a href="aprende-a-leer-earnings.html"><i class="fas fa-book-open"></i> Aprende a Leer Earnings</a></li>
+              <li><a href="opera-bien-cedears.html"><i class="fas fa-layer-group"></i> Operá Bien CEDEARs</a></li>
+              <div class="nav-dropdown-divider"></div>
+              <li class="nav-dropdown-header">Herramientas & Tutoriales</li>
+              <li><a href="calculadora-renta-fija.html"><i class="fas fa-calculator"></i> Calculadora Renta Fija Pro</a></li>
+              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Más herramientas próximamente</a></li>
+            </ul>
+          </li>
+
+          <!-- MENTALIDAD -->
+          <li class="nav-item" id="dropdownMentalidad">
+            <button type="button" class="nav-link" onclick="toggleDropdown('dropdownMentalidad')">
+              <span><i class="fas fa-brain"></i> Mentalidad</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="nav-dropdown">
+              <li class="nav-dropdown-header">Posteos</li>
+              <li><a href="acerca.html#mentalidad"><i class="fas fa-compass"></i> Psicología Operativa</a></li>
+              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Próximamente</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="acerca.html" class="nav-link"><i class="fas fa-user-tie"></i> Acerca de</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="contacto.html" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <div class="bg-watermark"></div>
 
@@ -126,7 +511,7 @@
             
             <!-- Panel de Inputs -->
             <div class="lg:col-span-1">
-                <div class="bg-white dark:bg-mazz-card p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 sticky top-6">
+                <div class="bg-white dark:bg-mazz-card p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 sticky top-20">
                     <h2 class="text-xl font-bold text-mazz-black dark:text-white mb-4 flex items-center font-Montserrat">
                         <svg class="w-5 h-5 mr-2 text-mazz-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
                         Parámetros de Inversión
@@ -245,72 +630,88 @@
                 </div>
             </div>
         </div>
-
-        <!-- SECCIÓN INTEGRADA DE APOYO / DONACIONES (SIN DOBLE SCROLL) -->
-        <section class="mt-10 bg-gradient-to-b from-red-600/10 to-white dark:from-red-600/10 dark:to-mazz-card border border-red-600/35 rounded-2xl p-6 text-center shadow-sm">
-            <div class="mb-4">
-                <div class="inline-flex items-center gap-1.5 font-Montserrat text-xs font-extrabold uppercase tracking-wider text-red-500 mb-2">
-                    <i class="fas fa-heart animate-heart-beat"></i> Donaciones
-                </div>
-                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Apoyá este proyecto a través de estos canales.<br>
-                    <strong class="text-gray-900 dark:text-white font-semibold">¡Todo aporte suma!</strong>
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">
-                <!-- PayPal -->
-                <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
-                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
-                        <div class="text-xl w-8 text-center mr-3" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
-                        <div>
-                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">PayPal | Tarjetas</span>
-                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Soporte Internacional</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Mercado Pago -->
-                <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
-                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
-                        <div class="text-xl w-8 text-center mr-3" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
-                        <div>
-                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Mercado Pago</span>
-                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Argentina</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Crypto -->
-                <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="block no-underline">
-                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
-                        <div class="text-xl w-8 text-center mr-3" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
-                        <div>
-                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Criptomonedas</span>
-                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">USDT (BEP20)</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Pix -->
-                <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="block no-underline">
-                    <div class="flex items-center p-3 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-xl hover:border-mazz-red dark:hover:border-mazz-red hover:-translate-y-0.5 transition-all">
-                        <div class="w-8 text-center mr-3 font-extrabold font-Montserrat text-base" style="color: #32bcad;">R$</div>
-                        <div>
-                            <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Pix</span>
-                            <span class="block text-[11px] text-gray-500 dark:text-gray-400">Brasil</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
         
-        <footer class="mt-8 text-center text-gray-500 dark:text-gray-500 text-sm pb-6">
+        <footer class="mt-12 text-center text-gray-500 dark:text-gray-500 text-sm pb-6 border-t border-gray-200 dark:border-gray-800 pt-6">
             <p>Mazz Manager© | <span id="dynamicYear"></span> | Todos los Derechos Reservados</p>
         </footer>
     </div>
 
+    <!-- WIDGET FLOTANTE DE DONACIONES -->
+    <div class="fixed-donation-wrapper" id="donationWrapper">
+        <div class="fixed-donate-menu" id="fixedDonateMenu">
+            <p class="fixed-menu-intro">
+                Para apoyar este proyecto, podés hacerlo a través de estos canales.<br>
+                <strong>¡Todo aporte suma!</strong>
+            </p>
+
+            <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener" class="donation-link block mb-2">
+                <div class="flex items-center p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-lg hover:border-mazz-red transition-all">
+                    <div class="text-lg w-8 text-center mr-2.5" style="color: #0070ba;"><i class="fab fa-paypal"></i></div>
+                    <div>
+                        <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">PayPal | Tarjetas</span>
+                        <span class="block text-[10px] text-gray-500 dark:text-gray-400">Soporte Internacional</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener" class="donation-link block mb-2">
+                <div class="flex items-center p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-lg hover:border-mazz-red transition-all">
+                    <div class="text-lg w-8 text-center mr-2.5" style="color: #009ee3;"><i class="fas fa-wallet"></i></div>
+                    <div>
+                        <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Mercado Pago</span>
+                        <span class="block text-[10px] text-gray-500 dark:text-gray-400">Argentina</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener" class="donation-link block mb-2">
+                <div class="flex items-center p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-lg hover:border-mazz-red transition-all">
+                    <div class="text-lg w-8 text-center mr-2.5" style="color: #f3ba2f;"><i class="fab fa-bitcoin"></i></div>
+                    <div>
+                        <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Criptomonedas</span>
+                        <span class="block text-[10px] text-gray-500 dark:text-gray-400">USDT (BEP20)</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener" class="donation-link block">
+                <div class="flex items-center p-2.5 bg-gray-50 dark:bg-mazz-dark border border-gray-200 dark:border-gray-700 rounded-lg hover:border-mazz-red transition-all">
+                    <div class="w-8 text-center mr-2.5 font-extrabold font-Montserrat text-sm" style="color: #32bcad;">R$</div>
+                    <div>
+                        <span class="block font-bold text-xs text-gray-900 dark:text-white font-Montserrat">Pix</span>
+                        <span class="block text-[10px] text-gray-500 dark:text-gray-400">Brasil</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <button type="button" class="fixed-donation-btn" onclick="toggleFixedMenu(event)">
+            <i class="fas fa-heart text-red-500 animate-heart-beat"></i>
+            <span>Apoya este proyecto</span>
+        </button>
+    </div>
+
     <script>
+        // NAVEGACIÓN MÓVIL Y MENÚS DESPLEGABLES
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            const icon = document.getElementById('navToggleIcon');
+            navLinks.classList.toggle('mobile-open');
+            icon.className = navLinks.classList.contains('mobile-open') ? 'fas fa-xmark' : 'fas fa-bars';
+        }
+
+        function toggleDropdown(id) {
+            const target = document.getElementById(id);
+            const wasOpen = target.classList.contains('open');
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+            if (!wasOpen) target.classList.add('open');
+        }
+
+        function toggleFixedMenu(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('fixedDonateMenu').classList.toggle('active');
+        }
+
         // TEMA CLARO / OSCURO (Selector unificado)
         function toggleTheme() {
             const html = document.documentElement;
@@ -362,6 +763,18 @@
                 (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
             ) {
                 e.preventDefault();
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('donationWrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                const donateMenu = document.getElementById('fixedDonateMenu');
+                if (donateMenu) donateMenu.classList.remove('active');
+            }
+            const navbar = document.getElementById('mazzNavbar');
+            if (navbar && !navbar.contains(e.target)) {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
             }
         });
 
