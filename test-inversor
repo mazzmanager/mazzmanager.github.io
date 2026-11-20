@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test del Inversor | Mazz Manager©</title>
+  <meta name="description" content="Descubrí tu perfil de riesgo financiero (Conservador, Moderado o Agresivo) y conocé en qué instrumentos invertir en Argentina y el exterior: Letras, CEDEARs, Acciones Argentinas y ETFs.">
+  <meta name="author" content="Juan Martín Díaz Mazz">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Test del Inversor | Mazz Manager©">
+  <meta property="og:description" content="Evaluá tu perfil financiero y obtené una guía de asignación de activos entre Letras, CEDEARs, Acciones Argentinas, Consumo Defensivo y ETFs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mazzmanager.com.ar/test-inversor.html">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T271H2P0TL');
+  </script>
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&family=Squada+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-body: #111111;
+      --bg-header: rgba(10, 10, 10, 0.94);
+      --bg-card: #1e1e1e;
+      --bg-card-hover: #252525;
+      --bg-subtle: #161616;
+      --border-color: #2a2a2a;
+      --text-primary: #f4f4f4;
+      --text-secondary: #cccccc;
+      --text-muted: #888888;
+      --accent-red: #c0392b;
+      --accent-red-bright: #DC2626;
+      --accent-red-hover: #980000;
+      --accent-cyan: #00cfb4;
+      --accent-gold: #f3ba2f;
+      --accent-green: #10B981;
+      --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    [data-theme="light"] {
+      --bg-body: #f8f9fa;
+      --bg-header: rgba(233, 236, 239, 0.95);
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f3f5;
+      --bg-subtle: #f1f3f5;
+      --border-color: #dee2e6;
+      --text-primary: #212529;
+      --text-secondary: #495057;
+      --text-muted: #6c757d;
+      --accent-red: #c0392b;
+      --accent-red-bright: #DC2626;
+      --accent-red-hover: #980000;
+      --accent-cyan: #009688;
+      --accent-gold: #d97706;
+      --accent-green: #059669;
+      --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Ocultamiento de Scrollbars */
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    /* Bloqueo de Selección y Arrastre */
+    body, * {
+      box-sizing: border-box;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    input, textarea, select, button, .theme-switcher-btn, .option-btn {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      pointer-events: auto !important;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 66px;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: 'Lexend', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Marca de Agua */
+    .bg-watermark {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220' viewBox='0 0 340 220'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-30 170 110)' font-family='Arial Black, sans-serif' font-weight='900' font-size='22' fill='%23888888' letter-spacing='3'%3EMAZZ MANAGER%3C/text%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* Navbar Unificada */
+    .mazz-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 66px;
+      z-index: 9500;
+      background: var(--bg-header);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .nav-brand {
+      text-decoration: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .nav-brand-text {
+      font-family: 'Squada One', sans-serif;
+      font-size: 28px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      line-height: 1;
+    }
+
+    [data-theme="light"] .nav-brand-text {
+      color: #111111;
+    }
+
+    .nav-brand-copy {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      color: #e74c3c;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-cyan);
+      background: rgba(0, 207, 180, 0.08);
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 230px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: var(--shadow-card);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all 0.2s ease;
+      z-index: 9600;
+    }
+
+    .nav-dropdown::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      height: 14px;
+      left: 0;
+      right: 0;
+    }
+
+    .nav-item:hover .nav-dropdown,
+    .nav-item.open .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-group-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding: 6px 10px 4px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item.active {
+      background: var(--bg-card-hover);
+      color: var(--accent-cyan);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-switcher-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .theme-switcher-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    @media (max-width: 860px) {
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .nav-links {
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        gap: 4px;
+        display: none;
+        max-height: calc(100vh - 66px);
+        overflow-y: auto;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+      }
+      .nav-dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--bg-subtle);
+        margin-top: 4px;
+        display: none;
+      }
+      .nav-item.open .nav-dropdown {
+        display: block;
+      }
+    }
+
+    /* Main Layout */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 20px 90px;
+      flex: 1;
+    }
+
+    .hero-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(192, 57, 43, 0.14);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      color: #ef4444;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 4.5vw, 38px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+
+    .hero-title span {
+      color: var(--accent-red-bright);
+    }
+
+    .hero-subtitle {
+      color: var(--text-secondary);
+      max-width: 660px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    /* Card Container */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    /* Progress Bar */
+    .progress-wrapper {
+      margin-bottom: 24px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 12.5%;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+      border-radius: 999px;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Question & Options */
+    .question-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .question-category {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+    }
+
+    .multi-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(0, 207, 180, 0.14);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 207, 180, 0.35);
+    }
+
+    .question-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(18px, 2.8vw, 22px);
+      font-weight: 800;
+      margin: 0 0 22px;
+      line-height: 1.35;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px 18px;
+      color: var(--text-primary);
+      font-family: 'Lexend', sans-serif;
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+      transform: translateX(3px);
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 207, 180, 0.12);
+    }
+
+    .option-btn.exclusive-opt.selected {
+      border-color: var(--accent-gold);
+      background: rgba(243, 186, 47, 0.12);
+    }
+
+    .option-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-secondary);
+    }
+
+    .option-btn.selected .option-letter {
+      background: var(--accent-cyan);
+      color: #0a0a0a;
+      border-color: var(--accent-cyan);
+    }
+
+    .option-btn.exclusive-opt.selected .option-letter {
+      background: var(--accent-gold);
+      color: #0a0a0a;
+      border-color: var(--accent-gold);
+    }
+
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-color);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary,
+    .btn-primary,
+    .btn-cyan {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--accent-red-bright);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent-red-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-cyan {
+      background: var(--accent-cyan);
+      color: #0a0a0a;
+    }
+
+    .btn-cyan:hover:not(:disabled) {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-cyan:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Results Screen */
+    .result-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-banner {
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .profile-badge-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .profile-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+
+    .profile-desc {
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 600px;
+    }
+
+    .score-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 22px;
+      text-align: center;
+      min-width: 145px;
+    }
+
+    .score-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .score-value {
+      font-family: 'Squada One', sans-serif;
+      font-size: 38px;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+
+    /* Allocation Bar */
+    .allocation-box {
+      margin-bottom: 26px;
+    }
+
+    .section-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stacked-bar {
+      width: 100%;
+      height: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      background: var(--bg-subtle);
+      margin-bottom: 14px;
+    }
+
+    .bar-segment {
+      height: 100%;
+      transition: width 0.6s ease;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+    }
+
+    .legend-item {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .legend-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-pct {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+    }
+
+    /* Instruments Grid */
+    .instruments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .instrument-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .instrument-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-cyan);
+    }
+
+    .inst-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .inst-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .inst-weight {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(0, 207, 180, 0.14);
+      color: var(--accent-cyan);
+    }
+
+    .inst-body {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin: 0 0 12px;
+    }
+
+    .inst-tickers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ticker-pill {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    /* Send Report Box */
+    .send-report-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 22px;
+    }
+
+    .send-report-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-cyan);
+    }
+
+    .send-report-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0 0 16px;
+    }
+
+    .send-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: 'Lexend', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .send-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .send-status-msg {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .disclaimer-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 18px;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 22px 16px;
+      border-top: 1px solid var(--border-color);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+    }
+
+    /* Floating Stack */
+    .fixed-floating-stack {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .float-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .fixed-share-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid #00cfb4;
+      color: #00cfb4;
+      font-size: 17px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .fixed-share-btn:hover {
+      transform: scale(1.06);
+      background: #00cfb4;
+      color: #0a0a0a;
+    }
+
+    .fixed-donation-btn {
+      background: var(--bg-card);
+      border: 2px solid #DC2626;
+      color: var(--text-primary);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .fixed-donation-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .heart-beat {
+      color: #DC2626;
+      animation: beat 1.3s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.22); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.16); }
+    }
+
+    .floating-menu {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      right: 0;
+      min-width: 215px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: var(--shadow-card);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .floating-menu.show {
+      display: flex;
+    }
+
+    .floating-menu a,
+    .floating-menu button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-family: 'Lexend', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+
+    .floating-menu a:hover,
+    .floating-menu button:hover {
+      background: var(--bg-card-hover);
+      color: var(--accent-cyan);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-watermark"></div>
+
+  <!-- Barra de Navegación Unificada -->
+  <nav class="mazz-navbar">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-text">Mazz Manager</span>
+      <span class="nav-brand-copy">©</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Inicio</a>
+      </li>
+      <li class="nav-item" data-dropdown>
+        <span class="nav-link">Innovación <i class="fa-solid fa-chevron-down fa-xs"></i></span>
+        <div class="nav-dropdown">
+          <div class="dropdown-group-label">Recursos IA & Tech</div>
+          <a href="innovacion.html#posteos" class="dropdown-item"><i class="fa-solid fa-newspaper"></i> Posteos</a>
+          <a href="innovacion.html#herramientas" class="dropdown-item"><i class="fa-solid fa-microchip"></i> Herramientas</a>
+          <a href="innovacion.html#tutoriales" class="dropdown-item"><i class="fa-solid fa-graduation-cap"></i> Tutoriales</a>
+        </div>
+      </li>
+      <li class="nav-item" data-dropdown>
+        <span class="nav-link active">Finanzas <i class="fa-solid fa-chevron-down fa-xs"></i></span>
+        <div class="nav-dropdown">
+          <div class="dropdown-group-label">Mercados</div>
+          <a href="informe-de-mercado.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> Informe de Mercado</a>
+          <div class="dropdown-group-label">Learn</div>
+          <a href="aprende-a-leer-earnings.html" class="dropdown-item"><i class="fa-solid fa-file-invoice-dollar"></i> Aprende a Leer Earnings</a>
+          <a href="opera-bien-cedears.html" class="dropdown-item"><i class="fa-solid fa-globe"></i> Operá Bien CEDEARs</a>
+          <div class="dropdown-group-label">Herramientas & Tutoriales</div>
+          <a href="calculadora-renta-fija.html" class="dropdown-item"><i class="fa-solid fa-calculator"></i> Calculadora Renta Fija</a>
+          <a href="test-inversor.html" class="dropdown-item active"><i class="fa-solid fa-sliders"></i> Test del Inversor</a>
+        </div>
+      </li>
+      <li class="nav-item" data-dropdown>
+        <span class="nav-link">Mentalidad <i class="fa-solid fa-chevron-down fa-xs"></i></span>
+        <div class="nav-dropdown">
+          <div class="dropdown-group-label">Desarrollo</div>
+          <a href="acerca.html#mentalidad" class="dropdown-item"><i class="fa-solid fa-brain"></i> Posteos</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="acerca.html" class="nav-link">Acerca de</a>
+      </li>
+      <li class="nav-item">
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </li>
+    </ul>
+
+    <div class="nav-actions">
+      <button type="button" class="theme-switcher-btn" id="themeToggleBtn" aria-label="Cambiar tema">
+        <i class="fa-solid fa-sun" id="themeIcon"></i>
+        <span id="themeText">Claro</span>
+      </button>
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <main>
+    <header class="hero-header">
+      <div class="hero-badge"><i class="fa-solid fa-compass"></i> Diagnóstico de Perfil Financiero</div>
+      <h1 class="hero-title">Test del <span>Inversor</span></h1>
+      <p class="hero-subtitle">Respondé estas 8 preguntas clave sobre tu horizonte, liquidez, experiencia y tolerancia a la volatilidad para determinar tu perfil y conocer qué instrumentos priorizar.</p>
+    </header>
+
+    <section class="quiz-card">
+      <!-- Vista Cuestionario -->
+      <div id="quizContainer">
+        <div class="progress-wrapper">
+          <div class="progress-meta">
+            <span id="stepCounter">Pregunta 1 de 8</span>
+            <span id="progressPercent">13%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div class="question-header-row">
+          <div class="question-category" id="qCategory">Horizonte Temporal</div>
+          <span class="multi-badge" id="multiBadge" style="display:none;"><i class="fa-solid fa-list-check"></i> Selección Múltiple</span>
+        </div>
+        <h2 class="question-text" id="qText"></h2>
+
+        <div class="options-list" id="optionsList"></div>
+
+        <div class="quiz-controls">
+          <button type="button" class="btn-secondary" id="prevBtn" disabled>
+            <i class="fa-solid fa-arrow-left"></i> Anterior
+          </button>
+          <button type="button" class="btn-primary" id="nextBtn" disabled>
+            Siguiente <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Vista Resultado -->
+      <div class="result-section" id="resultContainer">
+        <div class="profile-banner" id="profileBanner">
+          <div>
+            <span class="profile-badge-tag" id="profileTag">Perfil Asignado</span>
+            <h2 class="profile-title" id="profileTitle">Inversor Moderado</h2>
+            <p class="profile-desc" id="profileDesc"></p>
+          </div>
+          <div class="score-box">
+            <div class="score-label">Puntaje Obtenido</div>
+            <div class="score-value" id="scoreDisplay">18 / 24</div>
+          </div>
+        </div>
+
+        <div class="allocation-box">
+          <h3 class="section-heading"><i class="fa-solid fa-chart-pie"></i> Distribución Sugerida de Cartera</h3>
+          <div class="stacked-bar" id="stackedBar"></div>
+          <div class="legend-grid" id="legendGrid"></div>
+        </div>
+
+        <h3 class="section-heading"><i class="fa-solid fa-layer-group"></i> ¿En qué instrumentos invertir según tu perfil?</h3>
+        <div class="instruments-grid" id="instrumentsGrid"></div>
+
+        <!-- Envío Directo en Segundo Plano a Mazz Manager -->
+        <div class="send-report-card">
+          <h3 class="send-report-title"><i class="fa-solid fa-paper-plane"></i> Enviar Informe Completo a Mazz Manager</h3>
+          <p class="send-report-desc">Completá tus datos para enviar el resultado completo (perfil, distribución sugerida de cartera, instrumentos recomendados y registro encriptado) directamente a <strong>mazzmanager@gmail.com</strong>.</p>
+          <form id="sendReportForm" onsubmit="return false;">
+            <input type="text" id="honeyField" style="display:none !important;" tabindex="-1" autocomplete="off">
+            <div class="send-form-grid">
+              <div class="form-group">
+                <label class="form-label" for="userNameInput">Nombre y Apellido *</label>
+                <input type="text" id="userNameInput" class="form-input" placeholder="Ej: Carlos Gómez" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="userEmailInput">Tu Correo Electrónico *</label>
+                <input type="email" id="userEmailInput" class="form-input" placeholder="Ej: carlos@email.com" required>
+              </div>
+            </div>
+            <div class="send-actions-row">
+              <button type="button" class="btn-cyan" id="sendReportBtn">
+                <i class="fa-solid fa-envelope-circle-check"></i> Enviar Informe Completo
+              </button>
+              <span class="send-status-msg" id="sendStatusMsg"></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="disclaimer-note">
+          <strong>Nota Educativa:</strong> Este test tiene fines estrictamente informativos y educativos dentro del ecosistema Mazz Manager©. No constituye asesoramiento financiero personalizado ni recomendación directa de compra o venta de activos.
+        </div>
+
+        <div class="quiz-controls">
+          <button type="button" class="btn-secondary" id="restartBtn">
+            <i class="fa-solid fa-rotate-right"></i> Repetir Test
+          </button>
+          <a href="calculadora-renta-fija.html" class="btn-primary" style="text-decoration:none;">
+            Ir a Simuladores <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Widgets Flotantes Apilados -->
+  <div class="fixed-floating-stack" id="floatingStack">
+    <div class="float-wrapper">
+      <div class="floating-menu" id="shareMenu">
+        <a href="#" id="shareWa" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
+        <a href="#" id="shareTg" target="_blank" rel="noopener"><i class="fa-brands fa-telegram" style="color:#0088cc;"></i> Telegram</a>
+        <a href="#" id="shareX" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i> X / Twitter</a>
+        <a href="#" id="shareFb" target="_blank" rel="noopener"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> Facebook</a>
+        <a href="#" id="shareMail"><i class="fa-solid fa-envelope" style="color:#f3ba2f;"></i> Email</a>
+        <button type="button" id="copyLinkBtn"><i class="fa-solid fa-link" style="color:#00cfb4;"></i> <span id="copyLinkText">Copiar enlace</span></button>
+      </div>
+      <button type="button" class="fixed-share-btn" id="shareToggleBtn" aria-label="Compartir herramienta">
+        <i class="fa-solid fa-share-nodes"></i>
+      </button>
+    </div>
+
+    <div class="float-wrapper">
+      <div class="floating-menu" id="donationMenu">
+        <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener"><i class="fa-solid fa-mug-hot" style="color:#29abe0;"></i> Ko-fi (Internacional)</a>
+        <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener"><i class="fa-solid fa-handshake-angle" style="color:#009ee3;"></i> Mercado Pago (ARS)</a>
+        <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener"><i class="fa-solid fa-coins" style="color:#10B981;"></i> USDT (BEP20)</a>
+        <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener"><i class="fa-solid fa-qrcode" style="color:#00cfb4;"></i> Pix (Brasil)</a>
+      </div>
+      <button type="button" class="fixed-donation-btn" id="donationToggleBtn">
+        <i class="fa-solid fa-heart heart-beat"></i> Apoya este proyecto
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Mazz Manager© | <span id="dynamicYear"></span> | Todos los Derechos Reservados
+  </footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+
+    // Seguridad & Protección de Contenido
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    ['copy', 'cut', 'paste', 'dragstart'].forEach(evt => {
+      document.addEventListener(evt, e => e.preventDefault());
+    });
+    document.addEventListener('keydown', e => {
+      if (
+        e.keyCode === 123 ||
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Tema Claro / Oscuro
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fa-solid fa-moon';
+        themeText.textContent = 'Oscuro';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.className = 'fa-solid fa-sun';
+        themeText.textContent = 'Claro';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    // Menú Móvil & Dropdowns Táctiles
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+    });
+
+    document.querySelectorAll('[data-dropdown]').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (window.innerWidth <= 860) {
+          e.stopPropagation();
+          item.classList.toggle('open');
+        }
+      });
+    });
+
+    // Widgets Flotantes Apilados
+    const shareToggleBtn = document.getElementById('shareToggleBtn');
+    const shareMenu = document.getElementById('shareMenu');
+    const donationToggleBtn = document.getElementById('donationToggleBtn');
+    const donationMenu = document.getElementById('donationMenu');
+    const floatingStack = document.getElementById('floatingStack');
+
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent('Test del Inversor | Descubrí tu perfil y en qué invertir - Mazz Manager©');
+
+    document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+    document.getElementById('shareTg').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
+    document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
+    document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    document.getElementById('shareMail').href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+    shareToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      donationMenu.classList.remove('show');
+      shareMenu.classList.toggle('show');
+    });
+
+    donationToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      shareMenu.classList.remove('show');
+      donationMenu.classList.toggle('show');
+    });
+
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const txt = document.getElementById('copyLinkText');
+        txt.textContent = '¡Enlace copiado!';
+        setTimeout(() => { txt.textContent = 'Copiar enlace'; }, 2000);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!floatingStack.contains(e.target)) {
+        shareMenu.classList.remove('show');
+        donationMenu.classList.remove('show');
+      }
+    });
+
+    // Base de Preguntas del Test del Inversor
+    const questions = [
+      {
+        id: "objetivo",
+        multiple: false,
+        category: "1. Objetivo Principal",
+        text: "¿Cuál es tu prioridad número uno al invertir tu capital?",
+        options: [
+          { code: "OBJ_A", label: "Preservar el poder adquisitivo sin sufrir caídas en el saldo nominal.", points: 1 },
+          { code: "OBJ_B", label: "Lograr un equilibrio entre crecimiento real y estabilidad periódica.", points: 2 },
+          { code: "OBJ_C", label: "Maximizar el crecimiento del capital a largo plazo asumiendo fuertes oscilaciones.", points: 3 }
+        ]
+      },
+      {
+        id: "horizonte",
+        multiple: false,
+        category: "2. Horizonte Temporal",
+        text: "¿En cuánto tiempo estimás que vas a necesitar utilizar este dinero?",
+        options: [
+          { code: "HOR_A", label: "En menos de 1 año (liquidez de corto plazo o fondo de reserva).", points: 1 },
+          { code: "HOR_B", label: "Entre 1 y 3 años (objetivos a mediano plazo).", points: 2 },
+          { code: "HOR_C", label: "Más de 3 a 5 años (construcción de patrimonio sin apuro de retiro).", points: 3 }
+        ]
+      },
+      {
+        id: "caidas",
+        multiple: false,
+        category: "3. Reacción ante Caídas",
+        text: "Si tu cartera cae un -15% en un mes por volatilidad del mercado, ¿qué hacés?",
+        options: [
+          { code: "CAI_A", label: "Vendo todo o paso a tasa fija para frenar pérdidas inmediatamente.", points: 1 },
+          { code: "CAI_B", label: "Mantengo la posición esperando que el mercado recupere su tendencia.", points: 2 },
+          { code: "CAI_C", label: "Aprovecho los precios bajos para comprar más activos de calidad.", points: 3 }
+        ]
+      },
+      {
+        id: "experiencia",
+        multiple: true,
+        category: "4. Experiencia Financiera",
+        text: "¿Con qué instrumentos operaste previamente en el mercado de capitales? (Podés marcar varios)",
+        options: [
+          { code: "EXP_PF_MM", label: "Plazo Fijo tradicional o FCI Money Market (liquidez inmediata).", tier: 1 },
+          { code: "EXP_CAUC_LEC", label: "Cauciones bursátiles o Letras del Tesoro (LECAPs / Letras CER).", tier: 1 },
+          { code: "EXP_BONOS_ON", label: "Bonos Soberanos u Obligaciones Negociables (ONs corporativas).", tier: 2 },
+          { code: "EXP_CED_ETF", label: "CEDEARs de empresas extranjeras o ETFs (SPY, QQQ, DIA, EWZ).", tier: 2 },
+          { code: "EXP_ACC_ARG", label: "Acciones Argentinas del Panel Líder / General (MERVAL).", tier: 3 },
+          { code: "EXP_DER_CRI", label: "Opciones financieras, Futuros (ROFEX) o Criptomonedas.", tier: 3 },
+          { code: "EXP_NINGUNO", label: "Ninguno de los anteriores (sería mi primera experiencia invirtiendo).", tier: 0, exclusive: true }
+        ]
+      },
+      {
+        id: "emergencia",
+        multiple: false,
+        category: "5. Estabilidad de Ingresos & Respaldo",
+        text: "¿Cómo describirías tu flujo de ingresos mensuales y tu fondo de emergencia?",
+        options: [
+          { code: "EME_A", label: "Ingresos variables o ajustados; no cuento con fondo de emergencia cubierto.", points: 1 },
+          { code: "EME_B", label: "Ingresos estables y un respaldo líquido para cubrir 3 a 6 meses de gastos.", points: 2 },
+          { code: "EME_C", label: "Ingresos sólidos con capacidad de ahorro recurrente y respaldo total.", points: 3 }
+        ]
+      },
+      {
+        id: "cambiario",
+        multiple: false,
+        category: "6. Exposición Cambiaria & Riesgo Local",
+        text: "¿Cómo preferís posicionarte frente al riesgo argentino y la moneda?",
+        options: [
+          { code: "CAM_A", label: "Prefiero devengar tasa previsible en pesos a muy corto plazo o dólar billete.", points: 1 },
+          { code: "CAM_B", label: "Combino tasa en pesos con cobertura en empresas globales vía CEDEARs.", points: 2 },
+          { code: "CAM_C", label: "Busco alto beta en acciones argentinas (bancos/energía) y renta variable EE.UU.", points: 3 }
+        ]
+      },
+      {
+        id: "riesgo_retorno",
+        multiple: false,
+        category: "7. Conocimiento de Volatilidad",
+        text: "¿Qué relación riesgo/retorno te resulta más cómoda para dormir tranquilo?",
+        options: [
+          { code: "RIE_A", label: "Retorno acotado y previsible, con mínima fluctuación diaria.", points: 1 },
+          { code: "RIE_B", label: "Retorno moderado aceptando retrocesos temporales controlados.", points: 2 },
+          { code: "RIE_C", label: "Alto potencial de suba aun sabiendo que puede haber correcciones de -25% o más.", points: 3 }
+        ]
+      },
+      {
+        id: "seguimiento",
+        multiple: false,
+        category: "8. Seguimiento de Cartera",
+        text: "¿Con qué frecuencia revisás tus inversiones y noticias económicas?",
+        options: [
+          { code: "SEG_A", label: "Casi nunca; busco instrumentos simples que venzan o paguen renta fija.", points: 1 },
+          { code: "SEG_B", label: "Una o dos veces por mes para rebalancear posiciones.", points: 2 },
+          { code: "SEG_C", label: "Semanal o diariamente, siguiendo balances (earnings) y ciclos de mercado.", points: 3 }
+        ]
+      }
+    ];
+
+    // Perfiles y Recomendaciones de Activos
+    const profiles = {
+      conservador: {
+        level: 1,
+        code: "CONS",
+        title: "Inversor Conservador",
+        tag: "Perfil Protegido • Prioridad Liquidez y Estabilidad",
+        color: "#10B981",
+        desc: "Tu objetivo central es preservar el capital y ganarle a la inflación de corto plazo sin exponerte a saltos bruscos en el mercado accionario. Priorizás previsibilidad y vencimientos cortos.",
+        allocation: [
+          { label: "Letras (LECAPs) y Cauciones", pct: 55, color: "#10B981" },
+          { label: "FCI Money Market / T+1", pct: 25, color: "#00cfb4" },
+          { label: "CEDEARs Consumo Defensivo", pct: 15, color: "#f3ba2f" },
+          { label: "ETF Conservador / Oro (GLD)", pct: 5, color: "#3b82f6" }
+        ],
+        instruments: [
+          {
+            title: "Letras (LECAPs) y Cauciones",
+            weight: "55%",
+            desc: "Tasa fija de corto plazo en pesos para devengar rendimiento diario o a vencimiento acotado sin volatilidad accionaria.",
+            tickers: ["LECAPs Tramo Corto", "Caución Bursátil", "Letras CER Cortas"]
+          },
+          {
+            title: "FCI Money Market / Renta Fija T+1",
+            weight: "25%",
+            desc: "Liquidez inmediata (rescate en el día o 24 hs) ideal para mantener tu fondo de emergencia rindiendo.",
+            tickers: ["FCI Money Market", "FCI T+1 Soberano/Corp"]
+          },
+          {
+            title: "CEDEARs de Consumo Defensivo",
+            weight: "15%",
+            desc: "Empresas líderes globales con flujo de caja estable, baja beta y pago histórico de dividendos en dólares.",
+            tickers: ["KO (Coca-Cola)", "PG (Procter & Gamble)", "JNJ (Johnson & Johnson)", "WMT (Walmart)"]
+          },
+          {
+            title: "Refugio & ETFs de Baja Volatilidad",
+            weight: "5%",
+            desc: "Pequeña cobertura en activos reales o deuda americana corta para diversificar moneda.",
+            tickers: ["GLD (Oro)", "SHY / BIL"]
+          }
+        ]
+      },
+      moderado: {
+        level: 2,
+        code: "MOD",
+        title: "Inversor Moderado",
+        tag: "Perfil Equilibrado • Tasa + Crecimiento Global",
+        color: "#f3ba2f",
+        desc: "Buscás hacer crecer tu patrimonio por encima de la inflación combinando una base sólida de renta fija en pesos/dólares con exposición diversificada a empresas internacionales y sectores defensivos.",
+        allocation: [
+          { label: "Letras (LECAPs) y Bonos", pct: 35, color: "#10B981" },
+          { label: "ETFs Amplios (SPY / DIA)", pct: 30, color: "#00cfb4" },
+          { label: "CEDEARs Consumo Defensivo & Salud", pct: 20, color: "#f3ba2f" },
+          { label: "Acciones Argentinas Selectivas", pct: 15, color: "#DC2626" }
+        ],
+        instruments: [
+          {
+            title: "Letras (LECAPs) y Obligaciones Negociables",
+            weight: "35%",
+            desc: "Ancla de estabilidad en cartera: combina tasa fija en pesos con renta corporativa en dólares de empresas de primera línea.",
+            tickers: ["LECAPs Tramo Medio", "ONs Ley NY/Arg", "Bonos CER"]
+          },
+          {
+            title: "ETFs de Índices Amplios",
+            weight: "30%",
+            desc: "Diversificación automática en las principales compañías de Estados Unidos sin depender de una sola empresa.",
+            tickers: ["SPY (S&P 500)", "DIA (Dow Jones)", "XLP (Consumo Básico)"]
+          },
+          {
+            title: "CEDEARs Consumo Defensivo & Calidad",
+            weight: "20%",
+            desc: "Compañías resilientes ante ciclos recesivos que aportan estabilidad y cobertura cambiaria vía CCL.",
+            tickers: ["PEP (PepsiCo)", "COST (Costco)", "UNH (UnitedHealth)", "BRK.B"]
+          },
+          {
+            title: "Acciones Argentinas (Panel Líder)",
+            weight: "15%",
+            desc: "Exposición controlada al crecimiento local en sectores estratégicos con fundamentos sólidos.",
+            tickers: ["YPFD", "PAMP", "TGSU2", "ALUA"]
+          }
+        ]
+      },
+      agresivo: {
+        level: 3,
+        code: "AGR",
+        title: "Inversor Agresivo",
+        tag: "Perfil Dinámico • Máximo Potencial de Capital",
+        color: "#DC2626",
+        desc: "Tenés horizonte de mediano/largo plazo y alta tolerancia a la volatilidad. Priorizás instrumentos de renta variable con alto potencial de apreciación en Argentina, tecnología global y ETFs sectoriales.",
+        allocation: [
+          { label: "CEDEARs Tech & Crecimiento", pct: 35, color: "#00cfb4" },
+          { label: "Acciones Argentinas (MERVAL)", pct: 30, color: "#DC2626" },
+          { label: "ETFs Sectoriales / Emergentes", pct: 25, color: "#f3ba2f" },
+          { label: "Letras (Liquidez Táctica)", pct: 10, color: "#10B981" }
+        ],
+        instruments: [
+          {
+            title: "CEDEARs de Tecnología y Alto Crecimiento",
+            weight: "35%",
+            desc: "Líderes globales en inteligencia artificial, semiconductores y software con fuerte expansión de márgenes.",
+            tickers: ["NVDA", "MSFT", "AMZN", "META", "GOOGL"]
+          },
+          {
+            title: "Acciones Argentinas (Alto Beta)",
+            weight: "30%",
+            desc: "Sectores financiero, energético y servicios públicos locales con mayor sensibilidad a ciclos alcistas del MERVAL.",
+            tickers: ["GGAL", "BMA", "YPFD", "VIST", "CEPU"]
+          },
+          {
+            title: "ETFs de Crecimiento y Mercados",
+            weight: "25%",
+            desc: "Canastas concentradas en innovación tecnológica, mercados emergentes o activos digitales.",
+            tickers: ["QQQ (Nasdaq 100)", "EWZ (Brasil)", "ARKK", "IBIT"]
+          },
+          {
+            title: "Letras / Cauciones (Pólvora Seca)",
+            weight: "10%",
+            desc: "Liquidez táctica remunerada lista para aprovechar correcciones fuertes del mercado.",
+            tickers: ["LECAPs Cortas", "Caución 1 a 7 días"]
+          }
+        ]
+      }
+    };
+
+    let currentStep = 0;
+    const answers = questions.map(q => (q.multiple ? [] : null));
+    let lastEvaluationPayload = null;
+    let activeProfileData = null;
+    let reportSent = false;
+
+    const qCategory = document.getElementById('qCategory');
+    const multiBadge = document.getElementById('multiBadge');
+    const qText = document.getElementById('qText');
+    const optionsList = document.getElementById('optionsList');
+    const stepCounter = document.getElementById('stepCounter');
+    const progressPercent = document.getElementById('progressPercent');
+    const progressBar = document.getElementById('progressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const quizContainer = document.getElementById('quizContainer');
+    const resultContainer = document.getElementById('resultContainer');
+
+    function isStepAnswered(stepIdx) {
+      const q = questions[stepIdx];
+      const ans = answers[stepIdx];
+      return q.multiple ? Array.isArray(ans) && ans.length > 0 : ans !== null;
+    }
+
+    function renderQuestion() {
+      const q = questions[currentStep];
+      qCategory.textContent = q.category;
+      qText.textContent = q.text;
+      multiBadge.style.display = q.multiple ? 'inline-flex' : 'none';
+
+      const pct = Math.round(((currentStep + 1) / questions.length) * 100);
+      stepCounter.textContent = `Pregunta ${currentStep + 1} de ${questions.length}`;
+      progressPercent.textContent = `${pct}%`;
+      progressBar.style.width = `${pct}%`;
+
+      optionsList.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+      q.options.forEach((opt, idx) => {
+        const isSelected = q.multiple
+          ? answers[currentStep].includes(idx)
+          : answers[currentStep] === idx;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'option-btn'
+          + (isSelected ? ' selected' : '')
+          + (opt.exclusive ? ' exclusive-opt' : '');
+
+        const indicatorHtml = q.multiple
+          ? (isSelected ? '<i class="fa-solid fa-check"></i>' : '')
+          : letters[idx];
+
+        btn.innerHTML = `
+          <span class="option-letter">${indicatorHtml}</span>
+          <span>${opt.label}</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          if (q.multiple) {
+            let currentArr = [...answers[currentStep]];
+            if (opt.exclusive) {
+              currentArr = currentArr.includes(idx) ? [] : [idx];
+            } else {
+              const exclusiveIndices = q.options
+                .map((o, i) => (o.exclusive ? i : -1))
+                .filter(i => i !== -1);
+              currentArr = currentArr.filter(i => !exclusiveIndices.includes(i));
+
+              if (currentArr.includes(idx)) {
+                currentArr = currentArr.filter(i => i !== idx);
+              } else {
+                currentArr.push(idx);
+              }
+            }
+            answers[currentStep] = currentArr;
+          } else {
+            answers[currentStep] = idx;
+          }
+          renderQuestion();
+        });
+
+        optionsList.appendChild(btn);
+      });
+
+      prevBtn.disabled = currentStep === 0;
+      nextBtn.disabled = !isStepAnswered(currentStep);
+      nextBtn.innerHTML = currentStep === questions.length - 1
+        ? 'Ver Mi Perfil <i class="fa-solid fa-check"></i>'
+        : 'Siguiente <i class="fa-solid fa-arrow-right"></i>';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (!isStepAnswered(currentStep)) return;
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    // Cálculo de puntaje de la Pregunta 4 (Selección Múltiple)
+    function evaluateExperienceQuestion(selectedIndices) {
+      const qExp = questions[3];
+      const selectedOpts = selectedIndices.map(i => qExp.options[i]);
+      const isNone = selectedOpts.some(o => o.exclusive);
+
+      if (isNone || selectedOpts.length === 0) {
+        return { points: 1, isZeroExp: true, maxTier: 0, count: 0 };
+      }
+
+      const maxTier = Math.max(...selectedOpts.map(o => o.tier));
+      const count = selectedOpts.length;
+
+      let points = 1;
+      if (maxTier === 3 && count >= 3) {
+        points = 3;
+      } else if (maxTier >= 2 || count >= 2) {
+        points = 2;
+      } else {
+        points = 1;
+      }
+
+      return { points, isZeroExp: false, maxTier, count };
+    }
+
+    // Cifrado XOR + Base64 con firma privada para auditoría interna
+    function encryptAuditPayload(plainObj) {
+      const secretKey = "MM_CNV_2026_AUDIT_KEY";
+      const jsonStr = JSON.stringify(plainObj);
+      const utf8Bytes = new TextEncoder().encode(jsonStr);
+      const keyBytes = new TextEncoder().encode(secretKey);
+      const cipherBytes = new Uint8Array(utf8Bytes.length);
+
+      for (let i = 0; i < utf8Bytes.length; i++) {
+        cipherBytes[i] = utf8Bytes[i] ^ keyBytes[i % keyBytes.length];
+      }
+
+      let binary = "";
+      for (let i = 0; i < cipherBytes.length; i++) {
+        binary += String.fromCharCode(cipherBytes[i]);
+      }
+      return "MM1$" + btoa(binary);
+    }
+
+    function showResults() {
+      const expEval = evaluateExperienceQuestion(answers[3]);
+
+      let totalScore = 0;
+      questions.forEach((q, qIdx) => {
+        if (qIdx === 3) {
+          totalScore += expEval.points;
+        } else {
+          totalScore += q.options[answers[qIdx]].points;
+        }
+      });
+
+      // Perfil preliminar por suma lineal
+      let rawProfileKey = 'moderado';
+      if (totalScore <= 12) {
+        rawProfileKey = 'conservador';
+      } else if (totalScore >= 19) {
+        rawProfileKey = 'agresivo';
+      }
+
+      // Lógica privada de restricciones de idoneidad (sin exposición visual en pantalla)
+      const horizonteIdx = answers[1]; // 0 = < 1 año
+      const caidasIdx = answers[2];    // 0 = Vendo todo ante -15%
+      const emergenciaIdx = answers[4];// 0 = Sin fondo de emergencia
+
+      let maxAllowedLevel = 3;
+      const internalFlags = [];
+
+      if (horizonteIdx === 0) {
+        maxAllowedLevel = Math.min(maxAllowedLevel, 1);
+        internalFlags.push("V1_HORIZONTE_MENOR_1A");
+      }
+      if (caidasIdx === 0) {
+        maxAllowedLevel = Math.min(maxAllowedLevel, 1);
+        internalFlags.push("V2_PANICO_CAIDA_15PCT");
+      }
+      if (emergenciaIdx === 0) {
+        maxAllowedLevel = Math.min(maxAllowedLevel, 2);
+        internalFlags.push("V3_SIN_FONDO_EMERGENCIA");
+      }
+      if (expEval.isZeroExp) {
+        maxAllowedLevel = Math.min(maxAllowedLevel, 2);
+        internalFlags.push("V4_CERO_EXPERIENCIA_BURSATIL");
+      }
+
+      const rawLevel = profiles[rawProfileKey].level;
+      const finalLevel = Math.min(rawLevel, maxAllowedLevel);
+
+      let finalProfileKey = 'conservador';
+      if (finalLevel === 2) finalProfileKey = 'moderado';
+      if (finalLevel === 3) finalProfileKey = 'agresivo';
+
+      const data = profiles[finalProfileKey];
+      activeProfileData = data;
+
+      // Preparar objeto técnico interno para envío en segundo plano
+      const selectedInstrumentsCodes = answers[3].map(i => questions[3].options[i].code);
+      lastEvaluationPayload = {
+        ts: new Date().toISOString(),
+        raw: profiles[rawProfileKey].code,
+        final: data.code,
+        score: totalScore,
+        vetoActive: finalLevel < rawLevel,
+        flags: internalFlags,
+        ans: {
+          q1: questions[0].options[answers[0]].code,
+          q2: questions[1].options[answers[1]].code,
+          q3: questions[2].options[answers[2]].code,
+          q4: selectedInstrumentsCodes,
+          q5: questions[4].options[answers[4]].code,
+          q6: questions[5].options[answers[5]].code,
+          q7: questions[6].options[answers[6]].code,
+          q8: questions[7].options[answers[7]].code
+        }
+      };
+
+      // Renderizar UI Pública
+      document.getElementById('profileTag').textContent = data.tag;
+      document.getElementById('profileTag').style.background = `${data.color}22`;
+      document.getElementById('profileTag').style.color = data.color;
+      document.getElementById('profileTitle').textContent = data.title;
+      document.getElementById('profileTitle').style.color = data.color;
+      document.getElementById('profileDesc').textContent = data.desc;
+      document.getElementById('scoreDisplay').textContent = `${totalScore} / 24`;
+      document.getElementById('scoreDisplay').style.color = data.color;
+
+      const stackedBar = document.getElementById('stackedBar');
+      const legendGrid = document.getElementById('legendGrid');
+      stackedBar.innerHTML = '';
+      legendGrid.innerHTML = '';
+
+      data.allocation.forEach(item => {
+        const seg = document.createElement('div');
+        seg.className = 'bar-segment';
+        seg.style.width = `${item.pct}%`;
+        seg.style.backgroundColor = item.color;
+        seg.title = `${item.label}: ${item.pct}%`;
+        stackedBar.appendChild(seg);
+
+        const leg = document.createElement('div');
+        leg.className = 'legend-item';
+        leg.innerHTML = `
+          <div class="legend-left">
+            <span class="legend-dot" style="background:${item.color};"></span>
+            <span>${item.label}</span>
+          </div>
+          <span class="legend-pct" style="color:${item.color};">${item.pct}%</span>
+        `;
+        legendGrid.appendChild(leg);
+      });
+
+      const instrumentsGrid = document.getElementById('instrumentsGrid');
+      instrumentsGrid.innerHTML = '';
+
+      data.instruments.forEach(inst => {
+        const card = document.createElement('div');
+        card.className = 'instrument-card';
+        const tickersHtml = inst.tickers.map(t => `<span class="ticker-pill">${t}</span>`).join('');
+        card.innerHTML = `
+          <div class="inst-header">
+            <h4 class="inst-title">${inst.title}</h4>
+            <span class="inst-weight">${inst.weight}</span>
+          </div>
+          <p class="inst-body">${inst.desc}</p>
+          <div class="inst-tickers">${tickersHtml}</div>
+        `;
+        instrumentsGrid.appendChild(card);
+      });
+
+      reportSent = false;
+      const sendBtn = document.getElementById('sendReportBtn');
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '<i class="fa-solid fa-envelope-circle-check"></i> Enviar Informe Completo';
+      document.getElementById('sendStatusMsg').textContent = '';
+
+      quizContainer.style.display = 'none';
+      resultContainer.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Envío Directo del Informe Completo en Segundo Plano vía FormSubmit AJAX
+    document.getElementById('sendReportBtn').addEventListener('click', async () => {
+      if (reportSent) return;
+
+      // Protección anti-spam honeypot
+      if (document.getElementById('honeyField').value !== '') return;
+
+      const nameVal = document.getElementById('userNameInput').value.trim();
+      const emailVal = document.getElementById('userEmailInput').value.trim();
+      const statusEl = document.getElementById('sendStatusMsg');
+      const sendBtn = document.getElementById('sendReportBtn');
+
+      if (!nameVal || !emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        statusEl.style.color = '#ef4444';
+        statusEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Por favor, completá tu nombre y un correo electrónico válido.';
+        return;
+      }
+
+      if (!lastEvaluationPayload || !activeProfileData) return;
+
+      // 1. Formatear Distribución Sugerida de Cartera en texto estructurado
+      const distribucionTexto = activeProfileData.allocation
+        .map(item => `• ${item.label}: ${item.pct}%`)
+        .join('\n');
+
+      // 2. Formatear Instrumentos Recomendados según el perfil
+      const instrumentosTexto = activeProfileData.instruments
+        .map(inst => `[${inst.weight}] ${inst.title}\n   Detalle: ${inst.desc}\n   Activos/Tickers: ${inst.tickers.join(', ')}`)
+        .join('\n\n');
+
+      // 3. Generar Payload Completo y Encriptado con auditoría privada (vetos y respuestas)
+      const fullRecord = {
+        ...lastEvaluationPayload,
+        user: {
+          name: nameVal,
+          email: emailVal
+        },
+        reportSnapshot: {
+          profileTitle: activeProfileData.title,
+          allocation: activeProfileData.allocation,
+          instruments: activeProfileData.instruments.map(i => ({
+            title: i.title,
+            weight: i.weight,
+            tickers: i.tickers
+          }))
+        }
+      };
+
+      const encryptedToken = encryptAuditPayload(fullRecord);
+
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+      statusEl.style.color = 'var(--text-secondary)';
+      statusEl.textContent = 'Transmitiendo informe completo encriptado...';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/mazzmanager@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Informe Test del Inversor - ${nameVal} [${activeProfileData.title}]`,
+            _replyto: emailVal,
+            _template: 'table',
+            Nombre_Inversor: nameVal,
+            Correo_Inversor: emailVal,
+            Perfil_Asignado: `${activeProfileData.title} (${activeProfileData.tag})`,
+            Descripcion_Perfil: activeProfileData.desc,
+            Puntaje_Obtenido: `${lastEvaluationPayload.score} / 24`,
+            Distribucion_Sugerida_Cartera: distribucionTexto,
+            Instrumentos_Invertir_Segun_Perfil: instrumentosTexto,
+            Token_Auditoria_Encriptado: encryptedToken
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && (result.success === "true" || result.success === true)) {
+          reportSent = true;
+          sendBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Informe Completo Enviado';
+          statusEl.style.color = 'var(--accent-green)';
+          statusEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Informe completo enviado correctamente a Mazz Manager!';
+        } else {
+          throw new Error(result.message || 'No se pudo confirmar la entrega.');
+        }
+      } catch (err) {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fa-solid fa-envelope-circle-check"></i> Reintentar Envío';
+        statusEl.style.color = '#ef4444';
+        statusEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de conexión al enviar. Verificá tu internet e intentá nuevamente.';
+      }
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      currentStep = 0;
+      questions.forEach((q, idx) => {
+        answers[idx] = q.multiple ? [] : null;
+      });
+      lastEvaluationPayload = null;
+      activeProfileData = null;
+      reportSent = false;
+      resultContainer.style.display = 'none';
+      quizContainer.style.display = 'block';
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
