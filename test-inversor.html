@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test del Inversor | Mazz Manager©</title>
   <meta name="description" content="Descubrí tu perfil de riesgo financiero (Conservador, Moderado o Agresivo) y conocé en qué instrumentos invertir en Argentina y el exterior: Letras, CEDEARs, Acciones Argentinas y ETFs.">
-  <meta name="author" content="Juan Martín Díaz Mazz">
+  <meta name="author" content="Mazz Manager">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Test del Inversor | Mazz Manager©">
   <meta property="og:description" content="Evaluá tu perfil financiero y obtené una guía de asignación de activos entre Letras, CEDEARs, Acciones Argentinas, Consumo Defensivo y ETFs.">
@@ -1763,10 +1763,10 @@
         rawProfileKey = 'agresivo';
       }
 
-      // Lógica privada de restricciones de idoneidad (sin exposición visual en pantalla)
-      const horizonteIdx = answers[1]; // 0 = < 1 año
-      const caidasIdx = answers[2];    // 0 = Vendo todo ante -15%
-      const emergenciaIdx = answers[4];// 0 = Sin fondo de emergencia
+      // Lógica privada de restricciones de idoneidad
+      const horizonteIdx = answers[1];
+      const caidasIdx = answers[2];
+      const emergenciaIdx = answers[4];
 
       let maxAllowedLevel = 3;
       const internalFlags = [];
@@ -1883,7 +1883,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Envío Directo del Informe Completo en Segundo Plano vía FormSubmit AJAX
+    // Envío Directo del Informe Completo en Segundo Plano vía Web3Forms
     document.getElementById('sendReportBtn').addEventListener('click', async () => {
       if (reportSent) return;
 
@@ -1903,7 +1903,7 @@
 
       if (!lastEvaluationPayload || !activeProfileData) return;
 
-      // 1. Formatear Distribución Sugerida de Cartera en texto estructurado
+      // 1. Formatear Distribución Sugerida de Cartera
       const distribucionTexto = activeProfileData.allocation
         .map(item => `• ${item.label}: ${item.pct}%`)
         .join('\n');
@@ -1913,7 +1913,7 @@
         .map(inst => `[${inst.weight}] ${inst.title}\n   Detalle: ${inst.desc}\n   Activos/Tickers: ${inst.tickers.join(', ')}`)
         .join('\n\n');
 
-      // 3. Generar Payload Completo y Encriptado con auditoría privada (vetos y respuestas)
+      // 3. Generar Payload Completo y Encriptado con auditoría privada
       const fullRecord = {
         ...lastEvaluationPayload,
         user: {
@@ -1964,17 +1964,6 @@
         const result = await response.json();
 
         if (response.ok && result.success === true) {
-          reportSent = true;
-          sendBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Informe Completo Enviado';
-          statusEl.style.color = 'var(--accent-green)';
-          statusEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Informe completo enviado correctamente a Mazz Manager!';
-        } else {
-          throw new Error(result.message || 'No se pudo confirmar la entrega.');
-        }
-
-        const result = await response.json();
-
-        if (response.ok && (result.success === "true" || result.success === true)) {
           reportSent = true;
           sendBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Informe Completo Enviado';
           statusEl.style.color = 'var(--accent-green)';
