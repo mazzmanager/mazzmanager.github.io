@@ -1939,16 +1939,17 @@
       statusEl.textContent = 'Transmitiendo informe completo encriptado...';
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/mazzmanager@gmail.com', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: `Informe Test del Inversor - ${nameVal} [${activeProfileData.title}]`,
-            _replyto: emailVal,
-            _template: 'table',
+            access_key: '71768186-ac5c-4a6b-bc20-b7589c9ae1d0',
+            subject: `Informe Test del Inversor - ${nameVal} [${activeProfileData.title}]`,
+            from_name: 'Mazz Manager - Test del Inversor',
+            replyto: emailVal,
             Nombre_Inversor: nameVal,
             Correo_Inversor: emailVal,
             Perfil_Asignado: `${activeProfileData.title} (${activeProfileData.tag})`,
@@ -1959,6 +1960,17 @@
             Token_Auditoria_Encriptado: encryptedToken
           })
         });
+
+        const result = await response.json();
+
+        if (response.ok && result.success === true) {
+          reportSent = true;
+          sendBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Informe Completo Enviado';
+          statusEl.style.color = 'var(--accent-green)';
+          statusEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Informe completo enviado correctamente a Mazz Manager!';
+        } else {
+          throw new Error(result.message || 'No se pudo confirmar la entrega.');
+        }
 
         const result = await response.json();
 
