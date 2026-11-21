@@ -1,1 +1,1706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas Seguras Pro | Mazz Manager©</title>
+    <meta name="description" content="Generador de contraseñas seguras con entropía en tiempo real, frases memorables, auditoría local y código QR. Herramienta gratuita de Mazz Manager©.">
+    <meta name="author" content="Juan Martín Díaz Mazz">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Generador de Contraseñas Seguras Pro | Mazz Manager©">
+    <meta property="og:description" content="Crea contraseñas de alta entropía, frases memorables y audita tus claves localmente en tu navegador sin enviar datos a servidores.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mazzmanager.com.ar/generador-de-contrasenas.html">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T271H2P0TL');
+    </script>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&family=Squada+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Librería externa para generación de Código QR local -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #111111;
+            --header-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-hover: #252525;
+            --border-color: #2a2a2a;
+            --input-bg: #141414;
+            --text-primary: #f4f4f4;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --brand-red: #c0392b;
+            --btn-bg: #DC2626;
+            --btn-hover: #980000;
+            --btn-text: #ffffff;
+            --cyan-accent: #00cfb4;
+            --gold-accent: #f3ba2f;
+            --green-accent: #10B981;
+            --whatsapp-green: #25D366;
+            --copy-btn-bg: #10B981;
+            --copy-btn-hover: #059669;
+            --copy-btn-text: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.65);
+            --focus-ring: rgba(220, 38, 38, 0.3);
+            --strength-bar: #2a2a2a;
+            --badge-bg: rgba(220, 38, 38, 0.18);
+            --badge-text: #ff6b6b;
+            --watermark-opacity: 0.05;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --header-bg: #e9ecef;
+            --card-bg: #ffffff;
+            --card-hover: #f1f3f5;
+            --border-color: #dee2e6;
+            --input-bg: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --brand-red: #c0392b;
+            --btn-bg: #DC2626;
+            --btn-hover: #980000;
+            --btn-text: #ffffff;
+            --cyan-accent: #009688;
+            --gold-accent: #F59E0B;
+            --green-accent: #10B981;
+            --whatsapp-green: #25D366;
+            --copy-btn-bg: #10B981;
+            --copy-btn-hover: #059669;
+            --copy-btn-text: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --focus-ring: rgba(220, 38, 38, 0.2);
+            --strength-bar: #e9ecef;
+            --badge-bg: rgba(192, 57, 43, 0.12);
+            --badge-text: #c0392b;
+            --watermark-opacity: 0.04;
+        }
+
+        html, body {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        body, * {
+            box-sizing: border-box;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            -webkit-touch-callout: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        input, textarea, select, button, .theme-switcher-btn {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            pointer-events: auto !important;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 90px 16px 32px;
+            position: relative;
+        }
+
+        /* Navbar Unificada */
+        .mazz-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 66px;
+            z-index: 9500;
+            background: rgba(10, 10, 10, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .nav-container {
+            max-width: 1120px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: flex-start;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Squada One', sans-serif;
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .nav-brand span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-left: 2px;
+            margin-top: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 8px;
+            color: #cccccc;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link.active {
+            color: #00cfb4;
+        }
+
+        .nav-link i.fa-chevron-down {
+            font-size: 10px;
+            opacity: 0.7;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item:hover .nav-link i.fa-chevron-down,
+        .nav-item.open .nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 275px;
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-top: 2px solid #00cfb4;
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+            list-style: none;
+            z-index: 9600;
+        }
+
+        .nav-dropdown::before {
+            content: "";
+            position: absolute;
+            top: -14px;
+            left: 0;
+            right: 0;
+            height: 14px;
+            background: transparent;
+        }
+
+        .nav-item:hover .nav-dropdown,
+        .nav-item.open .nav-dropdown {
+            display: block;
+            animation: navFadeDown 0.18s ease-out;
+        }
+
+        @keyframes navFadeDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-dropdown-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00cfb4;
+            padding: 8px 12px 4px;
+            opacity: 0.9;
+        }
+
+        .nav-dropdown-divider {
+            height: 1px;
+            background: #2a2a2a;
+            margin: 6px 8px;
+        }
+
+        .nav-dropdown li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 7px;
+            color: #f4f4f4;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown li a i {
+            width: 16px;
+            text-align: center;
+            color: #00cfb4;
+            font-size: 13px;
+        }
+
+        .nav-dropdown li a:hover {
+            background: #252525;
+            color: #00cfb4;
+            transform: translateX(3px);
+        }
+
+        .nav-dropdown li a.coming-soon {
+            color: #888888;
+            font-weight: 500;
+            font-size: 12px;
+            cursor: default;
+        }
+
+        .nav-dropdown li a.coming-soon i {
+            color: #888888;
+            font-size: 12px;
+        }
+
+        .nav-dropdown li a.coming-soon:hover {
+            background: transparent;
+            color: #888888;
+            transform: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: #1e1e1e;
+            border: 1px solid #2a2a2a;
+            color: #f4f4f4;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 66px;
+                left: 0;
+                right: 0;
+                background: #0e0e0e;
+                border-bottom: 1px solid #2a2a2a;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 14px 18px 22px;
+                gap: 4px;
+                max-height: calc(100vh - 66px);
+                overflow-y: auto;
+            }
+            .nav-links.mobile-open { display: flex; }
+            .nav-link { width: 100%; justify-content: space-between; padding: 12px 14px; }
+            .nav-dropdown { position: static; box-shadow: none; border: 1px solid #2a2a2a; margin-top: 4px; margin-bottom: 6px; }
+            .nav-dropdown::before { display: none; }
+            .nav-item:hover .nav-dropdown { display: none; }
+            .nav-item.open .nav-dropdown { display: block; }
+        }
+
+        /* Marca de Agua de Fondo */
+        .bg-watermark {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: var(--watermark-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220' viewBox='0 0 340 220'%3E%3Cg transform='rotate(-30 170 110)'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black, Impact, sans-serif' font-weight='900' font-size='26' fill='%23888888' letter-spacing='3'%3EMAZZ MANAGER%3C/text%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* Barra Superior de Herramienta */
+        .top-brand-bar {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 540px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 14px;
+            padding: 0 4px;
+        }
+
+        .theme-switcher-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 7px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .theme-switcher-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--cyan-accent);
+        }
+
+        /* Contenedor Principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            background-color: var(--card-bg);
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 12px 36px var(--shadow-color);
+            width: 100%;
+            max-width: 540px;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        .section-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label.section-title, span.section-title {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            border-radius: 10px;
+            font-family: 'Lexend', sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, select:focus {
+            border-color: var(--btn-bg);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+        }
+
+        .length-control {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .length-control input[type="number"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            outline: none;
+            -moz-appearance: textfield;
+        }
+
+        .length-control input[type="number"]::-webkit-outer-spin-button,
+        .length-control input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .stepper-btn {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stepper-btn:hover {
+            border-color: var(--cyan-accent);
+            color: var(--cyan-accent);
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-primary);
+            cursor: pointer;
+            background: var(--input-bg);
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--text-muted);
+        }
+
+        .checkbox-label input {
+            accent-color: var(--btn-bg);
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+        }
+
+        .presets-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        @media (min-width: 480px) {
+            .presets-wrapper {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .preset-btn {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 6px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+        }
+
+        .preset-btn i {
+            font-size: 13px;
+            color: var(--cyan-accent);
+        }
+
+        .preset-btn:hover {
+            border-color: var(--btn-bg);
+            color: var(--text-primary);
+            background: var(--card-hover);
+        }
+
+        button.gen-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--btn-bg);
+            border: none;
+            color: var(--btn-text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button.gen-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-1px);
+        }
+
+        .result-wrapper {
+            position: relative;
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .result-field-container {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .result-container input {
+            width: 100%;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            background-color: var(--input-bg);
+            border-color: var(--border-color);
+            padding-right: 40px;
+        }
+
+        .visibility-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 15px;
+            padding: 4px;
+        }
+
+        .visibility-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .copy-btn {
+            white-space: nowrap;
+            padding: 0 18px;
+            background-color: var(--copy-btn-bg);
+            color: var(--copy-btn-text);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--copy-btn-hover);
+        }
+
+        .strength-meter {
+            height: 6px;
+            width: 100%;
+            background-color: var(--strength-bar);
+            border-radius: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .metrics-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .extra-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        @media (min-width: 480px) {
+            .extra-actions {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .action-btn {
+            padding: 9px 6px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn i {
+            color: var(--cyan-accent);
+        }
+
+        .action-btn:hover {
+            border-color: var(--cyan-accent);
+            background: var(--card-hover);
+        }
+
+        #qrContainer, #checkerContainer, #historyContainer {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--input-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        #qrContainer {
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+        }
+
+        .history-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--border-color);
+            word-break: break-all;
+            color: var(--text-primary);
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-copy-btn {
+            background: none;
+            border: none;
+            color: var(--cyan-accent);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px;
+        }
+
+        .history-copy-btn:hover {
+            opacity: 0.8;
+        }
+
+        .error {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Pie de Página Dinámico Mazz Manager */
+        .mazz-footer {
+            position: relative;
+            z-index: 2;
+            margin-top: 28px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+        }
+
+        .mazz-footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .mazz-footer a:hover {
+            color: var(--cyan-accent);
+        }
+
+        /* Widgets Flotantes Apilados */
+        .fixed-floating-stack {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .floating-item-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .fixed-share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--header-bg);
+            border: 2px solid #00cfb4;
+            color: #00cfb4;
+            font-size: 17px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        .fixed-share-btn:hover {
+            background: #00cfb4;
+            color: #0a0a0a;
+            transform: scale(1.05);
+        }
+
+        .fixed-donation-btn {
+            background: var(--header-bg);
+            border: 2px solid #DC2626;
+            color: #f4f4f4;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        [data-theme="light"] .fixed-donation-btn {
+            color: #212529;
+        }
+
+        .fixed-donation-btn i {
+            color: #DC2626;
+            animation: heartBeat 1.4s infinite ease-in-out;
+        }
+
+        .fixed-donation-btn:hover {
+            background: #DC2626;
+            color: #ffffff;
+        }
+
+        .fixed-donation-btn:hover i {
+            color: #ffffff;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.22); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        .floating-popover {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 10px);
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 10px;
+            min-width: 215px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .floating-popover.open {
+            display: flex;
+        }
+
+        .popover-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--text-muted);
+            padding: 4px 8px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2px;
+        }
+
+        .popover-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: 'Lexend', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .popover-link:hover {
+            background: var(--card-hover);
+            color: var(--cyan-accent);
+        }
+
+        .popover-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-watermark"></div>
+
+<!-- BARRA DE NAVEGACIÓN UNIFICADA -->
+<div id="mazz-nav-root"></div>
+<script src="mazz-nav.js"></script>
+
+<!-- Selector de Tema en Flujo -->
+<div class="top-brand-bar">
+    <button class="theme-switcher-btn" onclick="toggleTheme()" id="themeToggleBtn" title="Cambiar tema">
+        <i id="themeIcon" class="fa-solid fa-sun"></i>
+        <span id="themeText">Modo Claro</span>
+    </button>
+</div>
+
+<div class="container">
+    <div class="header">
+        <h1><i class="fa-solid fa-shield-halved" style="color: var(--btn-bg);"></i> Generador de Contraseñas <span class="badge">PRO</span></h1>
+    </div>
+
+    <!-- Presets Rápidos -->
+    <div class="presets-wrapper">
+        <button class="preset-btn" onclick="applyPreset('bank')"><i class="fa-solid fa-building-columns"></i> Banca (PIN)</button>
+        <button class="preset-btn" onclick="applyPreset('wifi')"><i class="fa-solid fa-wifi"></i> Wi-Fi Seg.</button>
+        <button class="preset-btn" onclick="applyPreset('memorable')"><i class="fa-solid fa-brain"></i> Memorable</button>
+        <button class="preset-btn" onclick="applyPreset('max')"><i class="fa-solid fa-lock"></i> Máxima Seg.</button>
+    </div>
+
+    <!-- Sección Modo de Generación -->
+    <div class="form-group">
+        <label class="section-title" for="modeSelect">Modo de Algoritmo</label>
+        <select id="modeSelect" onchange="toggleModeUI()">
+            <option value="standard">Estándar / Caracteres Aleatorios</option>
+            <option value="passphrase">Frase Memorable (Passphrase)</option>
+            <option value="pronounceable">Fácil de Pronunciar</option>
+        </select>
+    </div>
+
+    <!-- Control de Longitud Global -->
+    <div class="form-group">
+        <label class="section-title" id="lengthLabel" for="length">Longitud Objetivo (4 a 32 caracteres)</label>
+        <div class="length-control">
+            <button type="button" class="stepper-btn" onclick="changeLength(-1)">−</button>
+            <input type="number" id="length" min="4" max="32" value="14" oninput="generatePassword()">
+            <button type="button" class="stepper-btn" onclick="changeLength(1)">+</button>
+        </div>
+    </div>
+
+    <!-- Parámetros Exclusivos del Modo Estándar -->
+    <div id="standardOptions">
+        <div class="form-group">
+            <label class="section-title">Filtros de Caracteres</label>
+            <div class="checkbox-grid">
+                <label class="checkbox-label"><input type="checkbox" id="chkUpper" checked onchange="generatePassword()"> Mayúsculas (A-Z)</label>
+                <label class="checkbox-label"><input type="checkbox" id="chkLower" checked onchange="generatePassword()"> Minúsculas (a-z)</label>
+                <label class="checkbox-label"><input type="checkbox" id="chkNum" checked onchange="generatePassword()"> Números (0-9)</label>
+                <label class="checkbox-label"><input type="checkbox" id="chkSym" checked onchange="generatePassword()"> Símbolos (!@#$)</label>
+            </div>
+            <div style="margin-top: 10px;">
+                <label class="checkbox-label"><input type="checkbox" id="chkAmbiguous" onchange="generatePassword()"> Excluir caracteres ambiguos (0, O, l, 1, I)</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="section-title" for="customWord">Palabra Clave Integrada</label>
+            <input type="text" id="customWord" placeholder="Ej: miClave (ofuscación Leet aleatoria)" oninput="generatePassword()">
+        </div>
+    </div>
+
+    <button class="gen-btn" onclick="generatePassword()">
+        <i class="fa-solid fa-rotate"></i> Generar Contraseña
+    </button>
+
+    <!-- Resultado, Visibilidad y Copiado -->
+    <div class="result-wrapper result-container">
+        <div class="result-field-container">
+            <input type="password" id="result" readonly placeholder="Resultado aquí">
+            <button class="visibility-btn" id="visibilityBtn" onclick="togglePasswordVisibility()" title="Mostrar/Ocultar">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+        </div>
+        <button class="copy-btn" id="copyBtn" onclick="copyPassword()">Copiar</button>
+    </div>
+
+    <!-- Medidor y Métricas -->
+    <div class="strength-meter">
+        <div id="strengthFill" class="strength-fill"></div>
+    </div>
+    <div class="metrics-info">
+        <span id="entropyText">Entropía: 0 bits</span>
+        <span id="crackTimeText">Tiempo estimado: -</span>
+    </div>
+
+    <!-- Acciones Adicionales -->
+    <div class="extra-actions">
+        <button class="action-btn" onclick="toggleChecker()"><i class="fa-solid fa-magnifying-glass"></i> Probar Clave</button>
+        <button class="action-btn" onclick="toggleQR()"><i class="fa-solid fa-qrcode"></i> Código QR</button>
+        <button class="action-btn" onclick="toggleHistory()"><i class="fa-solid fa-clock-rotate-left"></i> Historial</button>
+        <a class="action-btn" href="javascript:void(0)" onclick="openInNewWindow()" title="Abrir en ventana independiente"><i class="fa-solid fa-up-right-from-square"></i> Ventana</a>
+    </div>
+
+    <!-- Contenedor Auditor de Claves Externas -->
+    <div id="checkerContainer">
+        <label class="section-title">Auditar tu propia contraseña</label>
+        <div class="section-desc">Escribe una clave para calcular su entropía en tiempo real (procesamiento 100% local, no se guarda).</div>
+        <input type="text" id="customCheckInput" placeholder="Ingresa una clave para evaluar..." oninput="auditCustomPassword()">
+        <div id="customMetrics" style="font-size: 12px; margin-top: 8px; color: var(--text-secondary);"></div>
+    </div>
+
+    <!-- Contenedor QR -->
+    <div id="qrContainer">
+        <div id="qrcode"></div>
+        <div style="font-size: 11px; color: #333; margin-top: 10px; font-weight: 500;">Escanea para transferir a tu dispositivo móvil.</div>
+    </div>
+
+    <!-- Contenedor Historial -->
+    <div id="historyContainer">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="section-title" style="font-size: 11px; margin: 0;">Últimas claves (Solo RAM)</span>
+            <button onclick="clearHistory()" style="background:none; border:none; color:#ff4d4d; font-family:'Montserrat',sans-serif; font-size:10px; cursor:pointer; font-weight:800; text-transform:uppercase;">Limpiar</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+    </div>
+
+    <div id="errorMsg" class="error"></div>
+</div>
+
+<!-- Pie de Página Dinámico Oficial -->
+<footer class="mazz-footer">
+    Mazz Manager© | <span id="dynamicYear"></span> | Todos los Derechos Reservados
+</footer>
+
+<!-- Widgets Flotantes Apilados -->
+<div class="fixed-floating-stack" id="floatingStack">
+    <!-- Widget Compartir -->
+    <div class="floating-item-wrapper">
+        <div class="floating-popover" id="sharePopover">
+            <div class="popover-title">Compartir Herramienta</div>
+            <a href="#" id="shareWa" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp</a>
+            <a href="#" id="shareTg" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-brands fa-telegram" style="color: #0088cc;"></i> Telegram</a>
+            <a href="#" id="shareX" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-brands fa-x-twitter"></i> X / Twitter</a>
+            <a href="#" id="shareFb" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-brands fa-facebook" style="color: #1877F2;"></i> Facebook</a>
+            <a href="#" id="shareMail" class="popover-link"><i class="fa-solid fa-envelope" style="color: #f3ba2f;"></i> Email</a>
+            <button type="button" class="popover-link" onclick="copyShareUrl(this)"><i class="fa-solid fa-link" style="color: #00cfb4;"></i> <span>Copiar enlace</span></button>
+        </div>
+        <button type="button" class="fixed-share-btn" onclick="toggleFloatingMenu('sharePopover')" title="Compartir">
+            <i class="fa-solid fa-share-nodes"></i>
+        </button>
+    </div>
+
+    <!-- Widget Donaciones -->
+    <div class="floating-item-wrapper">
+        <div class="floating-popover" id="donationPopover">
+            <div class="popover-title">Apoya a Mazz Manager©</div>
+            <a href="https://ko-fi.com/mazzmanager" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-solid fa-mug-hot" style="color: #FF5E5B;"></i> Ko-fi</a>
+            <a href="https://link.mercadopago.com.ar/mazzmanager" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-solid fa-handshake-angle" style="color: #009EE3;"></i> Mercado Pago</a>
+            <a href="https://beacons.ai/mazzmanager/usdt" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-solid fa-coins" style="color: #26A17B;"></i> USDT (BEP20)</a>
+            <a href="https://livepix.gg/mazzmanager" target="_blank" rel="noopener noreferrer" class="popover-link"><i class="fa-brands fa-pix" style="color: #32BCAD;"></i> Pix</a>
+        </div>
+        <button type="button" class="fixed-donation-btn" onclick="toggleFloatingMenu('donationPopover')">
+            <i class="fa-solid fa-heart"></i> Apoya este proyecto
+        </button>
+    </div>
+</div>
+
+<script>
+    // Año dinámico en footer
+    document.getElementById('dynamicYear').textContent = new Date().getFullYear();
+
+    // Reglas de Seguridad y Protección de Contenido
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    ['copy', 'cut', 'paste', 'dragstart'].forEach(evt => {
+        document.addEventListener(evt, e => e.preventDefault());
+    });
+    document.addEventListener('keydown', e => {
+        if (
+            e.keyCode === 123 ||
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+            (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+        ) {
+            e.preventDefault();
+        }
+    });
+
+    // Gestión de Widgets Flotantes
+    function setupShareLinks() {
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+        document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+        document.getElementById('shareTg').href = `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`;
+        document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+        document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+        document.getElementById('shareMail').href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+    }
+    setupShareLinks();
+
+    function toggleFloatingMenu(id) {
+        const target = document.getElementById(id);
+        const isOpen = target.classList.contains('open');
+        document.querySelectorAll('.floating-popover').forEach(p => p.classList.remove('open'));
+        if (!isOpen) target.classList.add('open');
+    }
+
+    document.addEventListener('click', (e) => {
+        const stack = document.getElementById('floatingStack');
+        if (stack && !stack.contains(e.target)) {
+            document.querySelectorAll('.floating-popover').forEach(p => p.classList.remove('open'));
+        }
+    });
+
+    function copyShareUrl(btn) {
+        const url = window.location.href;
+        const span = btn.querySelector('span');
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(url).then(() => {
+                span.textContent = '¡Enlace copiado!';
+                setTimeout(() => { span.textContent = 'Copiar enlace'; }, 2000);
+            });
+        } else {
+            fallbackCopy(url, () => {
+                span.textContent = '¡Enlace copiado!';
+                setTimeout(() => { span.textContent = 'Copiar enlace'; }, 2000);
+            });
+        }
+    }
+
+    // Gestión de Tema (Oscuro por defecto / Claro opcional)
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    updateThemeUI(savedTheme);
+
+    function toggleTheme() {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const newTheme = isLight ? 'dark' : 'light';
+        if (newTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        localStorage.setItem('theme', newTheme);
+        updateThemeUI(newTheme);
+    }
+
+    function updateThemeUI(theme) {
+        const themeText = document.getElementById('themeText');
+        const themeIcon = document.getElementById('themeIcon');
+        if (theme === 'light') {
+            themeText.innerText = 'Modo Oscuro';
+            themeIcon.className = 'fa-solid fa-moon';
+        } else {
+            themeText.innerText = 'Modo Claro';
+            themeIcon.className = 'fa-solid fa-sun';
+        }
+    }
+
+    // Lógica del Generador de Contraseñas
+    const wordsList = ["cable", "reloj", "trueno", "nube", "fuego", "sol", "campo", "sombra", "viento", "roca", "puente", "sendero", "haz", "ritmo", "vector", "matriz", "codigo", "clave", "cielo", "mar", "llave", "faros", "muro", "arbol", "monte", "prisma", "orbita", "truco", "cascada", "esfera"];
+    const vowels = "aeiou";
+    const consonants = "bcdfghjklmnpqrstvwxyz";
+
+    let sessionHistory = [];
+    let isPasswordVisible = false;
+
+    function togglePasswordVisibility() {
+        const input = document.getElementById('result');
+        const btn = document.getElementById('visibilityBtn');
+        isPasswordVisible = !isPasswordVisible;
+        input.type = isPasswordVisible ? 'text' : 'password';
+        btn.innerHTML = isPasswordVisible ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+    }
+
+    function changeLength(delta) {
+        const input = document.getElementById('length');
+        let currentVal = parseInt(input.value) || 12;
+        let min = parseInt(input.min) || 4;
+        let max = parseInt(input.max) || 32;
+        
+        let newVal = currentVal + delta;
+        if (newVal >= min && newVal <= max) {
+            input.value = newVal;
+            generatePassword();
+        }
+    }
+
+    function toggleModeUI() {
+        const mode = document.getElementById('modeSelect').value;
+        const stdOpt = document.getElementById('standardOptions');
+        const lengthInput = document.getElementById('length');
+        const lengthLabel = document.getElementById('lengthLabel');
+
+        if (mode === 'standard') {
+            stdOpt.style.display = 'block';
+            lengthInput.min = 4;
+            lengthInput.max = 32;
+            lengthLabel.innerText = "Longitud Total (4 a 32 caracteres)";
+        } else if (mode === 'passphrase') {
+            stdOpt.style.display = 'none';
+            lengthInput.min = 8;
+            lengthInput.max = 32;
+            lengthLabel.innerText = "Longitud Mínima (8 a 32 caracteres)";
+            if (parseInt(lengthInput.value) < 8) lengthInput.value = 12;
+        } else if (mode === 'pronounceable') {
+            stdOpt.style.display = 'none';
+            lengthInput.min = 4;
+            lengthInput.max = 32;
+            lengthLabel.innerText = "Longitud Exacta (4 a 32 caracteres)";
+        }
+        generatePassword();
+    }
+
+    function applyPreset(preset) {
+        const modeSelect = document.getElementById('modeSelect');
+        const lengthInput = document.getElementById('length');
+        const chkUpper = document.getElementById('chkUpper');
+        const chkLower = document.getElementById('chkLower');
+        const chkNum = document.getElementById('chkNum');
+        const chkSym = document.getElementById('chkSym');
+        const chkAmbiguous = document.getElementById('chkAmbiguous');
+
+        if (preset === 'bank') {
+            modeSelect.value = 'standard';
+            lengthInput.value = 6;
+            chkUpper.checked = false;
+            chkLower.checked = false;
+            chkNum.checked = true;
+            chkSym.checked = false;
+            chkAmbiguous.checked = false;
+        } else if (preset === 'wifi') {
+            modeSelect.value = 'standard';
+            lengthInput.value = 20;
+            chkUpper.checked = true;
+            chkLower.checked = true;
+            chkNum.checked = true;
+            chkSym.checked = true;
+            chkAmbiguous.checked = true;
+        } else if (preset === 'memorable') {
+            modeSelect.value = 'passphrase';
+            lengthInput.value = 16;
+        } else if (preset === 'max') {
+            modeSelect.value = 'standard';
+            lengthInput.value = 32;
+            chkUpper.checked = true;
+            chkLower.checked = true;
+            chkNum.checked = true;
+            chkSym.checked = true;
+            chkAmbiguous.checked = false;
+        }
+
+        toggleModeUI();
+    }
+
+    const leetMap = {
+        'a': '@', 'A': '4', 'e': '3', 'E': '3',
+        'i': '1', 'I': '!', 'o': '0', 'O': '0',
+        's': '$', 'S': '5', 't': '7', 'T': '7'
+    };
+
+    function obfuscateWord(word) {
+        return word.split('').map(char => {
+            if (leetMap[char] && cryptoGetRandomInt(2) === 1) {
+                return leetMap[char];
+            }
+            return char;
+        }).join('');
+    }
+
+    function cryptoGetRandomInt(max) {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        return array[0] % max;
+    }
+
+    function generatePassword() {
+        const mode = document.getElementById('modeSelect').value;
+        const lengthInput = document.getElementById('length');
+        let targetLength = parseInt(lengthInput.value) || 12;
+        const errorMsg = document.getElementById('errorMsg');
+        errorMsg.innerText = '';
+        
+        let finalPassword = "";
+        let poolSize = 0;
+
+        if (mode === 'passphrase') {
+            if (targetLength < 8 || targetLength > 32) {
+                errorMsg.innerText = 'La frase memorable debe tener entre 8 y 32 caracteres.';
+                return;
+            }
+            let selectedWords = [];
+            let currentLen = 0;
+            
+            while (currentLen < targetLength - 3) {
+                let w = wordsList[cryptoGetRandomInt(wordsList.length)];
+                selectedWords.push(w);
+                currentLen = selectedWords.join('-').length;
+            }
+            
+            let num = cryptoGetRandomInt(90) + 10;
+            let sym = "!@#$%^&*"[cryptoGetRandomInt(8)];
+            finalPassword = `${selectedWords.join('-')}-${num}${sym}`;
+            poolSize = 70;
+
+        } else if (mode === 'pronounceable') {
+            if (targetLength < 4 || targetLength > 32) {
+                errorMsg.innerText = 'La clave pronunciable debe tener entre 4 y 32 caracteres.';
+                return;
+            }
+            
+            let baseLength = Math.max(2, targetLength - 3);
+            for (let i = 0; i < baseLength; i++) {
+                if (i % 2 === 0) {
+                    finalPassword += consonants[cryptoGetRandomInt(consonants.length)];
+                } else {
+                    finalPassword += vowels[cryptoGetRandomInt(vowels.length)];
+                }
+            }
+            
+            let remaining = targetLength - finalPassword.length;
+            if (remaining >= 3) {
+                finalPassword += (cryptoGetRandomInt(90) + 10) + "!@#"[cryptoGetRandomInt(3)];
+            } else {
+                for (let i = 0; i < remaining; i++) {
+                    finalPassword += cryptoGetRandomInt(10);
+                }
+            }
+            finalPassword = finalPassword.substring(0, targetLength);
+            poolSize = 30;
+
+        } else {
+            if (isNaN(targetLength) || targetLength < 4 || targetLength > 32) {
+                errorMsg.innerText = 'La longitud debe ser entre 4 y 32 caracteres.';
+                return;
+            }
+
+            const customWord = document.getElementById('customWord').value.trim();
+            let lettersUp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let lettersLow = 'abcdefghijklmnopqrstuvwxyz';
+            let numbers = '0123456789';
+            let symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            if (document.getElementById('chkAmbiguous').checked) {
+                lettersUp = lettersUp.replace(/[OI]/g, '');
+                lettersLow = lettersLow.replace(/[l]/g, '');
+                numbers = numbers.replace(/[01]/g, '');
+            }
+
+            let availableLetters = '';
+            if (document.getElementById('chkUpper').checked) availableLetters += lettersUp;
+            if (document.getElementById('chkLower').checked) availableLetters += lettersLow;
+            
+            let charPool = availableLetters;
+            if (document.getElementById('chkNum').checked) charPool += numbers;
+            if (document.getElementById('chkSym').checked) charPool += symbols;
+
+            if (charPool.length === 0) {
+                errorMsg.innerText = 'Debes seleccionar al menos un grupo de caracteres.';
+                return;
+            }
+
+            poolSize = charPool.length;
+            let processedWord = customWord ? obfuscateWord(customWord) : '';
+
+            if (processedWord.length > targetLength) {
+                errorMsg.innerText = `La palabra superó la longitud de ${targetLength} caracteres.`;
+                return;
+            }
+
+            let remainingLength = targetLength - processedWord.length;
+            let requiredChars = [];
+
+            if (document.getElementById('chkUpper').checked && lettersUp.length && !/[A-Z]/.test(processedWord)) {
+                requiredChars.push(lettersUp[cryptoGetRandomInt(lettersUp.length)]);
+            }
+            if (document.getElementById('chkLower').checked && lettersLow.length && !/[a-z]/.test(processedWord)) {
+                requiredChars.push(lettersLow[cryptoGetRandomInt(lettersLow.length)]);
+            }
+            if (document.getElementById('chkNum').checked && numbers.length && !/[0-9]/.test(processedWord)) {
+                requiredChars.push(numbers[cryptoGetRandomInt(numbers.length)]);
+            }
+            if (document.getElementById('chkSym').checked && symbols.length && !/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(processedWord)) {
+                requiredChars.push(symbols[cryptoGetRandomInt(symbols.length)]);
+            }
+
+            if (requiredChars.length > remainingLength) {
+                errorMsg.innerText = `La palabra es muy larga para cumplir las reglas en ${targetLength} espacios.`;
+                return;
+            }
+
+            let fillerChars = [];
+            let fillerLength = remainingLength - requiredChars.length;
+            for (let i = 0; i < fillerLength; i++) {
+                fillerChars.push(charPool[cryptoGetRandomInt(charPool.length)]);
+            }
+
+            let extraPool = [...requiredChars, ...fillerChars];
+            for (let i = extraPool.length - 1; i > 0; i--) {
+                const j = cryptoGetRandomInt(i + 1);
+                [extraPool[i], extraPool[j]] = [extraPool[j], extraPool[i]];
+            }
+
+            let insertPosition = cryptoGetRandomInt(extraPool.length + 1);
+            extraPool.splice(insertPosition, 0, processedWord);
+
+            finalPassword = extraPool.join('');
+        }
+
+        document.getElementById('result').value = finalPassword;
+        updateMetrics(finalPassword, poolSize);
+        addToHistory(finalPassword);
+        if (document.getElementById('qrContainer').style.display === 'flex') {
+            generateQR(finalPassword);
+        }
+    }
+
+    function calculateEntropy(pwd, customPoolSize = null) {
+        if (!pwd) return { entropy: 0, crackTime: '-' };
+        let pool = customPoolSize;
+        if (!pool) {
+            pool = 0;
+            if (/[a-z]/.test(pwd)) pool += 26;
+            if (/[A-Z]/.test(pwd)) pool += 26;
+            if (/[0-9]/.test(pwd)) pool += 10;
+            if (/[^a-zA-Z0-9]/.test(pwd)) pool += 32;
+        }
+        let entropy = Math.round(pwd.length * Math.log2(pool || 10));
+        let crackTime = '-';
+
+        if (entropy < 35) crackTime = 'Instantáneo';
+        else if (entropy < 55) crackTime = 'Horas / Días';
+        else if (entropy < 75) crackTime = 'Años';
+        else crackTime = 'Siglos';
+
+        return { entropy, crackTime };
+    }
+
+    function updateMetrics(password, poolSize) {
+        if (!password) return;
+        const { entropy, crackTime } = calculateEntropy(password, poolSize);
+        
+        document.getElementById('entropyText').innerText = `Entropía: ${entropy} bits`;
+
+        let fill = document.getElementById('strengthFill');
+        let crackText = document.getElementById('crackTimeText');
+
+        let percentage = Math.min(100, Math.max(10, (entropy / 80) * 100));
+        fill.style.width = percentage + '%';
+
+        if (entropy < 35) {
+            fill.style.backgroundColor = '#DC2626';
+        } else if (entropy < 55) {
+            fill.style.backgroundColor = '#F59E0B';
+        } else if (entropy < 75) {
+            fill.style.backgroundColor = '#10B981';
+        } else {
+            fill.style.backgroundColor = '#00cfb4';
+        }
+        crackText.innerText = `Tiempo estimado: ${crackTime}`;
+    }
+
+    function auditCustomPassword() {
+        const val = document.getElementById('customCheckInput').value;
+        const info = document.getElementById('customMetrics');
+        if (!val) {
+            info.innerHTML = '';
+            return;
+        }
+        const { entropy, crackTime } = calculateEntropy(val);
+        info.innerHTML = `Entropía calculada: <b>${entropy} bits</b> | Tiempo de descifrado estimado: <b>${crackTime}</b>`;
+    }
+
+    function copyPassword(specificText = null) {
+        const textToCopy = specificText || document.getElementById('result').value;
+        const copyBtn = document.getElementById('copyBtn');
+        if (!textToCopy) return;
+
+        const handleSuccess = () => {
+            if (!specificText) {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '¡Copiado! ✓';
+                setTimeout(() => { copyBtn.innerText = originalText; }, 2000);
+            }
+
+            setTimeout(() => {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText('');
+                }
+            }, 45000);
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(handleSuccess).catch(() => {
+                fallbackCopy(textToCopy, handleSuccess);
+            });
+        } else {
+            fallbackCopy(textToCopy, handleSuccess);
+        }
+    }
+
+    function fallbackCopy(text, callback) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            if (callback) callback();
+        } catch (err) {
+            console.error('Error al copiar: ', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function toggleChecker() {
+        const container = document.getElementById('checkerContainer');
+        container.style.display = container.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function toggleQR() {
+        const container = document.getElementById('qrContainer');
+        if (container.style.display === 'flex') {
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'flex';
+            generateQR(document.getElementById('result').value);
+        }
+    }
+
+    function generateQR(text) {
+        const qrElement = document.getElementById("qrcode");
+        qrElement.innerHTML = "";
+        if (text) {
+            new QRCode(qrElement, {
+                text: text,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+    }
+
+    function toggleHistory() {
+        const container = document.getElementById('historyContainer');
+        container.style.display = container.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function addToHistory(password) {
+        if (!password) return;
+        if (sessionHistory.includes(password)) return;
+        sessionHistory.unshift(password);
+        if (sessionHistory.length > 5) sessionHistory.pop();
+        renderHistory();
+    }
+
+    function renderHistory() {
+        const list = document.getElementById('historyList');
+        list.innerHTML = '';
+        sessionHistory.forEach(pwd => {
+            const li = document.createElement('li');
+            li.className = 'history-item';
+            const span = document.createElement('span');
+            span.textContent = pwd;
+            const btn = document.createElement('button');
+            btn.className = 'history-copy-btn';
+            btn.title = 'Copiar';
+            btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+            btn.onclick = () => copyPassword(pwd);
+            li.appendChild(span);
+            li.appendChild(btn);
+            list.appendChild(li);
+        });
+    }
+
+    function clearHistory() {
+        sessionHistory = [];
+        renderHistory();
+    }
+
+    function openInNewWindow() {
+        const newWin = window.open('about:blank', '_blank');
+        if (newWin) {
+            newWin.document.write(document.documentElement.outerHTML);
+            newWin.document.close();
+        }
+    }
+
+    // Inicialización
+    generatePassword();
+</script>
+</body>
+</html>
