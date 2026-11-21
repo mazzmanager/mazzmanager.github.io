@@ -2,6 +2,9 @@
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
   const isInicio = currentPage === 'index.html' || currentPage === '';
+  const isInnovacion = [
+    'generador-de-contrasenas.html'
+  ].includes(currentPage);
   const isFinanzas = [
     'informe-de-mercado.html',
     'aprende-a-leer-earnings.html',
@@ -28,7 +31,7 @@
 
         <!-- PILAR 1: INNOVACIÓN -->
         <li class="nav-item" id="dropdownInnovacion">
-          <button type="button" class="nav-link" onclick="toggleDropdown('dropdownInnovacion')">
+          <button type="button" class="nav-link ${isInnovacion ? 'active' : ''}" onclick="toggleDropdown('dropdownInnovacion')">
             <span><i class="fas fa-microchip"></i> Innovación</span>
             <i class="fas fa-chevron-down"></i>
           </button>
@@ -37,7 +40,11 @@
             <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
             <div class="nav-dropdown-divider"></div>
             <li class="nav-dropdown-header">Herramientas</li>
-            <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
+            <li>
+              <a href="generador-de-contrasenas.html">
+                <i class="fas fa-shield-halved"></i> Generador de Contraseñas
+              </a>
+            </li>
             <div class="nav-dropdown-divider"></div>
             <li class="nav-dropdown-header">Tutoriales</li>
             <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
