@@ -504,81 +504,9 @@
 </head>
 <body class="bg-mazz-gray-light text-gray-900 dark:bg-mazz-dark dark:text-gray-100 font-sans leading-relaxed relative transition-colors duration-300 pt-[66px]">
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
-    <nav class="mazz-navbar" id="mazzNavbar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-brand">Mazz Manager<span>©</span></a>
-
-        <button type="button" class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Abrir menú">
-          <i class="fas fa-bars" id="navToggleIcon"></i>
-        </button>
-
-        <ul class="nav-links" id="navLinks">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a>
-          </li>
-
-          <!-- INNOVACIÓN -->
-          <li class="nav-item" id="dropdownInnovacion">
-            <button type="button" class="nav-link" onclick="toggleDropdown('dropdownInnovacion')">
-              <span><i class="fas fa-microchip"></i> Innovación</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="nav-dropdown">
-              <li class="nav-dropdown-header">Posteos</li>
-              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
-              <div class="nav-dropdown-divider"></div>
-              <li class="nav-dropdown-header">Herramientas</li>
-              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
-              <div class="nav-dropdown-divider"></div>
-              <li class="nav-dropdown-header">Tutoriales</li>
-              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
-            </ul>
-          </li>
-
-          <!-- FINANZAS -->
-          <li class="nav-item" id="dropdownFinanzas">
-            <button type="button" class="nav-link active" onclick="toggleDropdown('dropdownFinanzas')">
-              <span><i class="fas fa-chart-line"></i> Finanzas</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="nav-dropdown">
-              <li class="nav-dropdown-header">Mercados</li>
-              <li><a href="informe-de-mercado.html"><i class="fas fa-newspaper"></i> Informe de Mercados</a></li>
-              <div class="nav-dropdown-divider"></div>
-              <li class="nav-dropdown-header">Learn (Aprender)</li>
-              <li><a href="aprende-a-leer-earnings.html"><i class="fas fa-book-open"></i> Aprende a Leer Earnings</a></li>
-              <li><a href="opera-bien-cedears.html"><i class="fas fa-layer-group"></i> Operá Bien CEDEARs</a></li>
-              <div class="nav-dropdown-divider"></div>
-              <li class="nav-dropdown-header">Herramientas & Tutoriales</li>
-              <li><a href="calculadora-renta-fija.html"><i class="fas fa-calculator"></i> Calculadora Renta Fija Pro</a></li>
-              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
-            </ul>
-          </li>
-
-          <!-- MENTALIDAD -->
-          <li class="nav-item" id="dropdownMentalidad">
-            <button type="button" class="nav-link" onclick="toggleDropdown('dropdownMentalidad')">
-              <span><i class="fas fa-brain"></i> Mentalidad</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="nav-dropdown">
-              <li class="nav-dropdown-header">Posteos</li>
-              <li><a href="acerca.html#mentalidad"><i class="fas fa-compass"></i> Enfoque & Psicología Operativa</a></li>
-              <li><a href="#" class="coming-soon" onclick="return false;"><i class="fas fa-clock"></i> Nuevos recursos próximamente</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a href="acerca.html" class="nav-link"><i class="fas fa-user-tie"></i> Acerca de</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="contacto.html" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <!-- BARRA DE NAVEGACIÓN UNIFICADA (CARGADA DESDE mazz-nav.js) -->
+    <div id="mazz-nav-root"></div>
+    <script src="mazz-nav.js"></script>
 
     <div class="bg-watermark"></div>
 
@@ -704,7 +632,7 @@
                                 </div>
                                 <div class="flex justify-between text-xs">
                                     <span class="text-gray-600 dark:text-gray-400">
-- Comisiones por Retiros Parciales 
+                                        • Comisiones por Retiros Parciales 
                                         <span id="contadorRetiros" class="text-mazz-red font-bold">(0 retiros)</span>:
                                     </span>
                                     <span class="font-semibold text-mazz-red" id="comisionRetiros">$0</span>
@@ -817,21 +745,6 @@
     </div>
 
     <script>
-        // NAVEGACIÓN MÓVIL Y MENÚS DESPLEGABLES
-        function toggleMobileNav() {
-            const navLinks = document.getElementById('navLinks');
-            const icon = document.getElementById('navToggleIcon');
-            navLinks.classList.toggle('mobile-open');
-            icon.className = navLinks.classList.contains('mobile-open') ? 'fas fa-xmark' : 'fas fa-bars';
-        }
-
-        function toggleDropdown(id) {
-            const target = document.getElementById(id);
-            const wasOpen = target.classList.contains('open');
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
-            if (!wasOpen) target.classList.add('open');
-        }
-
         function toggleFixedMenu(e) {
             if (e) e.stopPropagation();
             document.getElementById('fixedDonateMenu').classList.toggle('active');
@@ -948,10 +861,6 @@
                 const shareMenu = document.getElementById('fixedShareMenu');
                 if (donateMenu) donateMenu.classList.remove('active');
                 if (shareMenu) shareMenu.classList.remove('active');
-            }
-            const navbar = document.getElementById('mazzNavbar');
-            if (navbar && !navbar.contains(e.target)) {
-                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
             }
         });
 
