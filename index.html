@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mazz Manager© | Innovación • Finanzas • Mentalidad</title>
+<meta name="description" content="Ecosistema digital de Mazz Manager©: educación financiera, análisis de mercados, herramientas de inversión, innovación tecnológica y mentalidad.">
+<meta name="author" content="Mazz Manager">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Mazz Manager© | Innovación • Finanzas • Mentalidad">
+<meta property="og:description" content="Potenciá tu mentalidad y aplicá tecnología para invertir con inteligencia. Herramientas prácticas, análisis diario y educación financiera real.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mazzmanager.com.ar/">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T271H2P0TL"></script>
@@ -564,6 +571,41 @@
     max-width: 620px;
   }
 
+  .hero-cta-group {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .btn-hero-test {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: #c0392b;
+    color: #ffffff;
+    border: 1px solid #e74c3c;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 6px 22px rgba(192, 57, 43, 0.45);
+    transition: all 0.25s ease;
+    pointer-events: auto;
+  }
+
+  .btn-hero-test:hover {
+    background: #980000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(231, 76, 60, 0.65);
+  }
+
   /* CONTENEDOR DEL RESTO DE LA PÁGINA */
   .wrapper {
     max-width: 1080px;
@@ -692,7 +734,7 @@
     opacity: 0.9;
   }
 
-  /* TARJETA SECUNDARIA DE INFORMES PREMARKET */
+  /* TARJETAS DESTACADAS (INFORMES PREMARKET & TEST DEL INVERSOR) */
   .premarket-strip {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -704,13 +746,33 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 36px;
+    margin-bottom: 18px;
     transition: all 0.25s ease;
   }
 
   .premarket-strip:hover {
     background: var(--bg-card-hover);
     border-color: var(--accent-red);
+  }
+
+  .test-inversor-strip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-cyan);
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 36px;
+    transition: all 0.25s ease;
+  }
+
+  .test-inversor-strip:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-cyan);
   }
 
   .premarket-info {
@@ -724,6 +786,17 @@
     text-transform: uppercase;
     letter-spacing: 1.2px;
     color: var(--accent-red);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .test-inversor-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent-cyan);
     margin-bottom: 4px;
     display: block;
   }
@@ -763,6 +836,31 @@
   .btn-premarket-secondary:hover {
     background: var(--accent-red);
     color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-test-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-cyan);
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+    pointer-events: auto;
+  }
+
+  .btn-test-secondary:hover {
+    background: var(--accent-cyan);
+    color: #111111;
     transform: translateY(-2px);
   }
 
@@ -1270,8 +1368,8 @@
             </a>
           </li>
           <li>
-            <a href="#" class="coming-soon" onclick="return false;">
-              <i class="fas fa-clock"></i> Nuevos recursos próximamente
+            <a href="test-inversor.html">
+              <i class="fas fa-sliders"></i> Test del Inversor
             </a>
           </li>
         </ul>
@@ -1338,6 +1436,12 @@
 
     <h1>Potenciá tu mentalidad y aplicá tecnología para invertir con inteligencia</h1>
     <p>Aprendé a dominar el mercado desde cero con herramientas prácticas, análisis diario y educación financiera real.</p>
+
+    <div class="hero-cta-group">
+      <a href="test-inversor.html" class="btn-hero-test">
+        <i class="fas fa-compass"></i> Descubrí tu Perfil de Inversor
+      </a>
+    </div>
   </div>
 </header>
 
@@ -1388,6 +1492,18 @@
     </div>
     <a href="informe-de-mercado.html" class="btn-premarket-secondary">
       <i class="fas fa-chart-line"></i> Ver Informe Premarket
+    </a>
+  </div>
+
+  <!-- ACCESO DIRECTO AL TEST DEL INVERSOR -->
+  <div class="test-inversor-strip">
+    <div class="premarket-info">
+      <span class="test-inversor-tag">Herramienta Interactiva • Diagnóstico</span>
+      <h4>Test del Inversor</h4>
+      <p>Evaluá tu horizonte, tolerancia a la volatilidad y experiencia en 8 preguntas para conocer tu perfil (Conservador, Moderado o Agresivo) y qué instrumentos priorizar.</p>
+    </div>
+    <a href="test-inversor.html" class="btn-test-secondary">
+      <i class="fas fa-sliders"></i> Hacer el Test
     </a>
   </div>
 
